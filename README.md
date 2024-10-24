@@ -8,7 +8,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 
 ### karpenter (for node auto scaling)
 
-```
+```bash
 helm upgrade --install karpenter -f ./karpenter/values.yaml ./karpenter -n kube-system
 ```
 
@@ -21,7 +21,7 @@ helm upgrade --install karpenter -f ./karpenter/values.yaml ./karpenter -n kube-
 ### prometheus & grafana
 
 ```bash
-helm upgrade --install prometheus prometheus-community/kube-prometheus-stack -n observability --create-namespace
+helm upgrade --install prometheus -f ./kube-prometheus-stack/values.yaml ./kube-prometheus-stack -n observability --create-namespace
 ```
 
 ### github action runner
