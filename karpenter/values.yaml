@@ -228,3 +228,7 @@ nodeClass:
   amiFamily: AL2023
   amiSelectorTerms:
     - alias: al2023@latest
+  tags:
+    karpenter.sh/cluster: hansu-eks
+    karpenter.sh/nodepool: default
+    karpenter.sh/nodeclass: default

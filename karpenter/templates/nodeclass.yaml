@@ -15,3 +15,9 @@ spec:
     - tags:
         karpenter.sh/discovery: {{ .Values.eksCluster.name }}
   role: "KarpenterNodeRole-{{ .Values.eksCluster.name }}"
+  {{- with .Values.nodeClass.tags }}
+  tags:
+    {{- range $key, $value := . }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
