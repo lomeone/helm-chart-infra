@@ -9,7 +9,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ### karpenter (for node auto scaling)
 
 ```bash
-helm upgrade --install karpenter -f ./karpenter/values.yaml ./karpenter -n kube-system
+helm upgrade --install karpenter ./karpenter -n kube-system
 ```
 
 ### istio
