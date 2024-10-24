@@ -1,4 +1,4 @@
-apiVersion: karpenter.sh/v1
+apiVersion: karpenter.k8s.aws/v1
 kind: EC2NodeClass
 metadata:
   name: {{ .Values.nodeClass.name }}
@@ -6,7 +6,7 @@ spec:
   amiFamily: {{ .Values.nodeClass.amiFamily }}
   {{- with .Values.nodeClass.amiSelectorTerms }}
   amiSelectorTerms:
-    {{ toYaml . | indent 2 }}
+  {{ toYaml . | indent 2 }}
   {{- end }}
   subnetSelectorTerms:
     - tags:
@@ -17,7 +17,7 @@ spec:
   role: "KarpenterNodeRole-{{ .Values.eksCluster.name }}"
   {{- with .Values.nodeClass.tags }}
   tags:
-    {{- range $key, $value := . }}
+  {{- range $key, $value := . }}
     {{ $key }}: {{ $value | quote }}
-    {{- end }}
+  {{- end }}
   {{- end }}
