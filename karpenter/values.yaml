@@ -20,7 +20,7 @@ serviceAccount:
   name: ""
   # -- Additional annotations for the ServiceAccount.
   annotations:
-    eks.amazonaws.com/role-arn: arn:396428372646:iam::role/KarpenterControllerRole-hansu-eks
+    eks.amazonaws.com/role-arn: arn:aws:iam::058264332540:role/KarpenterControllerRole-hansu-eks
 # -- Specifies additional rules for the core ClusterRole.
 additionalClusterRoleRules: []
 serviceMonitor:
@@ -33,7 +33,7 @@ serviceMonitor:
   # See the Prometheus operator documentation for configurable fields https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#endpoint
   endpointConfig: {}
 # -- Number of replicas.
-replicas: 2
+replicas: 1
 # -- The number of old ReplicaSets to retain to allow rollback.
 revisionHistoryLimit: 10
 # -- Strategy for updating the pod.
@@ -75,6 +75,9 @@ affinity:
         - matchExpressions:
             - key: karpenter.sh/nodepool
               operator: DoesNotExist
+            - key: eks.amazonaws.com/nodegroup
+              operator: In
+              values: ["default_node_group"]
   podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       - topologyKey: "kubernetes.io/hostname"
@@ -177,7 +180,7 @@ settings:
   # -- Interruption queue is the name of the SQS queue used for processing interruption events from EC2
   # Interruption handling is disabled if not specified. Enabling interruption handling may
   # require additional permissions on the controller service account. Additional permissions are outlined in the docs.
-  interruptionQueue: hansu-eks
+  interruptionQueue: ""
   # -- Reserved ENIs are not included in the calculations for max-pods or kube-reserved
   # This is most often used in the VPC CNI custom networking setup https://docs.aws.amazon.com/eks/latest/userguide/cni-custom-network.html
   reservedENIs: "0"
@@ -199,7 +202,7 @@ nodePool:
     - key: karpenter.k8s.aws/instance-category
       operator: In
       values: ["t"]
-    - key: karpenter.k8s.aws/instance-generations
+    - key: karpenter.k8s.aws/instance-generation
       operator: In
       values: ["4"]
     - key: karpenter.k8s.aws/instance-hypervisor
@@ -229,6 +232,6 @@ nodeClass:
   amiSelectorTerms:
     - alias: al2023@latest
   tags:
-    karpenter.sh/cluster: hansu-eks
-    karpenter.sh/nodepool: default
-    karpenter.sh/nodeclass: default
+    karpenter/cluster: hansu-eks
+    karpenter/nodepool: default
+    karpenter/nodeclass: default
