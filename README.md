@@ -9,13 +9,36 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ### karpenter (for node auto scaling)
 
 ```bash
+# edit configmap
+kubectl edit configmap aws-auth -n kube-system
+```
+
+```yaml
+# Add section in aws-auth configmap
+- groups:
+  - system:bootstrappers
+  - system:nodes
+  rolearn: arn:${AWS_PARTITION}:iam::${AWS_ACCOUNT_ID}:role/KarpenterNodeRole-${CLUSTER_NAME}
+  username: system:node:{{EC2PrivateDNSName}}
+```
+
+```bash
+# install karpenter
 helm upgrade --install karpenter ./karpenter -n kube-system
 ```
 
 ### istio
 
 ```bash
+# install istio base
+helm upgrade --install istio-base istio/base -n istio-system --create-namespace
 
+# Install or upgrade the Kubernetes Gateway API CRDs
+kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
+  { kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml; }
+
+# install istiod control plane
+helm upgrade --install istiod istio/istiod --namespace istio-system --set profile=ambient
 ```
 
 ### prometheus & grafana
