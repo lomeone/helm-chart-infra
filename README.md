@@ -32,24 +32,24 @@ helm upgrade --install karpenter ./karpenter -n kube-system
 ```bash
 # Install control plane
 ## install istio base
-helm upgrade --install istio-base istio/base -n istio-system --create-namespace
+helm upgrade --install istio-base ./istio/base -n istio-system --create-namespace
 
 ## install or upgrade the Kubernetes Gateway API CRDs
 kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
-  { kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.2.0/standard-install.yaml; }
+  { kubectl apply -f ./istio/standard-install.yaml; }
 
 ## install istiod control plane
-helm upgrade --install istiod istio/istiod --namespace istio-system --set profile=ambient
+helm upgrade --install istiod ./istio/istiod --namespace istio-system --set profile=ambient
 
 ## install cni node agent
-helm upgrade --install istio-cni istio/cni --namespace istio-system --set profile=ambient
+helm upgrade --install istio-cni ./istio/cni --namespace istio-system --set profile=ambient
 
 # Install data plane
 ## install ztunnel daemonset
-helm upgrade --install ztunnel istio/ztunnel --namespace istio-system
+helm upgrade --install ztunnel ./istio/ztunnel --namespace istio-system
 
 ## install istio ingress gateway
-helm upgrade --install istio-ingress istio/gateway --namespace istio-ingress --create-namespace
+helm upgrade --install istio-ingress ./istio/gateway --namespace istio-ingress --create-namespace
 ```
 
 ### prometheus & grafana
