@@ -6,10 +6,10 @@ nameOverride: ""
 fullnameOverride: ""
 
 # Valid values are "daemonset", "deployment", and "statefulset".
-mode: ""
+mode: deployment
 
 # Specify which namespace should be used to deploy the resources into
-namespaceOverride: ""
+namespaceOverride: observability
 
 # Handles basic configuration of components that
 # also require k8s modifications to work correctly.
@@ -48,13 +48,13 @@ presets:
   # Best used with mode = daemonset.
   # See https://opentelemetry.io/docs/kubernetes/collector/components/#kubernetes-attributes-processor for details on the receiver.
   kubernetesAttributes:
-    enabled: false
+    enabled: true
     # When enabled the processor will extra all labels for an associated pod and add them as resource attributes.
     # The label's exact name will be the key.
-    extractAllPodLabels: false
+    extractAllPodLabels: true
     # When enabled the processor will extra all annotations for an associated pod and add them as resource attributes.
     # The annotation's exact name will be the key.
-    extractAllPodAnnotations: false
+    extractAllPodAnnotations: true
   # Configures the collector to collect node, pod, and container metrics from the API server on a kubelet..
   # Adds the kubeletstats receiver to the metrics pipeline
   # and adds the necessary rules to ClusteRole.
@@ -188,7 +188,7 @@ alternateConfig: {}
 
 image:
   # If you want to use the core image `otel/opentelemetry-collector`, you also need to change `command.name` value to `otelcol`.
-  repository: ""
+  repository: otel/opentelemetry-collector-k8s
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -208,7 +208,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: opentellemetry-collector
 
 clusterRole:
   # Specifies whether a clusterRole should be created
@@ -307,7 +307,7 @@ ports:
   metrics:
     # The metrics port is disabled by default. However you need to enable the port
     # in order to use the ServiceMonitor (serviceMonitor.enabled) or PodMonitor (podMonitor.enabled).
-    enabled: false
+    enabled: true
     containerPort: 8888
     servicePort: 8888
     protocol: TCP
@@ -519,7 +519,7 @@ ingress:
 podMonitor:
   # The pod monitor by default scrapes the metrics port.
   # The metrics port needs to be enabled as well.
-  enabled: false
+  enabled: true
   metricsEndpoints:
     - port: metrics
       # interval: 15s
@@ -531,7 +531,7 @@ podMonitor:
 serviceMonitor:
   # The service monitor by default scrapes the metrics port.
   # The metrics port needs to be enabled as well.
-  enabled: false
+  enabled: true
   metricsEndpoints:
     - port: metrics
       # interval: 15s
@@ -552,12 +552,12 @@ podDisruptionBudget:
 
 # autoscaling is used only if mode is "deployment" or "statefulset"
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
   maxReplicas: 10
   behavior: {}
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
 rollout:
   rollingUpdate: {}
