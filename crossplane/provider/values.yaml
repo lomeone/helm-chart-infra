@@ -1,0 +1,2 @@
+region: ap-northeast-2
+roleArn: arn:aws:iam::058264332540:role/CrossplaneRole-hansu-eks
