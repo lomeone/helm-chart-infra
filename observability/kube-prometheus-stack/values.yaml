@@ -987,6 +987,11 @@ grafana:
     ##
     pspEnabled: false
 
+  istio:
+    ingress:
+      enabled: true
+      selector: ingress
+
   ingress:
     ## If true, Grafana Ingress will be created
     ##
