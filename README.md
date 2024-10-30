@@ -27,6 +27,18 @@ kubectl edit configmap aws-auth -n kube-system
 helm upgrade --install karpenter ./karpenter -n kube-system
 ```
 
+### prometheus & grafana
+
+```bash
+helm upgrade --install prometheus ./observability/kube-prometheus-stack -n observability
+```
+
+### opentelemetry collector
+
+```bash
+helm upgrade --install otel-collector ./observability/opentelemetry-collector -n observability --create-namespace
+```
+
 ### istio
 
 ```bash
@@ -39,23 +51,17 @@ kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
   { kubectl apply -f ./istio/standard-install.yaml; }
 
 ## install istiod control plane
-helm upgrade --install istiod ./istio/istiod --namespace istio-system --set profile=ambient
+helm upgrade --install istiod ./istio/istiod -n istio-system --set profile=ambient
 
 ## install cni node agent
-helm upgrade --install istio-cni ./istio/cni --namespace istio-system --set profile=ambient
+helm upgrade --install istio-cni ./istio/cni -n istio-system --set profile=ambient
 
 # Install data plane
 ## install ztunnel daemonset
-helm upgrade --install ztunnel ./istio/ztunnel --namespace istio-system
+helm upgrade --install ztunnel ./istio/ztunnel -n istio-system --set profile=ambient
 
 ## install istio ingress gateway
-helm upgrade --install istio-ingress ./istio/gateway --namespace istio-ingress --create-namespace
-```
-
-### prometheus & grafana
-
-```bash
-helm upgrade --install prometheus ./kube-prometheus-stack -n observability --create-namespace
+helm upgrade --install istio-ingress ./istio/gateway -n istio-ingress --create-namespace --set profile=ambient
 ```
 
 ### github action runner
@@ -96,6 +102,7 @@ helm install "${INSTALLATION_NAME}" \
 
 ### crossplane
 
-```
-
+```bash
+helm upgrade --install crossplane ./crossplane -n crossplane-system --create-namespace
+helm upgrade --install crossplane-provider
 ```
