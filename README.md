@@ -66,6 +66,11 @@ helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator -
 
 ```
 
+### external-dns
+```bash
+helm upgarde --install external-dns ./external-dns -n external-dns --create-namespace
+```
+
 ### github action runner
 
 ```bash
