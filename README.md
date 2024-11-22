@@ -27,12 +27,6 @@ kubectl edit configmap aws-auth -n kube-system
 helm upgrade --install karpenter ./karpenter -n kube-system
 ```
 
-### prometheus & grafana
-
-```bash
-helm upgrade --install prometheus ./observability/kube-prometheus-stack -n observability
-```
-
 ### opentelemetry collector
 
 ```bash
@@ -51,17 +45,25 @@ kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
   { kubectl apply -f ./istio/standard-install.yaml; }
 
 ## install istiod control plane
-helm upgrade --install istiod ./istio/istiod -n istio-system --set profile=ambient
+helm upgrade --install istiod ./istio/istiod -n istio-system
 
 ## install cni node agent
-helm upgrade --install istio-cni ./istio/cni -n istio-system --set profile=ambient
+helm upgrade --install istio-cni ./istio/cni -n istio-system
 
 # Install data plane
 ## install ztunnel daemonset
-helm upgrade --install ztunnel ./istio/ztunnel -n istio-system --set profile=ambient
+helm upgrade --install ztunnel ./istio/ztunnel -n istio-system
 
 ## install istio ingress gateway
 helm upgrade --install istio-ingress ./istio/gateway -n istio-ingress --create-namespace --set profile=ambient
+
+# Install istio observability
+## install istio prometheus
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.24/samples/addons/prometheus.yaml
+
+## install kiali
+helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator --create-namespace
+
 ```
 
 ### github action runner
