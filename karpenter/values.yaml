@@ -121,10 +121,9 @@ controller:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     requests:
       cpu: 1
-      memory: 1Gi
+      memory: 512Mi
     limits:
-      cpu: 1
-      memory: 1Gi
+      memory: 512Mi
 
   # -- Additional volumeMounts for the controller pod.
   extraVolumeMounts: []
