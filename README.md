@@ -24,7 +24,8 @@ kubectl edit configmap aws-auth -n kube-system
 
 ```bash
 # install karpenter
-helm upgrade --install karpenter ./karpenter -n kube-system
+helm upgrade --install karpenter ./karpenter/karpenter -n kube-system
+helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
 
 ### opentelemetry collector
@@ -103,7 +104,7 @@ helm install "${INSTALLATION_NAME}" \
 
 ### argo cd
 
-```
+```bash
 
 ```
 
