@@ -7,3 +7,4 @@ istio:
     selector: ingressgateway
     annotations:
       external-dns.alpha.kubernetes.io/ttl: "5m"
+  domain: istio-kiali.lomeone.com
