@@ -39,7 +39,7 @@ customAnnotations: {}
 serviceAccount:
   # -- Add custom `annotations` to the Crossplane ServiceAccount.
   customAnnotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::058264332540:role/CrossplaneRole-hansu-eks
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/CrossplaneRole-lomeone-eks
 
 # -- Enable [leader election](https://docs.crossplane.io/latest/concepts/pods/#leader-election) for the Crossplane pod.
 leaderElection: true

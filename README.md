@@ -25,6 +25,8 @@ kubectl edit configmap aws-auth -n kube-system
 ```bash
 # install karpenter
 helm upgrade --install karpenter ./karpenter/karpenter -n kube-system
+
+# Register karpenter node
 helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
 
