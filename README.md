@@ -73,7 +73,7 @@ helm upgrade --install kiali-gateway ./istio/kiali-gateway -n kiali-gateway --cr
 
 ### external-dns
 ```bash
-helm upgarde --install external-dns ./external-dns -n external-dns --create-namespace
+helm upgrade --install external-dns ./external-dns -n external-dns --create-namespace
 ```
 
 ### github action runner
