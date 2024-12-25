@@ -1,0 +1,21 @@
+{{- $fullName := include "kiali-istio-gateway.fullname" . -}}
+{{- $namespace := .Values.namespace -}}
+{{- $servicePort := .Values.service.port -}}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: "{{ $fullName }}-vs"
+spec:
+  hosts:
+    - "istio-kiali.oy-global-sandbox.com"
+  gateways:
+    - "{{ $fullName }}-gw"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: "{{ $fullName }}.{{ $namespace }}.svc.cluster.local"
+            port:
+              number: {{ $servicePort }}
