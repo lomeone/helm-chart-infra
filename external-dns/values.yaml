@@ -1070,7 +1070,7 @@ serviceAccount:
   ## @param serviceAccount.annotations Additional Service Account annotations
   ##
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::058264332540:role/ExternalDNSRole-hansu-eks
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/ExternalDNSRole-lomeone-eks
   ## @param serviceAccount.automountServiceAccountToken Automount API credentials for a service account.
   ##
   automountServiceAccountToken: false
