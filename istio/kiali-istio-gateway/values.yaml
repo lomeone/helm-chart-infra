@@ -1,0 +1,9 @@
+namespace: istio-system
+service:
+  port: 20001
+
+istio:
+  ingress:
+    selector: ingressgateway
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "5m"

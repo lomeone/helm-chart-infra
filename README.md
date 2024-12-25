@@ -106,7 +106,7 @@ helm install "${INSTALLATION_NAME}" \
 
 ### argo cd
 
-```
+```bash
 
 ```
 
