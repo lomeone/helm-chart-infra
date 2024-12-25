@@ -7,7 +7,7 @@ metadata:
   name: "{{ $fullName }}-vs"
 spec:
   hosts:
-    - "istio-kiali.oy-global-sandbox.com"
+    - "istio-kiali.lomeone.com"
   gateways:
     - "{{ $fullName }}-gw"
   http:
