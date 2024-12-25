@@ -67,6 +67,8 @@ kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.24/samp
 ## install kiali
 helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator --create-namespace
 
+## install kiali gateway
+
 ```
 
 ### external-dns
