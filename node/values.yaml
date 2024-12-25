@@ -1,5 +1,5 @@
 eksCluster:
-  name: hansu-eks
+  name: lomeone-eks
 nodePool:
   name: default
   labels: {}
