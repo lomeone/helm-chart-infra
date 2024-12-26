@@ -1,0 +1,10 @@
+{{- $fullName := include "argo-cd.fullname" . -}}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: "{{ $fullName }}-vs"
+spec:
+  hosts:
+    - {{ .Values.ingress.hosts.host }}
+  gateways:
+    - "{{ $fullName }}-gw"
