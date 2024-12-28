@@ -10,7 +10,7 @@ metadata:
   {{- end }}
 spec:
   selector:
-    istio: "ingress"
+    istio: {{ .Values.ingress.istio.selector }}
   servers:
     - hosts:
       - {{ .Values.ingress.hosts.host }}
@@ -18,5 +18,12 @@ spec:
         number: 80
         name: http
         protocol: HTTP2
-
+      tls:
+        httpsRedirect: true
+    - hosts:
+      - {{ .Values.ingress.hosts.host }}
+      port:
+        number: 443
+        name: https
+        protocol: HTTP2
 {{- end }}

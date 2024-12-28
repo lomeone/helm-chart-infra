@@ -3,7 +3,7 @@
 ##
 
 # -- Provide a name in place of `argocd`
-nameOverride: argocd
+nameOverride: argo-cd
 # -- String to fully override `"argo-cd.fullname"`
 fullnameOverride: ""
 # -- Override the namespace
@@ -37,6 +37,14 @@ crds:
   annotations: {}
   # -- Addtional labels to be added to all CRDs
   additionalLabels: {}
+
+ingress:
+  enabled: true
+  annotations: {}
+  istio:
+    selector: ingressgateway
+  hosts:
+    host: argo-cd.lomeone.com
 
 ## Globally shared configuration
 global:

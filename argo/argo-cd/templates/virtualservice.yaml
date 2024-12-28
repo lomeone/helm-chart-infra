@@ -8,3 +8,12 @@ spec:
     - {{ .Values.ingress.hosts.host }}
   gateways:
     - "{{ $fullName }}-gw"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: "argo-cd-server.argo.svc.cluster.local"
+            port:
+              number: 80
