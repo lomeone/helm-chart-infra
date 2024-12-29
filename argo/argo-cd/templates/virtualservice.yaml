@@ -1,0 +1,19 @@
+{{- $fullName := include "argo-cd.fullname" . -}}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: "{{ $fullName }}-vs"
+spec:
+  hosts:
+    - {{ .Values.ingress.hosts.host }}
+  gateways:
+    - "{{ $fullName }}-gw"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: "argo-cd-server.argo.svc.cluster.local"
+            port:
+              number: 80

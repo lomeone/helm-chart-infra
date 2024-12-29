@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "argo-cd.fullname" . -}}
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: "{{ $fullName }}-gw"
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    istio: {{ .Values.ingress.istio.selector }}
+  servers:
+    - hosts:
+      - {{ .Values.ingress.hosts.host }}
+      port:
+        number: 80
+        name: http
+        protocol: HTTP2
+      tls:
+        httpsRedirect: true
+    - hosts:
+      - {{ .Values.ingress.hosts.host }}
+      port:
+        number: 443
+        name: https
+        protocol: HTTP2
+{{- end }}
