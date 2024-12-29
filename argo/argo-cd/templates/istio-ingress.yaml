@@ -25,5 +25,8 @@ spec:
       port:
         number: 443
         name: https
-        protocol: HTTP2
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: argocd-secret
 {{- end }}

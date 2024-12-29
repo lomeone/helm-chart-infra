@@ -3,7 +3,7 @@
 ##
 
 # -- Provide a name in place of `argocd`
-nameOverride: argo-cd
+nameOverride: argocd
 # -- String to fully override `"argo-cd.fullname"`
 fullnameOverride: ""
 # -- Override the namespace
@@ -40,7 +40,8 @@ crds:
 
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "5m"
   istio:
     selector: ingressgateway
   hosts:

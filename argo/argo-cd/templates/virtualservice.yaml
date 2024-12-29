@@ -9,11 +9,12 @@ spec:
   gateways:
     - "{{ $fullName }}-gw"
   http:
-    - match:
+    - name: argo-cd
+      match:
         - uri:
             prefix: /
       route:
         - destination:
-            host: "argo-cd-server.argo.svc.cluster.local"
+            host: "argocd-server.argo.svc.cluster.local"
             port:
               number: 80
