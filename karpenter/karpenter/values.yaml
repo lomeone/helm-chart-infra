@@ -12,6 +12,9 @@ additionalAnnotations: {}
 imagePullPolicy: IfNotPresent
 # -- Image pull secrets for Docker images.
 imagePullSecrets: []
+service:
+  # -- Additional annotations for the Service.
+  annotations: {}
 serviceAccount:
   # -- Specifies if a ServiceAccount should be created.
   create: true
@@ -57,6 +60,8 @@ terminationGracePeriodSeconds:
 # -- Bind the pod to the host network.
 # This is required when using a custom CNI.
 hostNetwork: false
+# -- Specify which Kubernetes scheduler should dispatch the pod.
+schedulerName: default-scheduler
 # -- Configure the DNS Policy for the pod
 dnsPolicy: ClusterFirst
 # -- Configure DNS Config for the pod
@@ -101,13 +106,15 @@ extraVolumes: []
 #         expirationSeconds: 86400
 #         path: token
 controller:
+  # -- Distinguishing container name (containerName: karpenter-controller).
+  containerName: controller
   image:
     # -- Repository path to the controller image.
     repository: public.ecr.aws/karpenter/controller
     # -- Tag of the controller image.
-    tag: 1.0.6
+    tag: 1.1.1
     # -- SHA256 digest of the controller image.
-    digest: sha256:25ec56d5bc718b213a648c0c64360a3be7fbe885b79905c73b77f68295352e9b
+    digest: sha256:fe383abf1dbc79f164d1cbcfd8edaaf7ce97a43fbd6cb70176011ff99ce57523
   # -- Additional environment variables for the controller pod.
   env: []
   # - name: AWS_REGION
@@ -120,7 +127,7 @@ controller:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     requests:
-      cpu: 1
+      cpu: 0.1
       memory: 512Mi
     limits:
       memory: 512Mi
@@ -140,14 +147,6 @@ controller:
   healthProbe:
     # -- The container port to use for http health probe.
     port: 8081
-webhook:
-  # -- Whether to enable the webhooks and webhook permissions.
-  enabled: true
-  # -- The container port to use for the webhook.
-  port: 8443
-  metrics:
-    # -- The container port to use for webhook metrics.
-    port: 8001
 # -- Global log level, defaults to 'info'
 logLevel: info
 # -- Log outputPaths - defaults to stdout only
@@ -174,7 +173,9 @@ settings:
   # -- If true then assume we can't reach AWS services which don't have a VPC endpoint
   # This also has the effect of disabling look-ups to the AWS pricing endpoint
   isolatedVPC: false
-  # -- The VM memory overhead as a percent that will be subtracted from the total memory for all instance types
+  # Marking this true means that your cluster is running with an EKS control plane and Karpenter should attempt to discover cluster details from the DescribeCluster API
+  eksControlPlane: false
+  # -- The VM memory overhead as a percent that will be subtracted from the total memory for all instance types. The value of `0.075` equals to 7.5%.
   vmMemoryOverheadPercent: 0.075
   # -- Interruption queue is the name of the SQS queue used for processing interruption events from EC2
   # Interruption handling is disabled if not specified. Enabling interruption handling may
@@ -189,44 +190,6 @@ settings:
     # -- spotToSpotConsolidation is ALPHA and is disabled by default.
     # Setting this to true will enable spot replacement consolidation for both single and multi-node consolidation.
     spotToSpotConsolidation: false
-
-eksCluster:
-  name: lomeone-eks
-nodePool:
-  name: default
-  labels: {}
-  expireAfter: 720h
-  terminationGracePeriod: 10m
-  requirements:
-    - key: karpenter.k8s.aws/instance-category
-      operator: In
-      values: ["t"]
-    - key: karpenter.k8s.aws/instance-generation
-      operator: In
-      values: ["4"]
-    - key: karpenter.k8s.aws/instance-hypervisor
-      operator: In
-      values: ["nitro"]
-    - key: karpenter.k8s.aws/instance-cpu
-      operator: In
-      values: ["1", "2"]
-    - key: karpenter.k8s.aws/instance-memory
-      operator: In
-      values: ["1024", "2048", "4096", "8192"]
-    - key: karpenter.sh/capacity-type
-      operator: In
-      values: ["on-demand", "spot"]
-    - key: kubernetes.io/arch
-      operator: In
-      values: ["arm64"]
-  disruption:
-    consolidationPolicy: WhenEmptyOrUnderutilized
-    consolidateAfter: 10m
-  limit:
-    cpu: 10
-    memory: 40Gi
-nodeClass:
-  name: default
-  amiFamily: AL2023
-  amiSelectorTerms:
-    - alias: al2023@latest
+    # -- nodeRepair is ALPHA and is disabled by default.
+    # Setting this to true will enable node repair for nodes that are in a failed state.
+    nodeRepair: false
