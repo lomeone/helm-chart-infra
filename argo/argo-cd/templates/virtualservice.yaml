@@ -15,6 +15,6 @@ spec:
             prefix: /
       route:
         - destination:
-            host: "argocd-server.argo.svc.cluster.local"
+            host: argocd-server.argo.svc.cluster.local
             port:
               number: 80
