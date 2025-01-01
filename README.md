@@ -69,6 +69,9 @@ helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator -
 
 ## install kiali gateway
 helm upgrade --install kiali-gateway ./istio/kiali-gateway -n istio-system --create-namespace
+
+## Register istio network(ambient mode and range for namespace)
+kubectl label namespace {namespace} istio.io/dataplane-mode=ambient
 ```
 
 ### external-dns
@@ -109,7 +112,14 @@ helm install "${INSTALLATION_NAME}" \
 ### argo cd
 
 ```bash
+# argo cd
+helm upgrade --install argocd ./argo/argo-cd -n argo --create-namespace
 
+# argocd image updater
+helm upgrade --install argocd-image-updater ./argo/argocd-image-updater -n argo
+
+# argo rollouts
+helm upgrade --install argo-rollouts ./argo/argo-rollouts -n argo
 ```
 
 ### crossplane
