@@ -118,7 +118,7 @@ config:
     # -- Use the gRPC-web protocol to connect to the Argo CD API
     grpcWeb: true
     # -- Connect to the Argo CD API server at server address
-    serverAddress: ""
+    serverAddress: "https://argocd-server"
     # -- If specified, the certificate of the Argo CD API server is not verified.
     insecure: false
     # -- If specified, use an unencrypted HTTP connection to the Argo CD API instead of TLS.
@@ -151,9 +151,9 @@ config:
   logLevel: "info"
 
   # -- Argo CD Image Updater registries list configuration. More information [here](https://argocd-image-updater.readthedocs.io/en/stable/configuration/registries/)
-  registries: []
-    # - name: Docker Hub
-    #   api_url: https://registry-1.docker.io
+  registries:
+     - name: Docker Hub
+       api_url: https://registry-1.docker.io
     #   ping: yes
     #   credentials: secret:foo/bar#creds
     #   defaultns: library
