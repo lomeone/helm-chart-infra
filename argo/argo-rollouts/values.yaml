@@ -82,7 +82,7 @@ controller:
   # -- [priorityClassName] for the controller
   priorityClassName: ""
   # -- The number of controller pods to run
-  replicas: 2
+  replicas: 1
   image:
     # -- Registry to use
     registry: quay.io
@@ -116,14 +116,14 @@ controller:
   #      -  ls
 
   # -- Resource limits and requests for the controller pods.
-  resources: {}
-  #  limits:
-  #    cpu: 100m
-  #    memory: 128Mi
-  #    ephemeral-storage: 1Gi
-  #  requests:
-  #    cpu: 50m
-  #    memory: 64Mi
+  resources:
+    limits:
+#      cpu: 100m
+      memory: 64Mi
+#      ephemeral-storage: 1Gi
+    requests:
+      cpu: 50m
+      memory: 64Mi
 
   # -- flag to enable creation of cluster controller role (requires cluster RBAC)
   createClusterRole: true
