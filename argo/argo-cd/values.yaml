@@ -1121,7 +1121,7 @@ dex:
       memory: 64Mi
     requests:
       cpu: 50m
-      memory: 32Mi
+      memory: 64Mi
 
   # Dex container ports
   # NOTE: These ports are currently hardcoded and cannot be changed
