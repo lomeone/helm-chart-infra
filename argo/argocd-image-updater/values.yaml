@@ -235,7 +235,12 @@ rbac:
   enabled: true
 
 # -- Pod memory and cpu resource settings for the deployment
-resources: {}
+resources:
+  requests:
+      cpu: 10m
+      memory: 64Mi
+  limits:
+      memory: 64Mi
 
 # -- Kubernetes nodeSelector settings for the deployment
 nodeSelector: {}
