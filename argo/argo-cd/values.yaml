@@ -1775,9 +1775,9 @@ server:
     # -- Maximum number of replicas for the Argo CD server [HPA]
     maxReplicas: 5
     # -- Average CPU utilization percentage for the Argo CD server [HPA]
-    targetCPUUtilizationPercentage: 50
+    targetCPUUtilizationPercentage: 80
     # -- Average memory utilization percentage for the Argo CD server [HPA]
-    targetMemoryUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 80
     # -- Configures the scaling behavior of the target in both Up and Down directions.
     behavior: {}
       # scaleDown:
@@ -2444,9 +2444,9 @@ repoServer:
     # -- Maximum number of replicas for the repo server [HPA]
     maxReplicas: 5
     # -- Average CPU utilization percentage for the repo server [HPA]
-    targetCPUUtilizationPercentage: 50
+    targetCPUUtilizationPercentage: 80
     # -- Average memory utilization percentage for the repo server [HPA]
-    targetMemoryUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 80
     # -- Configures the scaling behavior of the target in both Up and Down directions.
     behavior: {}
       # scaleDown:
