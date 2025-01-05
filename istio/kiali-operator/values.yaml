@@ -16,8 +16,10 @@ env: []
 tolerations: []
 resources:
   requests:
-    cpu: "10m"
-    memory: "64Mi"
+    cpu: 10m
+    memory: 256Mi
+  limits:
+    memory: 256Mi
 affinity: {}
 replicaCount: 1
 priorityClassName: ""
@@ -107,7 +109,7 @@ cr:
       strategy: "anonymous"
     resources:
       requests:
-        cpu: "10m"
-        memory: "64Mi"
+        cpu: 10m
+        memory: 128Mi
       limits:
-        memory: "64Mi"
+        memory: 128Mi

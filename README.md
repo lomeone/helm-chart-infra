@@ -56,7 +56,7 @@ helm upgrade --install istio-ingress ./istio/gateway -n istio-ingress --create-n
 
 # Install istio observability
 ## install istio prometheus
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.24/samples/addons/prometheus.yaml
+kubectl apply -f ./istio/prometheus.yaml
 
 ## install kiali
 helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator --create-namespace
