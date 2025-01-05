@@ -119,11 +119,11 @@ controller:
   resources:
     limits:
 #      cpu: 100m
-      memory: 64Mi
+      memory: 128Mi
 #      ephemeral-storage: 1Gi
     requests:
       cpu: 50m
-      memory: 64Mi
+      memory: 128Mi
 
   # -- flag to enable creation of cluster controller role (requires cluster RBAC)
   createClusterRole: true
