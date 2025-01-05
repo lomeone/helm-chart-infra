@@ -1769,7 +1769,7 @@ server:
   ## Argo CD server Horizontal Pod Autoscaler
   autoscaling:
     # -- Enable Horizontal Pod Autoscaler ([HPA]) for the Argo CD server
-    enabled: false
+    enabled: true
     # -- Minimum number of replicas for the Argo CD server [HPA]
     minReplicas: 1
     # -- Maximum number of replicas for the Argo CD server [HPA]
@@ -2438,7 +2438,7 @@ repoServer:
   ## Repo server Horizontal Pod Autoscaler
   autoscaling:
     # -- Enable Horizontal Pod Autoscaler ([HPA]) for the repo server
-    enabled: false
+    enabled: true
     # -- Minimum number of replicas for the repo server [HPA]
     minReplicas: 1
     # -- Maximum number of replicas for the repo server [HPA]
@@ -3365,10 +3365,10 @@ notifications:
   resources:
      limits:
 #       cpu: 100m
-       memory: 64Mi
+       memory: 128Mi
      requests:
        cpu: 50m
-       memory: 64Mi
+       memory: 128Mi
 
   # Notification controller container ports
   containerPorts:
