@@ -770,10 +770,10 @@ controller:
   resources:
     limits:
 #      cpu: 500m
-      memory: 128Mi
+      memory: 256Mi
     requests:
       cpu: 50m
-      memory: 128Mi
+      memory: 256Mi
 
   # Application controller container ports
   containerPorts:
@@ -1118,10 +1118,10 @@ dex:
   resources:
     limits:
 #      cpu: 50m
-      memory: 64Mi
+      memory: 128Mi
     requests:
       cpu: 50m
-      memory: 64Mi
+      memory: 128Mi
 
   # Dex container ports
   # NOTE: These ports are currently hardcoded and cannot be changed
@@ -1437,7 +1437,7 @@ redis:
   resources:
     limits:
 #      cpu: 200m
-      memory: 128Mi
+      memory: 64Mi
     requests:
       cpu: 50m
       memory: 64Mi
@@ -1967,10 +1967,10 @@ server:
   resources:
     limits:
 #      cpu: 100m
-      memory: 64Mi
+      memory: 128Mi
     requests:
       cpu: 50m
-      memory: 64Mi
+      memory: 128Mi
 
   # Server container ports
   containerPorts:
@@ -2614,10 +2614,10 @@ repoServer:
   resources:
     limits:
 #      cpu: 50m
-      memory: 64Mi
+      memory: 128Mi
     requests:
       cpu: 10m
-      memory: 64Mi
+      memory: 128Mi
 
   # Repo server container ports
   containerPorts:
@@ -3365,7 +3365,7 @@ notifications:
   resources:
      limits:
 #       cpu: 100m
-       memory: 128Mi
+       memory: 64Mi
      requests:
        cpu: 50m
        memory: 64Mi
