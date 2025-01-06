@@ -10,7 +10,10 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  # add my custom
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  # delete my custom
+{{/*  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}*/}}
   selector:
     matchLabels:
     {{- include "karpenter.selectorLabels" . | nindent 6 }}
