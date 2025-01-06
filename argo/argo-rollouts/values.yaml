@@ -190,9 +190,9 @@ controller:
     # -- Annotations to be added to controller [Pod Disruption Budget]
     annotations: {}
     # -- Deploy a [Pod Disruption Budget] for the controller
-    enabled: false
+    enabled: true
     # -- Minimum number / percentage of pods that should remain scheduled
-    minAvailable: # 1
+    minAvailable: 1
     # -- Maximum number / percentage of pods that may be made unavailable
     maxUnavailable: # 0
 

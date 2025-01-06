@@ -145,7 +145,8 @@ defaults:
   #
   # podDisruptionBudget: {}
   #
-  podDisruptionBudget: {}
+  podDisruptionBudget:
+    minAvailable: 1
 
   terminationGracePeriodSeconds: 30
 
