@@ -23,7 +23,9 @@ spec:
       {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
-        {{- include "argocd-image-updater.selectorLabels" . | nindent 8 }}
+{{/*        {{- include "argocd-image-updater.selectorLabels" . | nindent 8 }}*/}}
+      {{/*Custom Labels*/}}
+      {{- include "argocd-image-updater.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

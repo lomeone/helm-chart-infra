@@ -48,6 +48,11 @@ helm.sh/chart: {{ include "argocd-image-updater.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | trunc 63 | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{/*
+Custom Labels
+*/}}
+app: {{ include "argocd-image-updater.name" . }}
+version: {{ .Chart.AppVersion | trunc 63 | quote }}
 {{- end }}
 
 {{/*
