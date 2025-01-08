@@ -40,7 +40,9 @@ fullnameOverride: ""
 clusterDomain: cluster.local
 ## @param commonLabels Labels to add to all deployed objects
 ##
-commonLabels: {}
+commonLabels:
+  app: external-dns
+  version: 0.15.0
 ## @param commonAnnotations Annotations to add to all deployed objects
 ##
 commonAnnotations: {}
