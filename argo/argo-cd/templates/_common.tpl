@@ -57,6 +57,13 @@ app.kubernetes.io/version: {{ include "argo-cd.versionLabelValue" .context }}
 {{- with .context.Values.global.additionalLabels }}
 {{ toYaml . }}
 {{- end }}
+{{/*
+Custeml labels
+*/}}
+{{- if .name -}}
+app: {{ include "argo-cd.name" .context }}-{{ .name }}
+{{ end -}}
+version: {{ include "argo-cd.versionLabelValue" .context }}
 {{- end }}
 
 {{/*
