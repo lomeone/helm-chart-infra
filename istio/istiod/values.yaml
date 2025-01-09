@@ -26,10 +26,10 @@ defaults:
     # Resources for a small pilot install
     resources:
       requests:
-        cpu: 50m
-        memory: 256Mi
+        cpu: 500m
+        memory: 512Mi
       limits:
-        memory: 256Mi
+        memory: 512Mi
 
     # Set to `type: RuntimeDefault` to use the default profile if available.
     seccompProfile: {}
