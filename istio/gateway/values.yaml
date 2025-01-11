@@ -77,10 +77,10 @@ defaults:
 
   resources:
     requests:
-      cpu: 50m
-      memory: 128Mi
+      cpu: 10m
+      memory: 256Mi
     limits:
-      memory: 128Mi
+      memory: 256Mi
 
   autoscaling:
     enabled: true
