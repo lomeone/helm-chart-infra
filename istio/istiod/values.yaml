@@ -27,9 +27,9 @@ defaults:
     resources:
       requests:
         cpu: 50m
-        memory: 256Mi
+        memory: 126Mi
       limits:
-        memory: 256Mi
+        memory: 126Mi
 
     # Set to `type: RuntimeDefault` to use the default profile if available.
     seccompProfile: {}
