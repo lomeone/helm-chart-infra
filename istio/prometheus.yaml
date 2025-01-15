@@ -519,10 +519,10 @@ spec:
           # resources -> my custom
           resources:
             requests:
-              cpu: 10m
-              memory: 64Mi
+              cpu: 50m
+              memory: 128Mi
             limits:
-              memory: 64Mi
+              memory: 128Mi
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config
