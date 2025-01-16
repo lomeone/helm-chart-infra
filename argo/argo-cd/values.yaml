@@ -681,10 +681,10 @@ controller:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `controller.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Application controller image
   image:
@@ -1016,10 +1016,10 @@ dex:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailble after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `dex.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Dex image
   image:
@@ -1280,10 +1280,10 @@ redis:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailble after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `redis.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Redis image
   image:
@@ -1807,10 +1807,10 @@ server:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `server.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Argo CD server image
   image:
@@ -2476,10 +2476,10 @@ repoServer:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `repoServer.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Repo server image
   image:
@@ -2840,10 +2840,10 @@ applicationSet:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `applicationSet.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## ApplicationSet controller image
   image:
@@ -3213,10 +3213,10 @@ notifications:
     annotations: {}
     # -- Number of pods that are available after eviction as number or percentage (eg.: 50%)
     # @default -- `""` (defaults to 0 if not specified)
-    minAvailable: 1
+    minAvailable: ""
     # -- Number of pods that are unavailable after eviction as number or percentage (eg.: 50%).
     ## Has higher precedence over `notifications.pdb.minAvailable`
-    maxUnavailable: ""
+    maxUnavailable: 1
 
   ## Notifications controller image
   image:
