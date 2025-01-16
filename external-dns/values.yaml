@@ -1228,8 +1228,8 @@ extraVolumeMounts: []
 ##
 pdb:
   create: true
-  minAvailable: 1
-  maxUnavailable: ""
+  minAvailable: ""
+  maxUnavailable: 1
 ## Prometheus Exporter / Metrics
 ##
 metrics:
