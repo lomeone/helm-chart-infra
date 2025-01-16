@@ -49,10 +49,7 @@ podLabels: {}
 podAnnotations: {}
 podDisruptionBudget:
   name: karpenter
-  # add my custom
-  minAvailable: 1
-  # delete my custom
-#  maxUnavailable: 1
+  maxUnavailable: 1
 # -- SecurityContext for the pod.
 podSecurityContext:
   fsGroup: 65532
