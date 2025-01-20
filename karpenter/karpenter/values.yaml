@@ -127,10 +127,10 @@ controller:
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
     requests:
-      cpu: 0.1
-      memory: 512Mi
+      cpu: 50m
+      memory: 256Mi
     limits:
-      memory: 512Mi
+      memory: 256Mi
 
   # -- Additional volumeMounts for the controller pod.
   extraVolumeMounts: []
