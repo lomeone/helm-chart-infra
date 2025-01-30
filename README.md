@@ -24,8 +24,7 @@ kubectl edit configmap aws-auth -n kube-system
 
 ```bash
 # install karpenter
-helm upgrade --install karpenter ./karpenter/karpenter -n kube-system
-
+helm upgrade --install karpenter ./karpenter/karpenter -f ./karpenter/karpenter/overwrite-values.yaml -n kube-system
 # Register karpenter node
 helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
@@ -70,7 +69,7 @@ kubectl label namespace {namespace} istio.io/dataplane-mode=ambient
 
 ### external-dns
 ```bash
-helm upgrade --install external-dns ./external-dns -n external-dns --create-namespace
+helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-values.yaml -n external-dns --create-namespace
 ```
 
 ### argo cd
