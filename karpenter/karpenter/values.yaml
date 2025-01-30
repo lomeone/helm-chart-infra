@@ -22,8 +22,7 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template.
   name: ""
   # -- Additional annotations for the ServiceAccount.
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/KarpenterControllerRole-lomeone-eks
+  annotations: {}
 # -- Specifies additional rules for the core ClusterRole.
 additionalClusterRoleRules: []
 serviceMonitor:
@@ -36,7 +35,7 @@ serviceMonitor:
   # See the Prometheus operator documentation for configurable fields https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#endpoint
   endpointConfig: {}
 # -- Number of replicas.
-replicas: 1
+replicas: 2
 # -- The number of old ReplicaSets to retain to allow rollback.
 revisionHistoryLimit: 10
 # -- Strategy for updating the pod.
@@ -80,9 +79,6 @@ affinity:
         - matchExpressions:
             - key: karpenter.sh/nodepool
               operator: DoesNotExist
-            - key: eks.amazonaws.com/nodegroup
-              operator: In
-              values: ["default_node_group"]
   podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       - topologyKey: "kubernetes.io/hostname"
@@ -121,16 +117,17 @@ controller:
   #   value: eu-west-1
   envFrom: []
   # -- Resources for the controller pod.
-  resources:
+  resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    requests:
-      cpu: 50m
-      memory: 256Mi
-    limits:
-      memory: 256Mi
+  #  requests:
+  #    cpu: 1
+  #    memory: 1Gi
+  #  limits:
+  #    cpu: 1
+  #    memory: 1Gi
 
   # -- Additional volumeMounts for the controller pod.
   extraVolumeMounts: []
@@ -167,7 +164,7 @@ settings:
   # -- Cluster CA bundle for TLS configuration of provisioned nodes. If not set, this is taken from the controller's TLS configuration for the API server.
   clusterCABundle: ""
   # -- Cluster name.
-  clusterName: lomeone-eks
+  clusterName: ""
   # -- Cluster endpoint. If not set, will be discovered during startup (EKS only)
   clusterEndpoint: ""
   # -- If true then assume we can't reach AWS services which don't have a VPC endpoint
@@ -180,7 +177,7 @@ settings:
   # -- Interruption queue is the name of the SQS queue used for processing interruption events from EC2
   # Interruption handling is disabled if not specified. Enabling interruption handling may
   # require additional permissions on the controller service account. Additional permissions are outlined in the docs.
-  interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
+  interruptionQueue: ""
   # -- Reserved ENIs are not included in the calculations for max-pods or kube-reserved
   # This is most often used in the VPC CNI custom networking setup https://docs.aws.amazon.com/eks/latest/userguide/cni-custom-network.html
   reservedENIs: "0"
@@ -191,5 +188,5 @@ settings:
     # Setting this to true will enable spot replacement consolidation for both single and multi-node consolidation.
     spotToSpotConsolidation: false
     # -- nodeRepair is ALPHA and is disabled by default.
-    # Setting this to true will enable node repair for nodes that are in a failed state.
+    # Setting this to true will enable node repair.
     nodeRepair: false

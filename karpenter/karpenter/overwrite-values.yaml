@@ -1,0 +1,28 @@
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/KarpenterControllerRole-lomeone-eks
+
+replicas: 1
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: karpenter.sh/nodepool
+              operator: DoesNotExist
+            - key: eks.amazonaws.com/nodegroup
+              operator: In
+              values: ["default_node_group"]
+
+controller:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 256Mi
+
+settings:
+  clusterName: lomeone-eks
+  interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
