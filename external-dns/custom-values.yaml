@@ -1,0 +1,6 @@
+metrics:
+  enabled: true
+  podAnnotations:
+    prometheus.io/port: "7979"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
