@@ -108,9 +108,9 @@ controller:
     # -- Repository path to the controller image.
     repository: public.ecr.aws/karpenter/controller
     # -- Tag of the controller image.
-    tag: 1.1.2
+    tag: 1.2.1
     # -- SHA256 digest of the controller image.
-    digest: sha256:51440fa5c417589ff8f45154960490e9d357f83b6f582bd511c5b0d21c9b482c
+    digest: sha256:6d771157293958fdf58ea64613e6fb5f3854ed5bebe68fdb457259e29ee68b43
   # -- Additional environment variables for the controller pod.
   env: []
   # - name: AWS_REGION
