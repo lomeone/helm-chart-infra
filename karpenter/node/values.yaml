@@ -23,7 +23,7 @@ nodePool:
       values: ["1024", "2048", "4096", "8192"]
     - key: karpenter.sh/capacity-type
       operator: In
-      values: ["on-demand", "spot"]
+      values: ["spot"]
     - key: kubernetes.io/arch
       operator: In
       values: ["arm64"]
