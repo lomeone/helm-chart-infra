@@ -2614,10 +2614,10 @@ repoServer:
   resources:
     limits:
 #      cpu: 50m
-      memory: 128Mi
+      memory: 160Mi
     requests:
-      cpu: 10m
-      memory: 128Mi
+      cpu: 40m
+      memory: 160Mi
 
   # Repo server container ports
   containerPorts:
