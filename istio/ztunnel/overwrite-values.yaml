@@ -1,0 +1,2 @@
+defaults:
+  hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
