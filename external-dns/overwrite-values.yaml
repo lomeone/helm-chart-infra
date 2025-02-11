@@ -1,3 +1,6 @@
+image:
+  registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub
+
 metrics:
   enabled: true
   podAnnotations:
