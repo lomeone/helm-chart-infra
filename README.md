@@ -43,14 +43,14 @@ kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
   { kubectl apply -f ./istio/standard-install.yaml; }
 
 ## install istiod control plane
-helm upgrade --install istiod ./istio/istiod -n istio-system
+helm upgrade --install istiod ./istio/istiod -f ./istio/istiod/overwrite-values.yaml -n istio-system
 
 ## install cni node agent
-helm upgrade --install istio-cni ./istio/cni -n istio-system
+helm upgrade --install istio-cni ./istio/cni -f ./istio/cni/overwrite-values.yaml -n istio-system
 
 # Install data plane
 ## install ztunnel daemonset
-helm upgrade --install ztunnel ./istio/ztunnel -n istio-system
+helm upgrade --install ztunnel ./istio/ztunnel -f ./istio/ztunnel/overwrite-values.yaml -n istio-system
 
 ## install istio ingress gateway
 helm upgrade --install istio-ingress ./istio/gateway -n istio-ingress --create-namespace --set profile=ambient
