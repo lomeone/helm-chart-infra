@@ -5,7 +5,7 @@ metadata:
 spec:
   template:
     metadata:
-    sped:
+    spec:
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
