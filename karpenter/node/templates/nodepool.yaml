@@ -34,3 +34,4 @@ spec:
     cpu: {{ .cpu }}
     memory: {{ .memory }}
   {{- end }}
+  weight: {{ .Values.nodePool.weight }}
