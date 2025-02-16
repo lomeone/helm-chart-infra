@@ -32,9 +32,7 @@ spec:
             - "2"
         - key: karpenter.k8s.aws/instance-memory
           operator: In
-          values:
-            - "1024"
-            - "2048"
+          values: ["1024", "2048", "4096", "8192"]
         - key: karpenter.sh/capacity-type
           operator: In
           values: ["spot"]
@@ -48,5 +46,5 @@ spec:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 10m
   limit:
-    cpu: 4
-    memory: 4Gi
+    cpu: 10
+    memory: 10Gi
