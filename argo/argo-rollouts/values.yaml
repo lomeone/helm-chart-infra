@@ -79,6 +79,10 @@ controller:
   #   topologyKey: topology.kubernetes.io/zone
   #   whenUnsatisfiable: DoNotSchedule
 
+  # -- terminationGracePeriodSeconds for container lifecycle hook
+  terminationGracePeriodSeconds: 30
+  # -- Specify lifecycle hooks for the  controller
+  lifecycle: {}
   # -- [priorityClassName] for the controller
   priorityClassName: ""
   # -- The number of controller pods to run
@@ -116,14 +120,14 @@ controller:
   #      -  ls
 
   # -- Resource limits and requests for the controller pods.
-  resources:
-    limits:
-#      cpu: 100m
-      memory: 128Mi
-#      ephemeral-storage: 1Gi
-    requests:
-      cpu: 50m
-      memory: 128Mi
+  resources: {}
+  #  limits:
+  #    cpu: 100m
+  #    memory: 128Mi
+  #    ephemeral-storage: 1Gi
+  #  requests:
+  #    cpu: 50m
+  #    memory: 64Mi
 
   # -- flag to enable creation of cluster controller role (requires cluster RBAC)
   createClusterRole: true
@@ -190,11 +194,11 @@ controller:
     # -- Annotations to be added to controller [Pod Disruption Budget]
     annotations: {}
     # -- Deploy a [Pod Disruption Budget] for the controller
-    enabled: true
+    enabled: false
     # -- Minimum number / percentage of pods that should remain scheduled
     minAvailable: # 1
     # -- Maximum number / percentage of pods that may be made unavailable
-    maxUnavailable: 1
+    maxUnavailable: # 0
 
   # -- Additional volumes to add to the controller pod
   volumes: []
@@ -397,7 +401,7 @@ dashboard:
     maxUnavailable: # 0
 
   ## Ingress configuration.
-  ## ref: https://kubernetes.io/docs/user-guide/ingress/
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
   ##
   ingress:
     # -- Enable dashboard ingress support
