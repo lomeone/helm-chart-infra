@@ -1,0 +1,94 @@
+ingress:
+  enabled: true
+  annotations:
+    external-dns.alpha.kubernetes.io/ttl: "5m"
+  istio:
+    selector: ingressgateway
+  hosts:
+    host: argo-cd.lomeone.com
+
+global:
+  domain: argo-cd.lomeone.com
+  addPrometheusAnnotations: true
+
+configs:
+  params:
+    server.insecure: true
+
+controller:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 1Gi
+    limits:
+      memory: 1Gi
+  metrics:
+    enabled: true
+
+dex:
+  metrics:
+    enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 80Mi
+    limits:
+      memory: 80Mi
+
+redis:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 32Mi
+  metrics:
+    enabled: true
+
+server:
+  autoscaling:
+    enabled: true
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+  resources:
+    requests:
+      cpu: 20m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+  metrics:
+    enabled: true
+
+repoServer:
+  autoscaling:
+    enabled: true
+    targetMemoryUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 80
+  resources:
+    requests:
+      cpu: 30m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+  metrics:
+    enabled: true
+
+applicationSet:
+  metrics:
+    enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
+
+notifications:
+  metrics:
+    enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
