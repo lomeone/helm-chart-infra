@@ -78,13 +78,13 @@ helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-v
 
 ```bash
 # argo cd
-helm upgrade --install argocd ./argo/argo-cd -n argo --create-namespace
+helm upgrade --install argocd ./argo/argo-cd -f ./argo/argo-cd/overwrite-values.yaml -n argo --create-namespace
 
 # argocd image updater
-helm upgrade --install argocd-image-updater ./argo/argocd-image-updater -n argo
+helm upgrade --install argocd-image-updater ./argo/argocd-image-updater -f ./argo/argocd-image-updater/overwrite-values.yaml -n argo
 
 # argo rollouts
-helm upgrade --install argo-rollouts ./argo/argo-rollouts -n argo
+helm upgrade --install argo-rollouts ./argo/argo-rollouts -f ./argo/argo-rollouts/overwrite-values.yaml -n argo
 ```
 
 ### crossplane
