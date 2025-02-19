@@ -14,6 +14,8 @@ global:
 configs:
   params:
     server.insecure: true
+  tls:
+    create: true
 
 controller:
   resources:
@@ -31,9 +33,9 @@ dex:
   resources:
     requests:
       cpu: 10m
-      memory: 80Mi
+      memory: 128Mi
     limits:
-      memory: 80Mi
+      memory: 128Mi
 
 redis:
   resources:
@@ -67,9 +69,9 @@ repoServer:
   resources:
     requests:
       cpu: 30m
-      memory: 128Mi
+      memory: 160Mi
     limits:
-      memory: 128Mi
+      memory: 160Mi
   metrics:
     enabled: true
 
@@ -79,9 +81,9 @@ applicationSet:
   resources:
     requests:
       cpu: 10m
-      memory: 64Mi
+      memory: 128Mi
     limits:
-      memory: 64Mi
+      memory: 128Mi
 
 notifications:
   metrics:
