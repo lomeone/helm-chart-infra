@@ -56,11 +56,6 @@ app.kubernetes.io/version: {{ include "argo-rollouts.chart_version_label" . }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/part-of: argo-rollouts
-{{/*
-Custom Labels
-*/}}
-app: {{ include "argo-rollouts.name" . }}
-version: {{ include "argo-rollouts.chart_version_label" . }}
 {{- end }}
 
 {{/*
