@@ -1,5 +1,22 @@
+global:
+  security:
+    allowInsecureImages: true
+
 image:
   registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub
+
+sources:
+  - service
+  - ingress
+  - istio-gateway
+  - istio-virtualservice
+
+aws:
+  region: ap-northeast-2
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/ExternalDNSRole-lomeone-eks
 
 resources:
   requests:
@@ -7,6 +24,9 @@ resources:
     memory: 64Mi
   limits:
     memory: 64Mi
+
+pdb:
+  maxUnavailable: 1
 
 metrics:
   enabled: true
