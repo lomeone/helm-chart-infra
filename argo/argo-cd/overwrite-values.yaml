@@ -9,6 +9,8 @@ ingress:
 
 global:
   domain: argo-cd.lomeone.com
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoproj/argocd
   addPrometheusAnnotations: true
 
 configs:
@@ -30,6 +32,8 @@ controller:
 dex:
   metrics:
     enabled: true
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
   resources:
     requests:
       cpu: 10m
@@ -38,6 +42,11 @@ dex:
       memory: 128Mi
 
 redis:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+  exporter:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
   resources:
     requests:
       cpu: 10m
@@ -47,11 +56,20 @@ redis:
   metrics:
     enabled: true
 
+redis-ha:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+  exporter:
+    image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
+
 server:
   autoscaling:
     enabled: true
     targetCPUUtilizationPercentage: 80
     targetMemoryUtilizationPercentage: 80
+  extensions:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-extension-installer
   resources:
     requests:
       cpu: 20m
