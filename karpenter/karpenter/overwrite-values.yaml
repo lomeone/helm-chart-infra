@@ -21,6 +21,8 @@ affinity:
               values: ["default_node_group"]
 
 controller:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/karpenter/controller
   resources:
     requests:
       cpu: 50m
