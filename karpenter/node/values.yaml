@@ -14,7 +14,7 @@ nodePool:
       values: ["2", "4"]
     - key: karpenter.k8s.aws/instance-memory
       operator: In
-      values: ["2048", "4096", "8192", "16384"]
+      values: ["4096", "8192", "16384"]
     - key: karpenter.sh/capacity-type
       operator: In
       values: ["spot", "on-demand"]
