@@ -494,7 +494,7 @@ spec:
       serviceAccountName: prometheus
       containers:
         - name: prometheus-server-configmap-reload
-          image: "ghcr.io/prometheus-operator/prometheus-config-reloader:v0.76.0"
+          image: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/prometheus-operator/prometheus-config-reloader:v0.76.0"
           imagePullPolicy: "IfNotPresent"
           args:
             - --watched-dir=/etc/config
@@ -516,20 +516,13 @@ spec:
               port: metrics
               scheme: HTTP
             periodSeconds: 10
-          # resources -> my custom
-          resources:
-            requests:
-              cpu: 50m
-              memory: 128Mi
-            limits:
-              memory: 128Mi
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config
               readOnly: true
 
         - name: prometheus-server
-          image: "prom/prometheus:v2.54.1"
+          image: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/prom/prometheus:v2.54.1"
           imagePullPolicy: "IfNotPresent"
           args:
             - --storage.tsdb.retention.time=15d
@@ -560,13 +553,6 @@ spec:
             timeoutSeconds: 10
             failureThreshold: 3
             successThreshold: 1
-          # resources -> my custom
-          resources:
-            requests:
-              cpu: 50m
-              memory: 1Gi
-            limits:
-              memory: 1Gi
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config

@@ -3,7 +3,7 @@ fullnameOverride: ""
 
 image: # see: https://quay.io/repository/kiali/kiali-operator?tab=tags
   repo: quay.io/kiali/kiali-operator # quay.io/kiali/kiali-operator
-  tag: v2.1.0 # version string like v1.39.0 or a digest hash
+  tag: v2.6.0 # version string like v1.39.0 or a digest hash
   digest: "" # use "sha256" if tag is a sha256 hash (do NOT prefix this value with a "@")
   pullPolicy: Always
   pullSecrets: []
@@ -16,8 +16,8 @@ env: []
 tolerations: []
 resources:
   requests:
-    cpu: 50m
-    memory: 256Mi
+    cpu: "10m"
+    memory: "64Mi"
 affinity: {}
 replicaCount: 1
 priorityClassName: ""
@@ -90,12 +90,12 @@ watchesFile: ""
 
 # For what a Kiali CR spec can look like, see: https://kiali.io/docs/configuration/kialis.kiali.io/
 cr:
-  create: true
+  create: false
   name: kiali
   # If you elect to create a Kiali CR (--set cr.create=true)
   # and the operator is watching all namespaces (--set watchNamespace="")
   # then this is the namespace where the CR will be created (the default will be the operator namespace).
-  namespace: istio-system
+  namespace: ""
 
   # Annotations to place in the Kiali CR metadata.
   annotations: {}
@@ -103,11 +103,3 @@ cr:
   spec:
     deployment:
       cluster_wide_access: true
-    auth:
-      strategy: "anonymous"
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        memory: 128Mi
