@@ -7,9 +7,10 @@ cr:
   spec:
     auth:
       strategy: "anonymous"
-    resources:
-      requests:
-        cpu: 50m
-        memory: 128Mi
-      limits:
-        memory: 128Mi
+    deployment:
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          memory: 128Mi
