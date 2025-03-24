@@ -54,7 +54,7 @@ helm upgrade --install istio-ingress ./istio/gateway -n istio-ingress --create-n
 kubectl apply -f ./istio/prometheus.yaml
 
 ## install kiali
-helm upgrade --install kiali-operator ./istio/kiali-operator -n kiali-operator --create-namespace
+helm upgrade --install kiali-operator ./istio/kiali-operator -f ./istio/kiali-operator/overwrite-values.yaml -n kiali-operator --create-namespace
 
 ## install kiali gateway
 helm upgrade --install kiali-gateway ./istio/kiali-gateway -n istio-system --create-namespace
