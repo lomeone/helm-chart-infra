@@ -6,12 +6,32 @@ config:
     serverAddress: https://argocd-server
 
   registries:
-    - name: Docker Hub
-      api_url: https://registry-1.docker.io
+    - name: ECR
+      api_url: https://396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
+      prefix: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
+      ping: yes
+      insecure: no
+      credentials: ext:/scripts/ecr-auth.sh
+      credsexpire: 10h
+
+authScripts:
+  enabled: true
+  name: argocd-image-updater-authscripts
+  scripts:
+      ecr-auth.sh: |
+        #!/bin/sh
+        aws ecr --region ap-northeast-2 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
+
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/ArgoCDImageUpdaterRole-lomeone-eks
+
+securityContext:
+  readOnlyRootFilesystem: false
 
 resources:
   requests:
     cpu: 10m
-    memory: 32Mi
+    memory: 96Mi
   limits:
-    memory: 32Mi
+    memory: 96Mi
