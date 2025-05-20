@@ -1,0 +1,124 @@
+global:
+  domain: argo-cd.lomeone.com
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoproj/argocd
+  addPrometheusAnnotations: true
+
+configs:
+  params:
+    server.insecure: true
+  tls:
+    create: true
+  cmp:
+    create: true
+    plugins:
+      helmfile:
+        allowConcurrency: true
+        discover:
+          filename: helmfile.yaml
+        generate:
+          command:
+            - bash
+            - "-c"
+            - |
+              if [[ -v ENV_NAME ]]; then
+              helmfile -n "$ARGOCD_APP_NAMESPACE" -e $ENV_NAME template --include-crds -q
+              elif [[ -v ARGOCD_ENV_ENV_NAME ]]; then
+              helmfile -n "$ARGOCD_APP_NAMESPACE" -e "$ARGOCD_ENV_ENV_NAME" template --include-crds -q
+              else
+              helmfile -n "$ARGOCD_APP_NAMESPACE" template --include-crds -q
+              fi
+        lockRepo: false
+controller:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 1Gi
+    limits:
+      memory: 1Gi
+  metrics:
+    enabled: true
+
+dex:
+  metrics:
+    enabled: true
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+
+redis:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+  exporter:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 32Mi
+  metrics:
+    enabled: true
+
+redis-ha:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+  exporter:
+    image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
+
+server:
+  autoscaling:
+    enabled: true
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+  extensions:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-extension-installer
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+  metrics:
+    enabled: true
+
+repoServer:
+  autoscaling:
+    enabled: true
+    targetMemoryUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 80
+  resources:
+    requests:
+      cpu: 30m
+      memory: 160Mi
+    limits:
+      memory: 160Mi
+  metrics:
+    enabled: true
+
+applicationSet:
+  metrics:
+    enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
+
+notifications:
+  metrics:
+    enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 64Mi
+    limits:
+      memory: 64Mi
