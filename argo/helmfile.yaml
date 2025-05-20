@@ -12,6 +12,13 @@ releases:
     values:
       - ./values/argo-cd.yaml
 
+  - name: argocd-image-updater
+    namespace: argo
+    chart: argo/argocd-image-updater
+    version: 0.12.1
+    values:
+      - ./values/argocd-image-updater.yaml
+
   - name: argo-addons
     namespace: argo
     chart: ./addons
