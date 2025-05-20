@@ -11,3 +11,7 @@ releases:
     version: 7.8.7
     values:
       - ./values/argo-cd.yaml
+
+  - name: argo-addons
+    namespace: argo
+    chart: ./addons
