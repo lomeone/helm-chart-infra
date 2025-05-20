@@ -19,6 +19,13 @@ releases:
     values:
       - ./values/argocd-image-updater.yaml
 
+  - name: argo-rollouts
+    namespace: argo
+    chart: argo/argo-rollouts
+    version: 2.39.5
+    values:
+      - ./values/argo-rollouts.yaml
+
   - name: argo-addons
     namespace: argo
     chart: ./addons
