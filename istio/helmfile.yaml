@@ -21,3 +21,10 @@ releases:
     version: 1.24.3
     values:
       - values/istio-cni.yaml
+
+  - name: ztunnel
+    namespace: istio-system
+    chart: istio/ztunnel
+    version: 1.24.3
+    values:
+      - values/ztunnel.yaml
