@@ -10,19 +10,19 @@ releases:
   - name: istio-base
     namespace: istio-system
     chart: istio/base
-    version: 1.23.2
+    version: 1.26.0
 
   - name: istiod
     namespace: istio-system
     chart: istio/istiod
-    version: 1.24.3
+    version: 1.26.0
     values:
       - values/istiod.yaml
 
   - name: istio-cni
     namespace: istio-system
     chart: istio/cni
-    version: 1.24.3
+    version: 1.26.0
     values:
       - values/istio-cni.yaml
 
@@ -30,21 +30,21 @@ releases:
   - name: ztunnel
     namespace: istio-system
     chart: istio/ztunnel
-    version: 1.24.3
+    version: 1.26.0
     values:
       - values/ztunnel.yaml
 
   - name: istio-ingress
     namespace: istio-system
     chart: istio/gateway
-    version: 1.24.3
+    version: 1.26.0
     values:
       - values/istio-ingress.yaml
 
   - name: kiali-operator
     namespace: kiali-operator
     chart: kiali/kiali-operator
-    version: 2.6.0
+    version: 2.10.0
     values:
       - values/kiali-operator.yaml
 
