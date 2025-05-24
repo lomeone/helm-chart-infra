@@ -1,0 +1,63 @@
+repositories:
+  - name: istio
+    url: https://istio-release.storage.googleapis.com/charts
+
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+
+  - name: kiali
+    url: https://kiali.org/helm-charts
+
+releases:
+  # Istio Control Plane
+  - name: istio-base
+    namespace: istio-system
+    chart: istio/base
+    version: 1.26.0
+
+  - name: istiod
+    namespace: istio-system
+    chart: istio/istiod
+    version: 1.26.0
+    values:
+      - values/istiod.yaml
+
+  - name: istio-cni
+    namespace: istio-system
+    chart: istio/cni
+    version: 1.26.0
+    values:
+      - values/istio-cni.yaml
+
+  # Istio Data Plane
+  - name: ztunnel
+    namespace: istio-system
+    chart: istio/ztunnel
+    version: 1.26.0
+    values:
+      - values/ztunnel.yaml
+
+  - name: istio-ingress
+    namespace: istio-system
+    chart: istio/gateway
+    version: 1.26.0
+    values:
+      - values/istio-ingress.yaml
+
+  - name: prometheus
+    namespace: istio-system
+    chart: prometheus-community/prometheus
+    version: 27.16.0
+    values:
+      - values/prometheus.yaml
+
+  - name: kiali-operator
+    namespace: kiali-operator
+    chart: kiali/kiali-operator
+    version: 2.10.0
+    values:
+      - values/kiali-operator.yaml
+
+  - name: istio-addons
+    namespace: istio-system
+    chart: ./addons
