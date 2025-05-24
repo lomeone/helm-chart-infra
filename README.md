@@ -17,10 +17,8 @@ kubectl edit configmap aws-auth -n kube-system
 ```
 
 ```bash
-# Add karpenter crd
-helm upgrade --install karpenter-crd ./karpenter/karpenter-crd -n kube-system
-# install karpenter
-helm upgrade --install karpenter ./karpenter/karpenter -f ./karpenter/karpenter/overwrite-values.yaml -n kube-system
+helmfile apply -f ./karpenter/helmfile.yaml
+
 # Register karpenter node
 helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
@@ -46,11 +44,4 @@ helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-v
 ```bash
 # argo cd
 helmfile apply -f ./argo/helmfile.yaml
-```
-
-### crossplane
-
-```bash
-helm upgrade --install crossplane ./crossplane -n crossplane-system --create-namespace
-helm upgrade --install crossplane-provider
 ```
