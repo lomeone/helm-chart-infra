@@ -17,10 +17,8 @@ kubectl edit configmap aws-auth -n kube-system
 ```
 
 ```bash
-# Add karpenter crd
-helm upgrade --install karpenter-crd ./karpenter/karpenter-crd -n kube-system
-# install karpenter
-helm upgrade --install karpenter ./karpenter/karpenter -f ./karpenter/karpenter/overwrite-values.yaml -n kube-system
+helmfile apply -f ./karpenter/helmfile.yaml
+
 # Register karpenter node
 helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
