@@ -14,3 +14,6 @@ cr:
           memory: 128Mi
         limits:
           memory: 128Mi
+    external_services:
+      prometheus:
+        url: "http://prometheus-server.istio-system.svc.cluster.local"

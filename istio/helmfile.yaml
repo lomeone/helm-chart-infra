@@ -2,6 +2,9 @@ repositories:
   - name: istio
     url: https://istio-release.storage.googleapis.com/charts
 
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+
   - name: kiali
     url: https://kiali.org/helm-charts
 
@@ -41,6 +44,13 @@ releases:
     values:
       - values/istio-ingress.yaml
 
+  - name: prometheus
+    namespace: istio-system
+    chart: prometheus-community/prometheus
+    version: 27.16.0
+    values:
+      - values/prometheus.yaml
+
   - name: kiali-operator
     namespace: kiali-operator
     chart: kiali/kiali-operator
@@ -48,6 +58,6 @@ releases:
     values:
       - values/kiali-operator.yaml
 
-  - name: addons
+  - name: istio-addons
     namespace: istio-system
     chart: ./addons
