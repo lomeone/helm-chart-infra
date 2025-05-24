@@ -45,10 +45,3 @@ helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-v
 # argo cd
 helmfile apply -f ./argo/helmfile.yaml
 ```
-
-### crossplane
-
-```bash
-helm upgrade --install crossplane ./crossplane -n crossplane-system --create-namespace
-helm upgrade --install crossplane-provider
-```
