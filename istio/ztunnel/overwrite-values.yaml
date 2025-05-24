@@ -1,8 +1,0 @@
-profile: ambient
-
-hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
-
-resources:
-  requests:
-    cpu: 50m
-    memory: 512Mi
