@@ -2,6 +2,9 @@ repositories:
   - name: istio
     url: https://istio-release.storage.googleapis.com/charts
 
+  - name: kiali
+    url: https://kiali.org/helm-charts
+
 releases:
   - name: istio-base
     namespace: istio-system
@@ -35,3 +38,14 @@ releases:
     version: 1.24.3
     values:
       - values/istio-ingress.yaml
+
+  - name: kiali-operator
+    namespace: kiali-operator
+    chart: kiali/kiali-operator
+    version: 2.6.0
+    values:
+      - values/kiali-operator.yaml
+
+  - name: addons
+    namespace: istio-system
+    chart: ./addons

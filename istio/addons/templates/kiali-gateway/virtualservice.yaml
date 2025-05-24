@@ -1,0 +1,20 @@
+{{- $namespace := .Release.Namespace -}}
+{{- $servicePort := .Values.kialiGateway.service.port -}}
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: "kiali-vs"
+spec:
+  hosts:
+    - {{ .Values.kialiGateway.istio.domain }}
+  gateways:
+    - "kiali-gw"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: "kiali.{{ $namespace }}.svc.cluster.local"
+            port:
+              number: {{ $servicePort }}

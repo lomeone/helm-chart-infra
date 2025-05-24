@@ -1,22 +1,21 @@
-{{- $fullName := include "kiali-istio-gateway.fullname" . -}}
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
-  name: "{{ $fullName }}-gw"
-  {{- with .Values.istio.ingress.annotations }}
+  name: "kail-gw"
+  {{- with .Values.kialiGateway.istio.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   selector:
-    istio: {{ .Values.istio.ingress.selector }}
+    istio: {{ .Values.kialiGateway.istio.ingress.selector }}
   servers:
     - port:
         number: 80
         name: http
         protocol: HTTP2
       hosts:
-        - {{ .Values.istio.domain }}
+        - {{ .Values.kialiGateway.istio.domain }}
       tls:
         httpsRedirect: true
     - port:
@@ -24,4 +23,4 @@ spec:
         name: https
         protocol: HTTP2
       hosts:
-        - {{ .Values.istio.domain }}
+        - {{ .Values.kialiGateway.istio.domain }}
