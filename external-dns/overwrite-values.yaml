@@ -8,6 +8,7 @@ image:
 sources:
   - service
   - ingress
+  - gateway-httproute
   - istio-gateway
   - istio-virtualservice
 
