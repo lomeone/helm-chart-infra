@@ -6,6 +6,7 @@ repositories:
     url: https://kiali.org/helm-charts
 
 releases:
+  # Istio Control Plane
   - name: istio-base
     namespace: istio-system
     chart: istio/base
@@ -25,6 +26,7 @@ releases:
     values:
       - values/istio-cni.yaml
 
+  # Istio Data Plane
   - name: ztunnel
     namespace: istio-system
     chart: istio/ztunnel
