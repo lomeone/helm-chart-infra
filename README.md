@@ -1,6 +1,6 @@
 ## k8s infra init
 
-### karpenter (for node auto scaling)
+### karpenter (For node auto scaling)
 
 ```bash
 # edit configmap
@@ -25,25 +25,18 @@ helm upgrade --install karpenter ./karpenter/karpenter -f ./karpenter/karpenter/
 helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
 
-### istio
+### istio (For service mesh)
 
 ```bash
 # Insall istio using helmfile
 helmfile apply -f ./istio/helmfile.yaml
-
-## install or upgrade the Kubernetes Gateway API CRDs
-kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
-  kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0-rc.1/standard-install.yaml
-
-# Install istio observability
-## install istio prometheus
-kubectl apply -f ./istio/prometheus.yaml
 
 ## Register istio network(ambient mode and range for namespace)
 kubectl label namespace {namespace} istio.io/dataplane-mode=ambient
 ```
 
 ### external-dns
+
 ```bash
 helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-values.yaml -n external-dns --create-namespace
 ```
