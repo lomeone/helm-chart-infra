@@ -1,0 +1,12 @@
+releases:
+  - name: karpenter-crd
+    namespace: kube-system
+    chart: oci://public.ecr.aws/karpenter/karpenter-crd
+    version: 1.2.1
+
+  - name: karpenter
+    namespace: kube-system
+    chart: oci://public.ecr.aws/karpenter/karpenter
+    version: 1.2.1
+    values:
+      - values/karpenter.yaml

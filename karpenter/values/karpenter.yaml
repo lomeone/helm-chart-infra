@@ -1,0 +1,35 @@
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/KarpenterControllerRole-lomeone-eks
+
+replicas: 1
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8080"
+  prometheus.io/path: "/metrics"
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: karpenter.sh/nodepool
+              operator: DoesNotExist
+            - key: eks.amazonaws.com/nodegroup
+              operator: In
+              values: ["default_node_group"]
+
+controller:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/karpenter/controller
+  resources:
+    requests:
+      cpu: 50m
+      memory: 512Mi
+    limits:
+      memory: 512Mi
+
+settings:
+  clusterName: lomeone-eks
+  interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
