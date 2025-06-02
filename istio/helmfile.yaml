@@ -21,13 +21,17 @@ releases:
     version: 1.26.0
     values:
       - values/istiod.yaml
+    needs:
+      - istio-system/istio-base
 
   - name: istio-cni
     namespace: istio-system
     chart: istio/cni
     version: 1.26.0
     values:
-      - values/istio-cni.yaml
+      - values/cni.yaml
+    needs:
+      - istio-system/istio-base
 
   # Istio Data Plane
   - name: ztunnel
@@ -36,6 +40,8 @@ releases:
     version: 1.26.0
     values:
       - values/ztunnel.yaml
+    needs:
+      - istio-system/istiod
 
   - name: istio-ingress
     namespace: istio-system
@@ -43,6 +49,8 @@ releases:
     version: 1.26.0
     values:
       - values/istio-ingress.yaml
+    needs:
+      - istio-system/istiod
 
   - name: prometheus
     namespace: istio-system
@@ -50,6 +58,8 @@ releases:
     version: 27.16.0
     values:
       - values/prometheus.yaml
+    needs:
+      - istio-system/istiod
 
   - name: kiali-operator
     namespace: kiali-operator
@@ -57,7 +67,11 @@ releases:
     version: 2.10.0
     values:
       - values/kiali-operator.yaml
+    needs:
+      - istio-system/istiod
 
   - name: istio-addons
     namespace: istio-system
     chart: ./addons
+    needs:
+      - istio-system/istiod
