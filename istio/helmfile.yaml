@@ -17,8 +17,7 @@ releases:
 
   - name: istiod
     namespace: istio-system
-    chart: istio/istiod
-    version: 1.26.0
+    chart: ./istiod
     values:
       - values/istiod.yaml
     needs:
