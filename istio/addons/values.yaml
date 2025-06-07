@@ -1,5 +1,5 @@
 istioGateway:
-  name: istio-gateway
+  name: gateway
 
 kialiRoute:
   service:
