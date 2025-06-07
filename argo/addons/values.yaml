@@ -1,10 +1,7 @@
 istio:
-  gateway:
-    name: argocd-gw
-    annotations:
-      external-dns.alpha.kubernetes.io/ttl: "5m"
-    selector: ingressgateway
-  virtualservice:
-    name: argocd-vs
-  hosts:
-    host: argo-cd.lomeone.com
+  httpRoute:
+    gatewayName: gateway
+    service:
+      name: argocd-server
+      port: 80
+    domain: argo-cd.lomeone.com

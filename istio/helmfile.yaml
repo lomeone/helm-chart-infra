@@ -43,15 +43,6 @@ releases:
     needs:
       - istio-system/istiod
 
-  - name: istio-ingress
-    namespace: istio-system
-    chart: istio/gateway
-    version: 1.26.0
-    values:
-      - values/istio-ingress.yaml
-    needs:
-      - istio-system/istiod
-
   - name: prometheus
     namespace: istio-system
     chart: prometheus-community/prometheus
