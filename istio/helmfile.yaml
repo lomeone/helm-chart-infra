@@ -67,6 +67,14 @@ releases:
     needs:
       - istio-system/istiod
 
+  - name: private-istio-gateway
+    namespace: istio-gateway
+    chart: ./istio-gateway
+    values:
+      - values/private-gateway.yaml
+    needs:
+      - istio-system/istiod
+
   - name: istio-addons
     namespace: istio-system
     chart: ./addons
