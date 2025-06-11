@@ -61,6 +61,12 @@ releases:
     needs:
       - istio-system/istiod
 
+  - name: istio-gateway
+    namespace: istio-gateway
+    chart: ./istio-gateway
+    needs:
+      - istio-system/istiod
+
   - name: istio-addons
     namespace: istio-system
     chart: ./addons
