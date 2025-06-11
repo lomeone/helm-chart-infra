@@ -9,12 +9,12 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
     service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-northeast-2:396428372646:certificate/754e3112-b0e7-4bd4-8af4-9795010dfe94
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443,50052"
     service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: "ELBSecurityPolicy-TLS13-1-2-2021-06"
 spec:
   gatewayClassName: istio
   listeners:
-    - name: default
+    - name: default-http
       hostname: {{ .Values.hostName }}
       port: 80
       protocol: HTTP
@@ -30,5 +30,23 @@ spec:
       allowedRoutes:
         kinds:
           - kind: HTTPRoute
+        namespaces:
+          from: All
+    - name: default-grpc
+      hostname: {{ .Values.hostName }}
+      port: 50051
+      protocol: GRPC
+      allowedRoutes:
+        kinds:
+          - kind: GRPCRoute
+        namespaces:
+          from: All
+    - name: default-grpc-tls
+      hostname: {{ .Values.hostName }}
+      port: 50052
+      protocol: GRPC
+      allowedRoutes:
+        kinds:
+          - kind: GRPCRoute
         namespaces:
           from: All
