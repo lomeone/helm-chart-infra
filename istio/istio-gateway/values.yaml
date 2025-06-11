@@ -1,3 +1,7 @@
 gatewayName: gateway
 
 hostName: "*.lomeone.com"
+
+aws:
+  loadBalancer:
+    scheme: internet-facing
