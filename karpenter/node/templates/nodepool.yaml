@@ -24,6 +24,12 @@ spec:
       requirements:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.nodePool.usingCilium}}
+      startupTaints:
+        - key: node.cilium.io/agent-not-ready
+          value: "true"
+          effect: NoExecute
+      {{- end }}
   {{- with .Values.nodePool.disruption }}
   disruption:
     consolidationPolicy: {{ .consolidationPolicy }}
