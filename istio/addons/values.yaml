@@ -5,6 +5,3 @@ kialiRoute:
   service:
     port: 20001
   domain: istio-kiali.lomeone.com
-
-cilium:
-  enabled: false
