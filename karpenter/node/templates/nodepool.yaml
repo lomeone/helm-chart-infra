@@ -24,7 +24,7 @@ spec:
       requirements:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.nodePool.usingCilium}}
+      {{- if .Values.nodePool.cilium.enabled }}
       startupTaints:
         - key: node.cilium.io/agent-not-ready
           value: "true"
