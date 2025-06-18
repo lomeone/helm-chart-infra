@@ -1,0 +1,56 @@
+# CNI 설정: VPC CNI와 chaining 모드로 사용
+cni:
+  chainingMode: aws-cni       # AWS CNI와 연결되는 chaining 모드 사용
+  exclusive: false            # aws-node DaemonSet도 계속 실행되도록 허용
+
+# Cilium 설정: ENI 기반 라우팅을 사용하여 VPC와 통합
+routingMode: native           # 네이티브 라우팅 모드를 사용하여 터널링을 비활성화합니다.
+
+# Masquerade (SNAT) 설정: 필요한 경우에만 eBPF를 사용하여 SNAT 수행
+bpf:
+  masquerade: true            # 활성화를 하면 ipv4NativeRoutingCIDR values에 해당하는 대역과 native Route Table에서 local로 보내는 Rule이 있는 대역 제외 모든 대역에 대해 eBPF를 활용한 SNAT 활성화
+#  # 이 설정은 cni chaining을 하고 있다면 사용 불가
+#  hostLegacyRouting: false    # host network에서 발생하는 트래픽에 대해 legacy routing(iptables)를 사용하지 않도록 설정, eBPF를 사용하여 처리
+
+# bpf.masquerade 설정: eBPF 기반 SNAT 활성화(NodePort 활설화 필수)
+nodePort:
+  enabled: true               # NodePort 서비스에 대한 eBPF 기반 처리 활성화
+
+# Cilium 설정: 호스트 방화벽
+hostFirewall:
+  enabled: true                # 호스트 방화벽 기능 활성화
+
+# egress gateway 기능
+egressGateway:
+  enabled: true               # 특정 목적지에만 SNAT을 적용하고 싶을 때 true
+
+# Cilum 설정: Pod ip 대역
+ipv4NativeRoutingCIDR: "100.64.0.0/18"  # Pod Custom Networking CIDR 설정
+
+# kube-proxy 대체: 완전히 제거하고 Cilium이 eBPF로 서비스 처리를 담당
+kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
+
+# Cilium 설정: istio와의 통합
+envoy:
+  enabled: false               # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
+
+# Cilium resources 설정
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    memory: 512Mi
+# Hubble (가시성/관측 도구) 설정
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+# Prometheus 모니터링 (선택)
+prometheus:
+  enabled: true
+# 디버깅 로깅 수준 (선택)
+debug:
+  enabled: true
