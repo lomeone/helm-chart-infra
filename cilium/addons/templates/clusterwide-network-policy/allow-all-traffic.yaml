@@ -1,0 +1,20 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: allow-all-external
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromEntities:
+        - world
+        - cluster
+        - host
+    - fromCIDR:
+        - 0.0.0.0/0
+  egress:
+    - toEntities:
+        - world
+        - cluster
+        - host
+    - toCIDR:
+        - 0.0.0.0/0
