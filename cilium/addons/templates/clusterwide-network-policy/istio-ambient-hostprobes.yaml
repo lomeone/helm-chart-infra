@@ -1,4 +1,3 @@
-{{- if .Values.cilium.enabled -}}
 apiVersion: "cilium.io/v2"
 kind: CiliumClusterwideNetworkPolicy
 metadata:
@@ -12,4 +11,3 @@ spec:
   ingress:
     - fromCIDR:
         - "169.254.7.127/32"
-{{- end }}
