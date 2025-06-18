@@ -1,3 +1,3 @@
 apiVersion: v1
-name: kiali-server-istio-gateway
+name: istio-addons
 version: 1.0.0
