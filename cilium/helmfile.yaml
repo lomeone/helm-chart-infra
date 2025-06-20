@@ -9,3 +9,9 @@ releases:
     version: 1.18.0-pre.3
     values:
       - values/cilium.yaml
+
+  - name: cilium-addons
+    namespace: kube-system
+    chart: ./addons
+    needs:
+      - kube-system/cilium
