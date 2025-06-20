@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   parentRefs:
-    - name: gateway
+    - name: public-gateway
       namespace: kube-system
   hostnames: [ "hubble.lomeone.com" ]
   rules:
