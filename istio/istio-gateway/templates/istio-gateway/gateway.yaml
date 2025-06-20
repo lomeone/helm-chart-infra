@@ -15,7 +15,7 @@ spec:
   gatewayClassName: istio
   listeners:
     - name: default-http
-      hostname: {{ .Values.hostName }}
+      hostname: "{{ .Values.hostName }}"
       port: 80
       protocol: HTTP
       allowedRoutes:
@@ -24,7 +24,7 @@ spec:
         namespaces:
           from: All
     - name: default-https
-      hostname: {{ .Values.hostName }}
+      hostname: "{{ .Values.hostName }}"
       port: 443
       protocol: HTTP
       allowedRoutes:
@@ -33,7 +33,7 @@ spec:
         namespaces:
           from: All
     - name: default-grpc
-      hostname: {{ .Values.hostName }}
+      hostname: "{{ .Values.hostName }}"
       port: 50051
       protocol: GRPC
       allowedRoutes:
@@ -42,7 +42,7 @@ spec:
         namespaces:
           from: All
     - name: default-grpc-tls
-      hostname: {{ .Values.hostName }}
+      hostname: "{{ .Values.hostName }}"
       port: 50052
       protocol: GRPC
       allowedRoutes:
