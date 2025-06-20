@@ -10,7 +10,7 @@ routingMode: native           # 네이티브 라우팅 모드를 사용하여 �
 bpf:
   masquerade: true            # 활성화를 하면 ipv4NativeRoutingCIDR values에 해당하는 대역과 native Route Table에서 local로 보내는 Rule이 있는 대역 제외 모든 대역에 대해 eBPF를 활용한 SNAT 활성화
 #  # 이 설정은 cni chaining을 하고 있다면 사용 불가
-#  hostLegacyRouting: false    # host network에서 발생하는 트래픽에 대해 legacy routing(iptables)를 사용하지 않도록 설정, eBPF를 사용하여 처리
+#  hostLegacyRouting: false   # host network에서 발생하는 트래픽에 대해 legacy routing(iptables)를 사용하지 않도록 설정, eBPF를 사용하여 처리
 
 # bpf.masquerade 설정: eBPF 기반 SNAT 활성화(NodePort 활설화 필수)
 nodePort:
@@ -18,7 +18,7 @@ nodePort:
 
 # Cilium 설정: 호스트 방화벽
 hostFirewall:
-  enabled: true                # 호스트 방화벽 기능 활성화
+  enabled: true               # 호스트 방화벽 기능 활성화
 
 # egress gateway 기능
 egressGateway:
@@ -32,7 +32,7 @@ kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 
 # Cilium 설정: istio와의 통합
 envoy:
-  enabled: false               # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
+  enabled: false              # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
 
 # Cilium resources 설정
 resources:
@@ -41,6 +41,7 @@ resources:
     memory: 512Mi
   limits:
     memory: 512Mi
+
 # Hubble (가시성/관측 도구) 설정
 hubble:
   enabled: true
@@ -48,9 +49,11 @@ hubble:
     enabled: true
   ui:
     enabled: true
+
 # Prometheus 모니터링 (선택)
 prometheus:
   enabled: true
+
 # 디버깅 로깅 수준 (선택)
 debug:
   enabled: true
