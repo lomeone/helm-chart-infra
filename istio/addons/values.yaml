@@ -2,3 +2,5 @@ kialiRoute:
   service:
     port: 20001
   domain: istio-kiali.lomeone.com
+  istioGateway:
+    name: public-gateway
