@@ -3,6 +3,7 @@ kind: Gateway
 metadata:
   name: {{ .Values.gatewayName }}
   annotations:
+    service.beta.kubernetes:.io/aws-load-balancer-name: {{ .Values.gatewayName }}
     service.beta.kubernetes.io/aws-load-balancer-type: external
     service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
     service.beta.kubernetes.io/aws-load-balancer-scheme: {{ .Values.aws.loadBalancer.scheme }}
