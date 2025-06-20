@@ -1,6 +1,3 @@
-istioGateway:
-  name: gateway
-
 kialiRoute:
   service:
     port: 20001
