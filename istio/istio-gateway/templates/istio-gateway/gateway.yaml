@@ -20,8 +20,6 @@ spec:
       port: 80
       protocol: HTTP
       allowedRoutes:
-        kinds:
-          - kind: HTTPRoute
         namespaces:
           from: All
     - name: default-https
@@ -29,7 +27,5 @@ spec:
       port: 443
       protocol: HTTP
       allowedRoutes:
-        kinds:
-          - kind: HTTPRoute
         namespaces:
           from: All
