@@ -2,6 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: {{ .Values.gatewayName }}
+  namespace: istio-gateway
   labels:
     istio-component: gateway
   annotations:
