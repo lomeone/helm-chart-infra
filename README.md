@@ -18,9 +18,6 @@ kubectl edit configmap aws-auth -n kube-system
 
 ```bash
 helmfile apply -f ./karpenter/helmfile.yaml
-
-# Register karpenter node
-helm upgrade --install karpenter-node ./karpenter/node -n kube-system
 ```
 
 ### istio (For service mesh)

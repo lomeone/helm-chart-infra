@@ -53,7 +53,7 @@ releases:
       - istio-system/istiod
 
   - name: kiali-operator
-    namespace: kiali-operator
+    namespace: istio-system
     chart: kiali/kiali-operator
     version: 2.10.0
     values:
