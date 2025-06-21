@@ -2,6 +2,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: {{ .Values.gatewayName }}
+  labels:
+    istio-component: gateway
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-name: {{ .Values.gatewayName }}
     service.beta.kubernetes.io/aws-load-balancer-type: external
