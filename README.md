@@ -1,5 +1,10 @@
 ## k8s infra init
 
+### Cilium (For network policy using eBPF)
+```bash
+helmfile apply -f ./cilium/helmfile.yaml
+```
+
 ### karpenter (For node auto scaling)
 
 ```bash
