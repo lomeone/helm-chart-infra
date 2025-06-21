@@ -6,7 +6,7 @@ metadata:
 spec:
   parentRefs:
     - name: public-gateway
-      namespace: kube-system
+      namespace: istio-gateway
   hostnames: [ "hubble.lomeone.com" ]
   rules:
     - matches:
