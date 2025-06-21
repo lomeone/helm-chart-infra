@@ -10,3 +10,9 @@ releases:
     version: 1.2.1
     values:
       - values/karpenter.yaml
+
+  # Register karpenter node
+  - name: karpenter-node
+    namespace: kube-system
+    chart: ./node
+

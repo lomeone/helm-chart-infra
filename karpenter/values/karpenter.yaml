@@ -33,3 +33,4 @@ controller:
 settings:
   clusterName: lomeone-eks
   interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
+  reservedENIs: "1"

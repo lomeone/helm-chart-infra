@@ -1,0 +1,17 @@
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io
+
+releases:
+  - name: cilium
+    namespace: kube-system
+    chart: cilium/cilium
+    version: 1.18.0-pre.3
+    values:
+      - values/cilium.yaml
+
+  - name: cilium-addons
+    namespace: kube-system
+    chart: ./addons
+    needs:
+      - kube-system/cilium
