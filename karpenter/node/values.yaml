@@ -5,6 +5,8 @@ nodePool:
   labels: {}
   expireAfter: 720h
   terminationGracePeriod: 10m
+  cilium:
+    enabled: true
   requirements:
     - key: karpenter.k8s.aws/instance-family
       operator: In
