@@ -6,7 +6,7 @@ metadata:
 spec:
   parentRefs:
     - name: {{ .Values.kialiRoute.istioGateway.name }}
-      namespace: istio-system
+      namespace: istio-gateway
   hostnames: [ {{ .Values.kialiRoute.domain }} ]
   rules:
     - matches:
