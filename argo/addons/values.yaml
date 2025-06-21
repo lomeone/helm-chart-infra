@@ -1,6 +1,6 @@
 istio:
   httpRoute:
-    gatewayName: gateway
+    gatewayName: public-gateway
     service:
       name: argocd-server
       port: 80
