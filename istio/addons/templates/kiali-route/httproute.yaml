@@ -5,8 +5,8 @@ metadata:
   namespace: istio-system
 spec:
   parentRefs:
-    - name: {{ .Values.istioGateway.name }}
-      namespace: istio-system
+    - name: {{ .Values.kialiRoute.istioGateway.name }}
+      namespace: istio-gateway
   hostnames: [ {{ .Values.kialiRoute.domain }} ]
   rules:
     - matches:
