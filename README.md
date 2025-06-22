@@ -1,6 +1,6 @@
 ## k8s infra init
 
-### Cilium (For network policy using eBPF)
+### Cilium (For CNI part of load balance and network policies)
 ```bash
 helmfile apply -f ./cilium/helmfile.yaml
 ```
