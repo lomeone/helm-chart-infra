@@ -28,6 +28,9 @@ helmfile apply -f ./karpenter/helmfile.yaml
 ### istio (For service mesh)
 
 ```bash
+# Install gateway api crd(Experimental Channel)
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+
 # Insall istio using helmfile
 helmfile apply -f ./istio/helmfile.yaml
 
