@@ -20,9 +20,19 @@ bpf:
 nodePort:
   enabled: true               # NodePort 서비스에 대한 eBPF 기반 처리 활성화
 
+# Cilium 설정: eBPF 소켓 로드 밸런싱
+socketLB:
+  enabled: true               # Cilium의 eBPF 소켓 로드 밸런싱 기능 활성화
+  hostNamespaceOnly: false    # 호스트 네임스페이스에만 적용하지 않도록 설정 (모든 네임스페이스에 적용)
+  tracing: true               # eBPF 소켓 로드 밸런싱 트레이싱 활성화 (디버깅 용도)
+
 # Cilium 설정: 호스트 방화벽
 hostFirewall:
   enabled: true               # 호스트 방화벽 기능 활성화
+
+# Cilium 설정: 엔드포인트 라우팅
+endpointRoutes:
+  enabled: true               # Cilium 엔드포인트 라우팅 활성화 (Pod 간 통신을 위한 라우팅)
 
 # egress gateway 기능
 egressGateway:
@@ -30,6 +40,13 @@ egressGateway:
 
 # Cilum 설정: Pod ip 대역
 ipv4NativeRoutingCIDR: "100.64.0.0/18"  # Pod Custom Networking CIDR 설정
+
+# Cilium 설정: IP Masquerade Agent
+ipMasqAgent:
+  enabled: true
+  config:
+    nonMasqueradeCIDRs:
+      - 10.0.0.0/16
 
 # kube-proxy 대체: 완전히 제거하고 Cilium이 eBPF로 서비스 처리를 담당
 kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
