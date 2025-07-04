@@ -4,3 +4,16 @@ kialiRoute:
   domain: istio-kiali.lomeone.com
   istioGateway:
     name: public-gateway
+
+serviceEntry:
+  entries:
+    - name: aws-resource
+      hosts:
+        - "*.ap-northeast-1.amazonaws.com"
+      ports:
+        - number: 443
+          name: aws
+          protocol: HTTPS
+      location: MESH_EXTERNAL
+      exportTo:
+        - "*"
