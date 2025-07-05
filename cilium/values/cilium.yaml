@@ -57,7 +57,7 @@ operator:
     restart: true             # Cilium이 관리하지 않는 Pod를 감시하고 재시작하도록 설정
     intervalSeconds: 15       # 감시 간격 설정 (초 단위)
   extraArgs:
-    - '--pod-restart-selector=app.kubernetes.io/part-of=istio'
+    - '--pod-restart-selector=app.kubernetes.io/part-of=istio,cilium/unmanaged-pod-restart=true'  # Istio와 Cilium이 관리하지 않는 Pod를 감시하기 위한 셀렉터 설정
 
 # Cilium 설정: istio와의 통합
 envoy:
