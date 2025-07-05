@@ -34,3 +34,6 @@ settings:
   clusterName: lomeone-eks
   interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
   reservedENIs: "1"
+  featureGates:
+    nodeRepair: true
+    spotToSpotConsolidation: true
