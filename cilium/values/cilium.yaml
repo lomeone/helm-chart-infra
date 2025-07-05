@@ -51,6 +51,14 @@ ipMasqAgent:
 # kube-proxy 대체: 완전히 제거하고 Cilium이 eBPF로 서비스 처리를 담당
 kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 
+# Cilium 설정: Unmanaged Pod Restart
+operator:
+  unmanagedPodWatcher:
+    restart: true             # Cilium이 관리하지 않는 Pod를 감시하고 재시작하도록 설정
+    intervalSeconds: 15       # 감시 간격 설정 (초 단위)
+  extraArgs:
+    - '--pod-restart-selector=app.kubernetes.io/part-of=istio'
+
 # Cilium 설정: istio와의 통합
 envoy:
   enabled: false              # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
