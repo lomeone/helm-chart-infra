@@ -2,7 +2,7 @@ serviceEntry:
   entries:
     - name: aws-resource
       hosts:
-        - "*.ap-northeast-1.amazonaws.com"
+        - "*.ap-northeast-2.amazonaws.com"
       ports:
         - number: 443
           name: aws
