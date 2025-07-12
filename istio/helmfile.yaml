@@ -80,5 +80,7 @@ releases:
   - name: istio-addons
     namespace: istio-system
     chart: ./addons
+    values:
+      - values/addons.yaml
     needs:
       - istio-system/istiod

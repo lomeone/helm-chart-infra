@@ -5,12 +5,12 @@ metadata:
   name: {{ .name }}
 spec:
   hosts:
-    {{ toYaml .hosts | indent 4}}
+{{ toYaml .hosts | indent 4}}
   {{- if .location }}
   location: {{ .location }}
   {{- end }}
   ports:
-    {{ toYaml .ports | indent 4}}
+{{ toYaml .ports | indent 4}}
   {{- if .resolution }}
   resolution: {{ .resolution }}
   {{- end }}

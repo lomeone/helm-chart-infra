@@ -1,12 +1,15 @@
 serviceEntry:
   entries:
-    - name: aws-resource
+    - name: dynamodb-ap-northeast-2
       hosts:
-        - "*.ap-northeast-2.amazonaws.com"
+        - "dynamodb.ap-northeast-2.amazonaws.com"
+        - "*.ddb.ap-northeast-2.amazonaws.com"
+        - "streams.dynamodb.ap-northeast-2.amazonaws.com"
       ports:
         - number: 443
-          name: aws
+          name: dynamodb
           protocol: HTTPS
       location: MESH_EXTERNAL
+      resolution: DNS
       exportTo:
         - "*"

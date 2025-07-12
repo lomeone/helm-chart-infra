@@ -8,5 +8,6 @@ serviceEntry:
           name: aws
           protocol: HTTPS
       location: MESH_EXTERNAL
+      resolution: DNS
       exportTo:
         - "*"
