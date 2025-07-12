@@ -3,7 +3,6 @@ serviceEntry:
     - name: dynamodb-ap-northeast-2
       hosts:
         - "dynamodb.ap-northeast-2.amazonaws.com"
-        - "*.ddb.ap-northeast-2.amazonaws.com"
         - "streams.dynamodb.ap-northeast-2.amazonaws.com"
       ports:
         - number: 443
