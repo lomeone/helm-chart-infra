@@ -1,0 +1,30 @@
+{{- range .Values.serviceEntry.entries }}
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: {{ .name }}
+spec:
+  hosts:
+{{ toYaml .hosts | indent 4}}
+  {{- if .location }}
+  location: {{ .location }}
+  {{- end }}
+  ports:
+{{ toYaml .ports | indent 4}}
+  {{- if .resolution }}
+  resolution: {{ .resolution }}
+  {{- end }}
+  {{- if .endpoints }}
+  endpoints:
+    {{ toYaml .endpoints | indent 4}}
+  {{- end }}
+  {{- if .exportTo }}
+  exportTo:
+    {{ toYaml .exportTo | indent 4 }}
+  {{ end }}
+  {{- if .addresses }}
+  addresses:
+    {{ toYaml .addresses | indent 4 }}
+  {{ end }}
+---
+{{- end }}

@@ -68,7 +68,7 @@ releases:
       - values/public-gateway.yaml
     needs:
       - istio-system/istiod
-#
+
 #  - name: private-istio-gateway
 #    namespace: istio-gateway
 #    chart: ./istio-gateway
@@ -80,5 +80,7 @@ releases:
   - name: istio-addons
     namespace: istio-system
     chart: ./addons
+    values:
+      - values/addons.yaml
     needs:
       - istio-system/istiod
