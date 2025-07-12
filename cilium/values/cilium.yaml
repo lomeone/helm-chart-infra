@@ -23,7 +23,7 @@ nodePort:
 # Cilium 설정: eBPF 소켓 로드 밸런싱
 socketLB:
   enabled: true               # Cilium의 eBPF 소켓 로드 밸런싱 기능 활성화
-  hostNamespaceOnly: false    # 호스트 네임스페이스에만 적용하지 않도록 설정 (모든 네임스페이스에 적용)
+  hostNamespaceOnly: true     # 호스트 네임스페이스에만 적용하도록 설정 for integration istio (https://docs.cilium.io/en/latest/network/servicemesh/istio/)
   tracing: true               # eBPF 소켓 로드 밸런싱 트레이싱 활성화 (디버깅 용도)
 
 # Cilium 설정: 호스트 방화벽
