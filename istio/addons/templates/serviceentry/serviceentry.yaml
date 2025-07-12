@@ -26,4 +26,5 @@ spec:
   addresses:
     {{ toYaml .addresses | indent 4 }}
   {{ end }}
+---
 {{- end }}
