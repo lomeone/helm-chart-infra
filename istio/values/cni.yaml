@@ -12,3 +12,4 @@ ambient:
   enabled: true
   ipv6: false
   reconcileIptablesOnStartup: true
+  redirectionMode: "ebpf"
