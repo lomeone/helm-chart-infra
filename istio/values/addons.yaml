@@ -1,12 +1,31 @@
 serviceEntry:
   entries:
-    - name: dynamodb-ap-northeast-2
+    - name: dynamodb-seoul
       hosts:
         - "dynamodb.ap-northeast-2.amazonaws.com"
         - "streams.dynamodb.ap-northeast-2.amazonaws.com"
       ports:
         - number: 443
           name: dynamodb
+          protocol: HTTPS
+      location: MESH_EXTERNAL
+      resolution: DNS
+      exportTo:
+        - "*"
+    - name: route53
+      hosts:
+        - "route53.amazonaws.com"
+        - "route53domains.us-east-1.amazonaws.com"
+        - "route53resolver.us-east-1.amazonaws.com"
+        - "route53profiles.us-east-1.amazonaws.com"
+        - "route53profiles-fips.us-east-1.api.aws"
+        - "route53profiles.us-east-1.api.aws"
+        - "route53resolver.ap-northeast-2.amazonaws.com"
+        - "route53profiles.ap-northeast-2.amazonaws.com"
+        - "route53profiles.ap-northeast-2.api.aws"
+      ports:
+        - number: 443
+          name: route53
           protocol: HTTPS
       location: MESH_EXTERNAL
       resolution: DNS
