@@ -31,3 +31,14 @@ serviceEntry:
       resolution: DNS
       exportTo:
         - "*"
+    - name: github
+      hosts:
+        - "github.com"
+      ports:
+        - number: 443
+          name: github
+          protocol: HTTPS
+      location: MESH_EXTERNAL
+      resolution: DNS
+      exportTo:
+          - "argo"
