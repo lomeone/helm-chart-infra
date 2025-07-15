@@ -22,8 +22,8 @@ spec:
       targetRevision: 3.100.0
       helm:
         valueFiles:
-          - $values/infrastructure/datadog/values/values.yaml
-    - repoURL: https://github.com/lomeone/k8s-chart
+          - $values/datadog/values/values.yaml
+    - repoURL: https://github.com/lomeone/helm-chart-infra
       targetRevision: main
       ref: values
   project: helm-chart

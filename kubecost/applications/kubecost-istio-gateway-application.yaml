@@ -14,8 +14,8 @@ spec:
     syncOptions:
       - CreateNamespace=true
   source:
-    path: infrastructure/kubecost/istio-gateway
-    repoURL: https://github.com/lomeone/k8s-chart
+    path: kubecost/istio-gateway
+    repoURL: https://github.com/lomeone/helm-chart-infra
     targetRevision: main
     helm:
       valueFiles:

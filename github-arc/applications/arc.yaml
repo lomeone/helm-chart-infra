@@ -21,9 +21,9 @@ spec:
       targetRevision: 0.10.1
       helm:
         valueFiles:
-          - $values/infrastructure/github-arc/values/arc-values.yaml
+          - $values/github-arc/values/arc-values.yaml
       chart: actions/actions-runner-controller-charts/gha-runner-scale-set-controller
-    - repoURL: https://github.com/lomeone/k8s-chart
+    - repoURL: https://github.com/lomeone/helm-chart-infra
       targetRevision: main
       ref: values
   project: helm-chart

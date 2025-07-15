@@ -14,8 +14,8 @@ spec:
       selfHeal: true
       prune: true
   source:
-    path: infrastructure/crossplane/provider
-    repoURL: https://github.com/lomeone/k8s-chart
+    path: crossplane/provider
+    repoURL: https://github.com/lomeone/helm-chart-infra
     targetRevision: main
     helm:
       valueFiles:

@@ -20,8 +20,8 @@ spec:
       helm:
         valueFiles:
           - values-eks-cost-monitoring.yaml
-          - $values/infrastructure/kubecost/values/values.yaml
-    - repoURL: https://github.com/lomeone/k8s-chart
+          - $values/kubecost/values/values.yaml
+    - repoURL: https://github.com/lomeone/helm-chart-infra
       targetRevision: main
       ref: values
   project: helm-chart
