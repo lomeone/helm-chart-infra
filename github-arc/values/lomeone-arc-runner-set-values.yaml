@@ -1,0 +1,15 @@
+githubConfigUrl: https://github.com/lomeone
+githubConfigSecret: arc-github-app-secret
+maxRunners: 10
+minRunners: 1
+containerMode:
+  type: "dind"
+template:
+  spec:
+    containers:
+      - name: runner
+        image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/actions/actions-runner:latest
+        command: ["/home/runner/run.sh"]
+controllerServiceAccount:
+  name: arc-gha-rs-controller
+  namespace: arc-system

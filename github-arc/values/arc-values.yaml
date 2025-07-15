@@ -1,0 +1,15 @@
+image:
+  repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/actions/gha-runner-scale-set-controller
+
+resources:
+  limits:
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+flags:
+  logLevel: "info"
+  logFormat: "json"
+  excludeLabelPropagationPrefixes:
+   - "argocd.argoproj.io/instance"

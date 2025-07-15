@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: arc
+  namespace: argo
+spec:
+  destination:
+    namespace: arc-system
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      ## when error: Resource is too big to fit in 262144 bytes allowed annotation size.
+      ## https://argo-cd.readthedocs.io/en/latest/user-guide/sync-options/#server-side-apply
+      - ServerSideApply=true
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+  sources:
+    - repoURL: ghcr.io
+      targetRevision: 0.10.1
+      helm:
+        valueFiles:
+          - $values/infrastructure/github-arc/values/arc-values.yaml
+      chart: actions/actions-runner-controller-charts/gha-runner-scale-set-controller
+    - repoURL: https://github.com/lomeone/k8s-chart
+      targetRevision: main
+      ref: values
+  project: helm-chart
