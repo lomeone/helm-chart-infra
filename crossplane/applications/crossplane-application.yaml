@@ -19,8 +19,8 @@ spec:
       targetRevision: 1.18.2
       helm:
         valueFiles:
-          - $values/infrastructure/crossplane/values/values.yaml
-    - repoURL: https://github.com/lomeone/k8s-chart
+          - $values/crossplane/values/values.yaml
+    - repoURL: https://github.com/lomeone/helm-chart-infra
       targetRevision: main
       ref: values
   project: helm-chart
