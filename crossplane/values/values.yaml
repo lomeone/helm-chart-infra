@@ -1,0 +1,12 @@
+resourcesCrossplane:
+  limits:
+    cpu: null
+    memory: 256Mi
+
+resourcesRBACManager:
+  limits:
+    cpu: null
+    memory: 256Mi
+
+metrics:
+  enabled: true
