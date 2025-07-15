@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./applications/cost-analyzer-application.yaml
+  - ./applications/kubecost-istio-gateway-application.yaml

@@ -1,0 +1,83 @@
+kubecostFrontend:
+  image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/frontend
+
+kubecostModel:
+  image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/cost-model
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limit:
+      memory: 256Mi
+
+priority:
+  enabled: true
+
+forecasting:
+  fullImageName: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/kubecost-modeling:v0.1.18
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      cpu: null
+      memory: 256Mi
+  priority:
+    enabled: true
+    name: kubecost-cost-analyzer-priority
+
+networkCosts:
+  enabled: true
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/kubecost-network-costs
+
+clusterController:
+    image:
+        repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/cluster-controller
+
+prometheus:
+  server:
+    image:
+        repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/prometheus
+    priorityClassName: kubecost-cost-analyzer-priority
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: topology.kubernetes.io/zone
+                  operator: In
+                  values: ["ap-northeast-2a"]
+    persistentVolume:
+      storageClass: gp3
+  configmapReload:
+    prometheus:
+      image:
+        repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/kubecost/prometheus-config-reloader
+
+persistentVolume:
+  storageClass: gp3
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values: ["ap-northeast-2a"]
+
+kubecostAggregator:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 1.5Gi
+    limits:
+      memory: 1.5Gi
+  cloudCost:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 64Mi
