@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubecost-istio-gateway
+  namespace: argo
+spec:
+  destination:
+    namespace: observability
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  source:
+    path: infrastructure/kubecost/istio-gateway
+    repoURL: https://github.com/lomeone/k8s-chart
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+  project: helm-chart

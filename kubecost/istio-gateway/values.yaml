@@ -1,0 +1,10 @@
+namespace: observability
+service:
+  port: 9090
+
+istio:
+  ingress:
+    selector: ingressgateway
+    annotations:
+      external-dns.alpha.kubernetes.io/ttl: "5m"
+  domain: kubecost.lomeone.com

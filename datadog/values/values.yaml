@@ -1,0 +1,40 @@
+registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/datadog
+
+datadog:
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+  clusterName: lomeone-eks
+  site: us5.datadoghq.com
+  kubeStateMetricsEnabled: true
+  dogstatsd:
+    useSocketVolume: false
+    useHostPort: true
+  useHostPID: false
+  logs:
+    enabled: true
+    containerCollectAll: true
+    autoMultiLineDetection: true
+  apm:
+    portEnabled: true
+    enabled: true
+  processAgent:
+    processCollection: true
+  helmCheck:
+    enabled: true
+    collectEvents: true
+  networkMonitoring:
+    enabled: true
+  prometheusScrape:
+    enabled: true
+    serviceEndpoints: true
+  containerExclude: |-
+    kube_namespace:kube-system
+    kube_namespace:prometheus-node-exporter
+    kube_namespace:kube-state-metrics
+    kube_namespace:observability
+
+clusterAgent:
+  metricsProvider:
+    enabled: true
+  admissionController:
+    enabled: false

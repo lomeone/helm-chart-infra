@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lomeone-arc-runner-set
+  namespace: argo
+spec:
+  destination:
+    namespace: arc-runners
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+  sources:
+    - repoURL: ghcr.io
+      targetRevision: 0.10.1
+      helm:
+          valueFiles:
+          - $values/infrastructure/github-arc/values/lomeone-arc-runner-set-values.yaml
+      chart: actions/actions-runner-controller-charts/gha-runner-scale-set
+    - repoURL: https://github.com/lomeone/k8s-chart
+      targetRevision: main
+      ref: values
+  project: helm-chart
