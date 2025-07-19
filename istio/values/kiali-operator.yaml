@@ -18,4 +18,4 @@ cr:
       grafana:
         internal_url: 'http://prometheus-stack-grafana.observability.svc.cluster.local'
       prometheus:
-        url: "http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local"
+        url: "http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local:9090"
