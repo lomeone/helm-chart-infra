@@ -43,15 +43,6 @@ releases:
     needs:
       - istio-system/istiod
 
-  - name: prometheus
-    namespace: istio-system
-    chart: prometheus-community/prometheus
-    version: 27.16.0
-    values:
-      - values/prometheus.yaml
-    needs:
-      - istio-system/istiod
-
   - name: kiali-operator
     namespace: istio-system
     chart: kiali/kiali-operator
