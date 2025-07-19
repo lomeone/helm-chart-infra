@@ -1,6 +1,3 @@
-crds:
-  upgradeJob:
-    enabled: true
 kubeProxy:
   enabled: false
 prometheusOperator:
