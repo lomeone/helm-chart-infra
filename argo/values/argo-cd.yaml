@@ -33,9 +33,9 @@ controller:
   resources:
     requests:
       cpu: 50m
-      memory: 1Gi
+      memory: 1.5Gi
     limits:
-      memory: 1Gi
+      memory: 1.5Gi
   metrics:
     enabled: true
 
@@ -83,9 +83,9 @@ server:
   resources:
     requests:
       cpu: 50m
-      memory: 128Mi
+      memory: 512Mi
     limits:
-      memory: 128Mi
+      memory: 512Mi
   metrics:
     enabled: true
 
@@ -134,9 +134,9 @@ repoServer:
   resources:
     requests:
       cpu: 30m
-      memory: 160Mi
+      memory: 256Mi
     limits:
-      memory: 160Mi
+      memory: 256Mi
   metrics:
     enabled: true
 
