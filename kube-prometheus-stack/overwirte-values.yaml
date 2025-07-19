@@ -1,4 +1,10 @@
+alertmanager:
+  enabled: false
 kubeProxy:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
   enabled: false
 prometheusOperator:
   tls:
