@@ -71,9 +71,9 @@ envoy:
 resources:
   requests:
     cpu: 100m
-    memory: 512Mi
+    memory: 1Gi
   limits:
-    memory: 512Mi
+    memory: 1Gi
 
 # Hubble (가시성/관측 도구) 설정
 hubble:
