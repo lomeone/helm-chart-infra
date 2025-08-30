@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: istio-metrics-aggregation
+  namespace: istio-system
   labels:
     app.kubernetes.io/name: istio-prometheus
 spec:
