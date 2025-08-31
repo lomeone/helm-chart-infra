@@ -9,3 +9,11 @@ releases:
     version: 75.12.0
     values:
       - values/prometheus-stack.yaml
+
+  - name: addons
+    namespace: observability
+    chart: ./addons
+    values:
+      - values/addons.yaml
+    needs:
+      - observability/prometheus-stack
