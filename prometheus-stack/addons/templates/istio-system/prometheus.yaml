@@ -19,6 +19,10 @@ spec:
       queueConfig:
         capacity: 2000
       # istio-system 네임스페이스의 Prometheus에서 수집한 메트릭에 레이블 추가
-      relabelConfigs:
+      writeRelabelConfigs:
+        - sourceLabels: [__name__]
+          regex: ^(istio_.*)$
+          action: keep # 메트릭 이름이 istio_로 시작하는 것만 남김
         - targetLabel: job
-          replacement: "istio-local-scrape"
+          replacement: "istio-system-scrape"
+          action: replace
