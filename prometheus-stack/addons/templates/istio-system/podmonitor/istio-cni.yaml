@@ -9,10 +9,10 @@ spec:
   selector:
     matchLabels:
       k8s-app: istio-cni-node
-    namespaceSelector:
-      matchNames:
-        - istio-system
-    podMetricsEndpoints:
-      - port: metrics
-        interval: 15s
-        path: /metrics
+  namespaceSelector:
+    matchNames:
+      - istio-system
+  podMetricsEndpoints:
+    - port: metrics
+      interval: 15s
+      path: /metrics
