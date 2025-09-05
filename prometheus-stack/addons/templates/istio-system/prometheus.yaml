@@ -8,11 +8,15 @@ spec:
   serviceAccountName: prometheus-istio # ServiceAccount 이름
   # 스크랩 설정을 위한 PodMonitor와 ServiceMonitor를 찾을 selector
   serviceMonitorSelector:
+    {{ with .Values.istio.monitorMatchLabels }}
     matchLabels:
-      istio: "true"
+      {{ toYaml . | nindent 6 }}
+    {{ end }}
   podMonitorSelector:
+    {{ with .Values.istio.monitorMatchLabels }}
     matchLabels:
-      istio: "true"
+      {{ toYaml . | nindent 6 }}
+    {{ end }}
   # 원격 쓰기(Remote Write) 설정
   remoteWrite:
     - url: http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/api/v1/write
