@@ -55,8 +55,13 @@ ipMasqAgent:
 # kube-proxy 대체: 완전히 제거하고 Cilium이 eBPF로 서비스 처리를 담당
 kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 
-# Cilium 설정: Unmanaged Pod Restart
+# Cilium Operator 설정: Unmanaged Pod Restart
 operator:
+  # Prometheus 모니터링 설정 (선택)
+  prometheus:
+    serviceMonitor:
+      enabled: true
+  # Cilium이 관리하지 않는 Pod를 감시하고 재시작하도록 설정
   unmanagedPodWatcher:
     restart: true             # Cilium이 관리하지 않는 Pod를 감시하고 재시작하도록 설정
     intervalSeconds: 15       # 감시 간격 설정 (초 단위)
