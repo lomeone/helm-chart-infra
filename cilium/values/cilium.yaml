@@ -86,6 +86,8 @@ hubble:
 # Prometheus 모니터링 (선택)
 prometheus:
   enabled: true
+  serviceMonitor:
+    enabled: true
 
 # 디버깅 로깅 수준 (선택)
 debug:

@@ -38,6 +38,7 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    enableRemoteWriteReceiver: true
     resources:
       requests:
         cpu: 100m
