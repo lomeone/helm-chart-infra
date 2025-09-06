@@ -7,6 +7,10 @@ controller:
       memory: 256Mi
     limits:
       memory: 256Mi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 
 dashboard:
   image:

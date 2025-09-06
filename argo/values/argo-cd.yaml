@@ -38,10 +38,15 @@ controller:
       memory: 1.5Gi
   metrics:
     enabled: true
+    service:
+      serviceMonitor:
+        enabled: true
 
 dex:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   image:
     repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
   resources:
@@ -65,6 +70,8 @@ redis:
       memory: 32Mi
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
 
 redis-ha:
   image:
@@ -88,6 +95,8 @@ server:
       memory: 512Mi
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
 
 repoServer:
   autoscaling:
@@ -139,10 +148,24 @@ repoServer:
       memory: 256Mi
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
+  clusterRoleRules:
+    enabled: true
+    rules:
+      - apiGroups:
+          - apiextensions.k8s.io
+        resources:
+          - customresourcedefinitions
+        verbs:
+          - get
+          - list
 
 applicationSet:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   resources:
     requests:
       cpu: 10m
@@ -153,6 +176,8 @@ applicationSet:
 notifications:
   metrics:
     enabled: true
+    serviceMonitor:
+      enabled: true
   resources:
     requests:
       cpu: 10m

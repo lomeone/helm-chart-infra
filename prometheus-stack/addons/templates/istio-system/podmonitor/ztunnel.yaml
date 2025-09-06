@@ -3,8 +3,10 @@ kind: PodMonitor
 metadata:
   name: ztunnel-podmonitor
   namespace: istio-system
+  {{ with .Values.istio.monitorMatchLabels }}
   labels:
-    istio: "true"
+    {{ toYaml . | nindent 4 }}
+  {{ end }}
 spec:
   selector:
     matchLabels:
