@@ -59,6 +59,8 @@ kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 operator:
   # Prometheus 모니터링 설정 (선택)
   prometheus:
+    metricsService: true
+    enabled: true
     serviceMonitor:
       enabled: true
   # Cilium이 관리하지 않는 Pod를 감시하고 재시작하도록 설정
@@ -90,6 +92,7 @@ hubble:
 
 # Prometheus 모니터링 (선택)
 prometheus:
+  metricsService: true
   enabled: true
   serviceMonitor:
     enabled: true
