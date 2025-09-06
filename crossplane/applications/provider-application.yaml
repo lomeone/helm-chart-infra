@@ -16,7 +16,7 @@ spec:
   source:
     path: crossplane/provider
     repoURL: https://github.com/lomeone/helm-chart-infra
-    targetRevision: main
+    targetRevision: fix-crossplane
     helm:
       valueFiles:
         - values.yaml
