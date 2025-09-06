@@ -3,6 +3,6 @@ kind: Provider
 metadata:
   name: upbound-provider-aws-iam
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-iam:v2
+  package: xpkg.upbound.io/upbound/provider-aws-iam:v2.0.2
   runtimeConfigRef:
     name: {{ .Release.Name }}
