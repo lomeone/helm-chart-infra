@@ -1,7 +1,0 @@
-apiVersion: aws.m.upbound.io/v1beta1
-kind: ClusterProviderConfig
-metadata:
-  name: "{{ .Release.Name }}-irsa"
-spec:
-  credentials:
-    source: IRSA

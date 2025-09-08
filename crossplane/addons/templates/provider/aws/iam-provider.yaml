@@ -1,8 +1,8 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: provider-aws-iam
+  name: upbound-provider-aws-iam
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws-iam:v1.23.2
+  package: xpkg.upbound.io/upbound/provider-aws-iam:v2.0.2
   runtimeConfigRef:
     name: crossplane-provider-aws
