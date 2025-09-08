@@ -35,8 +35,8 @@ spec:
     consolidationPolicy: {{ .consolidationPolicy }}
     consolidateAfter: {{ .consolidateAfter }}
   {{- end }}
-  {{- with .Values.nodePool.limit }}
-  limit:
+  {{- with .Values.nodePool.limits }}
+  limits:
     cpu: {{ .cpu }}
     memory: {{ .memory }}
   {{- end }}

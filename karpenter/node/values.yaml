@@ -29,7 +29,7 @@ nodePool:
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 10m
-  limit:
+  limits:
     cpu: 20
     memory: 80Gi
 nodeClass:
