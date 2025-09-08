@@ -1,7 +1,7 @@
 apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
-  name: {{ .Release.Name }}
+  name: crossplane-provider-aws
 spec:
   serviceAccountTemplate:
     metadata:

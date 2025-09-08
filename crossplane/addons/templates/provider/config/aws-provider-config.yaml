@@ -1,0 +1,7 @@
+apiVersion: aws.m.upbound.io/v1beta1
+kind: ClusterProviderConfig
+metadata:
+  name: crossplane-provider-aws-irsa
+spec:
+  credentials:
+    source: IRSA

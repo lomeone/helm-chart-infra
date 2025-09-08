@@ -1,0 +1,17 @@
+repositories:
+  - name: crossplane-stable
+    url: https://charts.crossplane.io/stable
+
+releases:
+  - name: crossplane
+    namespace: crossplane-system
+    chart: crossplane-stable/crossplane
+    version: 2.0.2
+    values:
+      - values/crossplane.yaml
+
+  - name: crossplane-addons
+    namespace: crossplane-system
+    chart: ./addons
+    needs:
+      - crossplane-system/crossplane
