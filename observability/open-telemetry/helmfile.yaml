@@ -1,0 +1,11 @@
+repositories:
+  - name: open-telemetry
+    url: https://open-telemetry.github.io/opentelemetry-helm-charts
+
+releases:
+  - name: opentelemetry-operator
+    namespace: observability
+    chart: open-telemetry/opentelemetry-operator
+    version: 0.93.1
+    values:
+      - values/opentelemetry-operator.yaml
