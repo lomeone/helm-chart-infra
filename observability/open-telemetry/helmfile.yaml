@@ -9,3 +9,9 @@ releases:
     version: 0.93.1
     values:
       - values/opentelemetry-operator.yaml
+
+  - name: addons
+    namespace: observability
+    chart: ./addons
+    needs:
+      - observability/opentelemetry-operator
