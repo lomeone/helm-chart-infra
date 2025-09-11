@@ -3,6 +3,22 @@ profile: ambient
 env:
   PILOT_ENABLE_ALPHA_GATEWAY_API: "true"
 
+meshConfig:
+  accessLogEncoding: JSON
+  accessLogFile: /dev/stdout
+  enablePrometheusMerger: true
+  enableTracing: true
+#  extensionProviders:
+#    - name: mesh-default-logging
+#      envoyFileAccessLog:
+#        logFormat:
+#          labels:
+#            severity: '"info"'
+#          jsonFormat: ~~~~~
+  defaultConfig:
+    tracing:
+      sampling: 100.0
+
 global:
   hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
 
