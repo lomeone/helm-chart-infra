@@ -1,0 +1,15 @@
+apiVersion: telemetry.istio.io/v1
+kind: Telemetry
+metadata:
+  name: mesh-default
+  namespace: istio-system
+spec:
+{{/*  accessLogging:*/}}
+{{/*    - providers:*/}}
+{{/*        - name: mesh-default-logging*/}}
+  metrics:
+    - providers:
+        - name: prometheus
+{{/*  tracing:*/}}
+{{/*    - providers:*/}}
+{{/*        - name: mesh-default-tracing*/}}
