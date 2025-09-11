@@ -7,6 +7,12 @@ spec:
   ports:
     - name: jaeger
       port: 16686
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
+    limits:
+      memory: 32Mi
   config:
     service:
       extensions: [ jaeger_storage, jaeger_query ]
