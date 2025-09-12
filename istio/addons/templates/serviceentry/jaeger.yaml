@@ -7,7 +7,7 @@ spec:
     - jaeger-inmemory-instance-collector.observability.svc.cluster.local
   ports:
     - number: 4317
-      name: jaeger-grpc
+      name: otlp-grpc
       protocol: GRPC
   resolution: DNS
   location: MESH_EXTERNAL
