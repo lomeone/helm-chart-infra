@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1
 kind: ServiceEntry
 metadata:
   name: jaeger-tracing-grpc
+  namespace: observability
 spec:
   hosts:
     - jaeger-inmemory-instance-collector.observability.svc.cluster.local
