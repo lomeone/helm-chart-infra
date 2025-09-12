@@ -8,7 +8,11 @@ meshConfig:
   accessLogFile: /dev/stdout
   enablePrometheusMerger: true
   enableTracing: true
-#  extensionProviders:
+  extensionProviders:
+    - name: mesh-jaeger-tracing
+      opentelemetry:
+        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local:4317
+        port: 4317
 #    - name: mesh-default-logging
 #      envoyFileAccessLog:
 #        logFormat:
