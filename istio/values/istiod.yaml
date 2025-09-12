@@ -11,7 +11,7 @@ meshConfig:
   extensionProviders:
     - name: mesh-jaeger-tracing
       opentelemetry:
-        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local:4317
+        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
         port: 4317
 #    - name: mesh-default-logging
 #      envoyFileAccessLog:
