@@ -10,6 +10,6 @@ spec:
   metrics:
     - providers:
         - name: prometheus
-{{/*  tracing:*/}}
-{{/*    - providers:*/}}
-{{/*        - name: mesh-default-tracing*/}}
+  tracing:
+    - providers:
+        - name: mesh-jaeger-tracing
