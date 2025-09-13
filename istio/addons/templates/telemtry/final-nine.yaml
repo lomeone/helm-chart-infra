@@ -1,8 +1,8 @@
 apiVersion: telemetry.istio.io/v1
 kind: Telemetry
 metadata:
-  name: mesh-default
-  namespace: istio-system
+  name: final-nine
+  namespace: final-nine
 spec:
 {{/*  accessLogging:*/}}
 {{/*    - providers:*/}}

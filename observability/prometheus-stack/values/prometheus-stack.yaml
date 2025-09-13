@@ -1,5 +1,18 @@
 alertmanager:
   enabled: false
+grafana:
+  enabled: true
+  additionalDataSources:
+    - name: Jaeger
+      type: jaeger
+      url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686
+      access: proxy
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 512Mi
 kubeProxy:
   enabled: false
 kubeStateMetrics:
