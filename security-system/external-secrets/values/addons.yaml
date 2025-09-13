@@ -1,5 +1,5 @@
 aws:
-  accountId: 396428372646
+  accountId: "396428372646"
   region: ap-northeast-2
   eksCluster:
     name: lomeone-eks
