@@ -1,0 +1,62 @@
+apiVersion: iam.aws.m.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: external-secrets-service-role
+  annotations:
+    crossplane.io/external-name: ExternalSecretsServiceRole-{{ .Values.aws.eksCluster.name }}
+spec:
+  managementPolicies:
+    - Create
+    - Update
+    - Observe
+    - LateInitialize
+  providerConfigRef:
+    kind: ClusterProviderConfig
+    name: crossplane-provider-aws-irsa
+  forProvider:
+    description: "Role for service account of external-secrets-service in {{ .Values.aws.eksCluster.name }} cluster"
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Federated": "{{ .Values.aws.eksCluster.oidcArn }}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+              "StringEquals": {
+                "{{ .Values.aws.eksCluster.oidc }}:sub": "system:serviceaccount:{{ .Release.Namespace }}:external-secrets",
+                "{{ .Values.aws.eksCluster.oidc }}:aud": "sts.amazonaws.com"
+              }
+            }
+          }
+        ]
+      }
+    inlinePolicy:
+      - name: ExternalSecretsServicePolicy-{{ .Values.aws.eksCluster.name }}
+        policy: |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Action" : [
+                  "secretsmanager:ListSecrets",
+                  "secretsmanager:BatchGetSecretValue"
+                ],
+                "Effect" : "Allow",
+                "Resource" : "*"
+              },
+              {
+                "Action": [
+                  "secretsmanager:GetResourcePolicy",
+                  "secretsmanager:GetSecretValue",
+                  "secretsmanager:DescribeSecret",
+                  "secretsmanager:ListSecretVersionIds",
+                ],
+                "Effect": "Allow",
+                "Resource": "arn:aws:secretsmanager:{{ .Values.aws.region }}:{{ .Values.aws.accountId }}:secret:",
+              }
+            ]
+          }

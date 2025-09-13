@@ -1,0 +1,7 @@
+aws:
+  accountId: 396428372646
+  region: ap-northeast-2
+  eksCluster:
+    name: lomeone-eks
+    oidc: oidc.eks.ap-northeast-2.amazonaws.com/id/7ED9C620B0B8C0AF4436A723EFBD6851
+    oidcArn: arn:aws:iam::396428372646:oidc-provider/oidc.eks.ap-northeast-2.amazonaws.com/id/7ED9C620B0B8C0AF4436A723EFBD6851
