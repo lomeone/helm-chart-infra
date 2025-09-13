@@ -13,3 +13,4 @@ spec:
   tracing:
     - providers:
         - name: mesh-jaeger-tracing
+      randomSamplingPercentage: 100.0
