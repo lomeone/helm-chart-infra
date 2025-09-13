@@ -1,0 +1,11 @@
+repositories:
+  - name: external-secrets
+    url: https://charts.external-secrets.io
+
+releases:
+  - name: external-secrets
+    namespace: security-system
+    chart: external-secrets/external-secrets
+    version: 0.19.2
+    values:
+      - values/external-secrets.yaml
