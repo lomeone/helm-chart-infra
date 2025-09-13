@@ -20,8 +20,9 @@ meshConfig:
 #            severity: '"info"'
 #          jsonFormat: ~~~~~
   defaultConfig:
-    tracing:
-      sampling: 100.0
+    tracing: {}
+#      datadog: datadog.url
+#      sampling: 100.0
 
 global:
   hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
