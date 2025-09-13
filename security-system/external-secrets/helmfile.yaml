@@ -9,3 +9,9 @@ releases:
     version: 0.19.2
     values:
       - values/external-secrets.yaml
+
+  - name: external-secrets-addons
+    namespace: security-system
+    chart: ./addons
+    values:
+      - values/addons.yaml
