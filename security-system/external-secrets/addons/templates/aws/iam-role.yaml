@@ -53,10 +53,10 @@ spec:
                   "secretsmanager:GetResourcePolicy",
                   "secretsmanager:GetSecretValue",
                   "secretsmanager:DescribeSecret",
-                  "secretsmanager:ListSecretVersionIds",
+                  "secretsmanager:ListSecretVersionIds"
                 ],
                 "Effect": "Allow",
-                "Resource": "arn:aws:secretsmanager:{{ .Values.aws.region }}:{{ .Values.aws.accountId }}:secret:*",
+                "Resource": "arn:aws:secretsmanager:{{ .Values.aws.region }}:{{ .Values.aws.accountId }}:secret:*"
               }
             ]
           }
