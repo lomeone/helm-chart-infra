@@ -50,3 +50,13 @@ helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-v
 # argo cd
 helmfile apply -f ./argo/helmfile.yaml
 ```
+
+### OLM (operator lifecycle manager)
+
+```bash
+# Install operator sdk in local mac
+brew install operator-sdk
+
+# Install OLM in cluster
+operator-sdk olm install
+```
