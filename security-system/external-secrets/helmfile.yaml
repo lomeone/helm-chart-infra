@@ -10,6 +10,14 @@ releases:
     values:
       - values/external-secrets.yaml
 
+  - name: external-secrets-secret-stores
+    namespace: security-system
+    chart: ./secret-stores
+    values:
+      - values/secret-stores.yaml
+    needs:
+      - security-system/external-secrets
+
   - name: external-secrets-addons
     namespace: security-system
     chart: ./addons
