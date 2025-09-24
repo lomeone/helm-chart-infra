@@ -25,11 +25,13 @@ spec:
         - name: "Istio Wasm Extension Dashboard"
       enabled: true
       internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local
+      auth:
+        username: admin
+        password: prom-operator
     prometheus:
       url: http://prometheus-istio.istio-system.svc.cluster.local:9090
     tracing:
       enabled: true
       provider: jaeger
-      internal_url: jaeger-inmemory-instance-collector.observability.svc.cluster.local:4317
+      internal_url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686
       use_grpc: true
-
