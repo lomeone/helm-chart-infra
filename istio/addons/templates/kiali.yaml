@@ -24,7 +24,7 @@ spec:
         - name: "Istio Performance Dashboard"
         - name: "Istio Wasm Extension Dashboard"
       enabled: true
-      internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local
+      internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local:80
       auth:
         type: basic
         username: admin
