@@ -35,5 +35,5 @@ spec:
       enabled: true
       provider: jaeger
       internal_url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686
-      use_grpc: true
-      grpc_port: 4317
+      use_grpc: false
+{{/*      grpc_port: 4317*/}}
