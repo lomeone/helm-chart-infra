@@ -26,6 +26,7 @@ spec:
       enabled: true
       internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local
       auth:
+        type: basic
         username: admin
         password: prom-operator
     prometheus:
@@ -35,3 +36,4 @@ spec:
       provider: jaeger
       internal_url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686
       use_grpc: true
+      grpc_port: 4317
