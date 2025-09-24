@@ -1,0 +1,40 @@
+apiVersion: kiali.io/v1alpha1
+kind: Kiali
+metadata:
+  name: kiali
+  namespace: istio-system
+spec:
+  auth:
+    strategy: anonymous
+  deployment:
+    cluster_wide_access: true
+    resources:
+      limits:
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
+  external_services:
+    grafana:
+      dashboards:
+        - name: "Istio Service Dashboard"
+        - name: "Istio Workload Dashboard"
+        - name: "Istio Mesh Dashboard"
+        - name: "Istio Control Plane Dashboard"
+        - name: "Istio Performance Dashboard"
+        - name: "Istio Wasm Extension Dashboard"
+      enabled: true
+      internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local
+      external_url: http://prometheus-stack-grafana.observability.svc.cluster.local
+      auth:
+        type: basic
+        username: admin
+        password: prom-operator
+    prometheus:
+      url: http://prometheus-istio.istio-system.svc.cluster.local:9090
+    tracing:
+      enabled: true
+      provider: jaeger
+      internal_url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686
+      use_grpc: false
+{{/*      grpc_port: 4317*/}}

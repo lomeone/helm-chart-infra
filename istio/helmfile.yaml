@@ -40,15 +40,6 @@ releases:
     needs:
       - istio-system/istiod
 
-  - name: kiali-operator
-    namespace: istio-system
-    chart: kiali/kiali-operator
-    version: 2.14.0
-    values:
-      - values/kiali-operator.yaml
-    needs:
-      - istio-system/istiod
-
   - name: public-istio-gateway
     namespace: istio-gateway
     chart: ./istio-gateway
