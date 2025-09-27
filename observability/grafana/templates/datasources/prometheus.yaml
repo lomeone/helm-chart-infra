@@ -3,6 +3,9 @@ kind: GrafanaDatasource
 metadata:
   name: prometheus-datasource
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboard: grafana
   datasource:
     name: prometheus
     type: prometheus
@@ -13,6 +16,3 @@ spec:
     jsonData:
       httpMethod: POST
       timeInterval: 30s
-  instanceSelector:
-    matchLabels:
-      dashboard: grafana
