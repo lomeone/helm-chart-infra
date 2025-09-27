@@ -4,15 +4,15 @@ metadata:
   name: prometheus-datasource
 spec:
   datasource:
+    name: prometheus
+    type: prometheus
+    uid: prometheus
+    url: {{ .Values.datasources.prometheus.url }}
     access: proxy
     isDefault: true
     jsonData:
       httpMethod: POST
       timeInterval: 30s
-    name: prometheus
-    type: prometheus
-    uid: prometheus
-    url: '{{ .Values.datasources.prometheus.url }}'
   instanceSelector:
     matchLabels:
       dashboard: grafana

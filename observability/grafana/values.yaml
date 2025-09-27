@@ -12,4 +12,6 @@ grafana:
 
 datasources:
   prometheus:
-    url: http://prometheus-stack-kube-prom-prometheus.observability:9090/
+    url: http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/
+  jaeger:
+    url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686/
