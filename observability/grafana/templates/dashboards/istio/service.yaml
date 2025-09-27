@@ -1,0 +1,11 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: istio-service-dashboard
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboard: grafana
+  configMapRef:
+    name: istio-service-dashboard
+    key: istio-service-dashboard.json

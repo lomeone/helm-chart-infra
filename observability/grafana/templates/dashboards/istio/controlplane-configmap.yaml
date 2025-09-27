@@ -42,7 +42,7 @@ data:
           "version": ""
         }
       ],
-      "description": "Istio Control Plane Dashboard version 1.26.4",
+      "description": "Istio Control Plane Dashboard version 1.27.0",
       "graphTooltip": 1,
       "panels": [
         {
@@ -753,7 +753,7 @@ data:
                 "type": "prometheus",
                 "uid": "$datasource"
               },
-              "expr": "sum(rate(pilot_xds_push_time_bucket{}[1m])) by (le)",
+              "expr": "sum(rate(pilot_xds_push_time_bucket{}[$__rate_interval])) by (le)",
               "format": "heatmap",
               "legendFormat": "{{le}}"
             }
@@ -800,7 +800,7 @@ data:
                 "type": "prometheus",
                 "uid": "$datasource"
               },
-              "expr": "sum(rate(pilot_xds_config_size_bytes_bucket{}[1m])) by (le)",
+              "expr": "sum(rate(pilot_xds_config_size_bytes_bucket{}[$__rate_interval])) by (le)",
               "format": "heatmap",
               "legendFormat": "{{le}}"
             }
