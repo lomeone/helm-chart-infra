@@ -5,6 +5,19 @@ metadata:
   labels:
     dashboard: grafana
 spec:
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/grafana/grafana:12.1.0
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 512Mi
+                limits:
+                  memory: 512Mi
   config:
     global:
       app_mode: development
