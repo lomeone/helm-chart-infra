@@ -1,8 +1,8 @@
 alertmanager:
   enabled: false
 grafana:
-  enabled: true
-  forceDeployDatasources: true
+  enabled: false
+  forceDeployDatasources: false
   forceDeployDashboards: true
   defaultDashboardsEnabled: true
   operator:
