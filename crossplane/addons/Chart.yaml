@@ -1,5 +1,5 @@
 apiVersion: v2
 name: crossplane-addons
-description: Chart for deploying Crossplane addons
+description: A helm chart for deploying Crossplane addons
 type: application
 version: 1.0.0

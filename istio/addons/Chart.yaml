@@ -1,5 +1,5 @@
 apiVersion: v2
 name: istio-addons
-description: Chart for deploying Istio addons
+description: A helm chart for deploying Istio addons
 type: application
 version: 1.0.0
