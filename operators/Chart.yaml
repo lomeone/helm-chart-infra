@@ -1,5 +1,5 @@
 apiVersion: v2
 name: operator-chart
-description: Chart for deploying the operator
+description: A helm chart for deploying the operators
 type: application
 version: 1.0.0
