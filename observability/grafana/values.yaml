@@ -1,0 +1,17 @@
+grafana:
+  name: grafana
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/grafana/grafana
+    tag: 12.1.0
+  resources:
+    requests:
+      cpu: 100m
+      memory: 512Mi
+    limits:
+      memory: 512Mi
+
+datasources:
+  prometheus:
+    url: http://prometheus-stack-kube-prom-prometheus.observability.svc.cluster.local:9090/
+  jaeger:
+    url: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:16686/

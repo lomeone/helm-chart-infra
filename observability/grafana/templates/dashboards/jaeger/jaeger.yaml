@@ -1,0 +1,11 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: jaeger-dashboard
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboard: grafana
+  configMapRef:
+    name: jaeger-dashboard
+    key: jaeger-dashboard.json

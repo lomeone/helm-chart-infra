@@ -1,0 +1,29 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: {{ .Values.grafana.name }}
+  labels:
+    dashboard: grafana
+spec:
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              image: {{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}
+              {{- with .Values.grafana.resources }}
+              resources:
+                {{ toYaml . | nindent 16 }}
+              {{- end }}
+
+  config:
+    global:
+      app_mode: development
+    auth:
+      disable_login_form: "false"
+    log:
+      mode: console
+    security:
+      admin_user: admin
+      admin_password: start

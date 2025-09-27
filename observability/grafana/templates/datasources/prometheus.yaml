@@ -1,0 +1,18 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: prometheus-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboard: grafana
+  datasource:
+    name: prometheus
+    type: prometheus
+    uid: prometheus
+    url: {{ .Values.datasources.prometheus.url }}
+    access: proxy
+    isDefault: true
+    jsonData:
+      httpMethod: POST
+      timeInterval: 30s
