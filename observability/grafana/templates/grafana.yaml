@@ -1,7 +1,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: Grafana
 metadata:
-  name: grafana
+  name: {{ .Values.grafana.name }}
   labels:
     dashboard: grafana
 spec:
@@ -11,13 +11,12 @@ spec:
         spec:
           containers:
             - name: grafana
-              image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/grafana/grafana:12.1.0
+              image: {{ .Values.grafana.image.repository }}:{{ .Values.grafana.image.tag }}
+              {{- with .Values.grafana.resources }}
               resources:
-                requests:
-                  cpu: 100m
-                  memory: 512Mi
-                limits:
-                  memory: 512Mi
+                {{ toYaml . | nindent 16 }}
+              {{- end }}
+
   config:
     global:
       app_mode: development
