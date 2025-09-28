@@ -6,7 +6,7 @@ metadata:
     {{- include "prometheus.labels" . | nindent 4 }}
 spec:
   # Prometheus 인스턴스를 관리할 서비스 어카운트
-  serviceAccountName: prometheus-istio # ServiceAccount 이름
+  serviceAccountName: {{- include "prometheus.name" . | indent 1 }} # ServiceAccount 이름
   # 스크랩 설정을 위한 PodMonitor와 ServiceMonitor를 찾을 selector
   serviceMonitorSelector:
     {{ with .Values.prometheus.serviceMonitor.selector.matchLabels }}
