@@ -1,20 +1,20 @@
 apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
+kind: ServiceMonitor
 metadata:
-  name: istio-cni-podmonitor
-  namespace: istio-system
-  {{ with .Values.istio.monitorMatchLabels }}
+  name: istiod
+  {{ with .Values.prometheus.serviceMonitor.selector.matchLabels }}
   labels:
     {{ toYaml . | nindent 4 }}
   {{ end }}
 spec:
   selector:
     matchLabels:
-      k8s-app: istio-cni-node
+      app: istiod
+      istio: pilot
   namespaceSelector:
     matchNames:
       - istio-system
-  podMetricsEndpoints:
-    - port: metrics
+  endpoints:
+    - port: http-monitoring
       interval: 15s
       path: /metrics

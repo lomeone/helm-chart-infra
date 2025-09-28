@@ -1,9 +1,8 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
-  name: ztunnel-podmonitor
-  namespace: istio-system
-  {{ with .Values.istio.monitorMatchLabels }}
+  name: ztunnel
+  {{ with .Values.prometheus.podMonitor.selector.matchLabels }}
   labels:
     {{ toYaml . | nindent 4 }}
   {{ end }}
