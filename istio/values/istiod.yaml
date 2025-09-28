@@ -20,7 +20,9 @@ meshConfig:
 #            severity: '"info"'
 #          jsonFormat: ~~~~~
   defaultConfig:
-    tracing: {}
+    tracing:
+      zipkin:
+        address: jaeger-inmemory-instance-collector.observability.svc.cluster.local:9411
 #      datadog: datadog.url
 #      sampling: 100.0
 
