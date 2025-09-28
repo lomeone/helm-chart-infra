@@ -28,7 +28,7 @@ spec:
       auth:
         type: basic
         username: admin
-        password: prom-operator
+        password: start
     prometheus:
       url: http://{{- include "prometheus.name" . }}.istio-system.svc.cluster.local:9090
     tracing:
