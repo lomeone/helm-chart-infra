@@ -23,8 +23,8 @@ spec:
         - name: "Istio Performance Dashboard"
 {{/*        - name: "Istio Wasm Extension Dashboard"*/}}
       enabled: true
-      internal_url: http://grafana-service.observability.svc.cluster.local
-      external_url: http://grafana-service.observability.svc.cluster.local
+      internal_url: http://grafana-service.observability.svc.cluster.local:3000
+      external_url: http://grafana-service.observability.svc.cluster.local:3000
       auth:
         type: basic
         username: admin
