@@ -2,7 +2,6 @@ apiVersion: kiali.io/v1alpha1
 kind: Kiali
 metadata:
   name: kiali
-  namespace: istio-system
 spec:
   auth:
     strategy: anonymous
@@ -22,16 +21,16 @@ spec:
         - name: "Istio Mesh Dashboard"
         - name: "Istio Control Plane Dashboard"
         - name: "Istio Performance Dashboard"
-        - name: "Istio Wasm Extension Dashboard"
+{{/*        - name: "Istio Wasm Extension Dashboard"*/}}
       enabled: true
-      internal_url: http://prometheus-stack-grafana.observability.svc.cluster.local
-      external_url: http://prometheus-stack-grafana.observability.svc.cluster.local
+      internal_url: http://grafana-service.observability.svc.cluster.local
+      external_url: http://grafana-service.observability.svc.cluster.local
       auth:
         type: basic
         username: admin
         password: prom-operator
     prometheus:
-      url: http://prometheus-istio.istio-system.svc.cluster.local:9090
+      url: http://{{- include "prometheus.name" . }}.istio-system.svc.cluster.local:9090
     tracing:
       enabled: true
       provider: jaeger
