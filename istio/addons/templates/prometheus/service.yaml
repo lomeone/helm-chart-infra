@@ -10,5 +10,5 @@ spec:
       protocol: TCP
       targetPort: web
   selector:
-    app.kubernetes.io/instance: {{- include "prometheus.name" . }}
-    prometheus: {{- include "prometheus.name" . }}
+    app.kubernetes.io/instance: {{- include "prometheus.name" . | indent 1 }}
+    prometheus: {{- include "prometheus.name" . | indent 1 }}
