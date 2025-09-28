@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{- include "prometheus.name" . }}
+  name: {{- include "prometheus.name" . | indent 1 }}
 subjects:
   - kind: ServiceAccount
     name: prometheus-istio

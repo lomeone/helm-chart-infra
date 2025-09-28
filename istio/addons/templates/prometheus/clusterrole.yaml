@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{- include "prometheus.name" . }}
+  name: {{- include "prometheus.name" . | indent 1 }}
 rules:
   - apiGroups: [""]
     resources:
