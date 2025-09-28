@@ -13,10 +13,10 @@ meshConfig:
       opentelemetry:
         service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
         port: 4317
-    - name: mesh-zipkin-tracing
-      zipkin:
-        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
-        port: 9411
+#    - name: mesh-zipkin-tracing
+#      zipkin:
+#        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
+#        port: 9411
 #    - name: mesh-default-logging
 #      envoyFileAccessLog:
 #        logFormat:
@@ -24,10 +24,10 @@ meshConfig:
 #            severity: '"info"'
 #          jsonFormat: ~~~~~
   defaultConfig:
-    tracing:
-      zipkin:
-        address: jaeger-inmemory-instance-collector.observability.svc.cluster.local:9411
-        sampling: 100.0
+    tracing: {}
+#      zipkin:
+#        address: jaeger-inmemory-instance-collector.observability.svc.cluster.local:9411
+#        sampling: 100.0
 #      datadog: datadog.url
 #      sampling: 100.0
 
