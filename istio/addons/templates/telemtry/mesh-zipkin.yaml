@@ -1,8 +1,8 @@
 apiVersion: telemetry.istio.io/v1
 kind: Telemetry
 metadata:
-  name: final-nine
-  namespace: final-nine
+  name: mesh-zipkin
+  namespace: istio-system
 spec:
 {{/*  accessLogging:*/}}
 {{/*    - providers:*/}}
@@ -12,5 +12,5 @@ spec:
         - name: prometheus
   tracing:
     - providers:
-        - name: mesh-jaeger-tracing
+        - name: mesh-zipkin-tracing
       randomSamplingPercentage: 100.0
