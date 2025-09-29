@@ -11,8 +11,6 @@ grafana:
       dashboard: grafana
 kubeProxy:
   enabled: false
-kubeStateMetrics:
-  enabled: false
 nodeExporter:
   enabled: false
 prometheusOperator:
