@@ -9,7 +9,13 @@ spec:
   ports:
     - number: 4317
       name: otlp-grpc
-      protocol: GRPC
+      protocol: TCP
+    - number: 4318
+      name: otlp-http
+      protocol: TCP
+    - number: 16686
+      name: jaeger
+      protocol: TCP
   resolution: DNS
   location: MESH_EXTERNAL
   exportTo:

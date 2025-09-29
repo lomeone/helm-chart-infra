@@ -1,8 +1,8 @@
 apiVersion: telemetry.istio.io/v1
 kind: Telemetry
 metadata:
-  name: final-nine
-  namespace: final-nine
+  name: mesh-jaeger
+  namespace: istio-system
 spec:
 {{/*  accessLogging:*/}}
 {{/*    - providers:*/}}
