@@ -6,7 +6,7 @@ spec:
   parentRefs:
     - name: public-gateway
       namespace: istio-gateway
-  hostnames: [ {{ .Values.hostName }}]
+  hostnames: [ {{ .Values.hostName }} ]
   rules:
     - matches:
         - path:

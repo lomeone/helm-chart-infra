@@ -3,9 +3,9 @@ hostName: keycloak.lomeone.com
 resources:
   requests:
     cpu: 200m
-    memory: 512Mi
+    memory: 1Gi
   limits:
-    memory: 512Mi
+    memory: 1Gi
 externalSecrets:
   dbSecret:
     secretsManagerName: lomeone-keycloak-db-secret
