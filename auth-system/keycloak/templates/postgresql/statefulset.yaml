@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgresql-db
-          image: postgres:15
+          image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/library/postgres:15
           resources:
             requests:
               cpu: 100m
