@@ -5,35 +5,42 @@ metadata:
   labels:
     app: keycloak
 spec:
-  hostname:
-    hostname: {{ .Values.hostName }}
-  {{- with .Values.resources }}
-  resources:
-    {{ toYaml . | nindent 4 }}
-  {{- end }}
+  instances: 1
   db:
     vendor: postgres
     host: postgres-db
     port: 5432
     database: keycloak
     usernameSecret:
-      name: keycloak-db-secret
+      name: keycloak-db-credentials
       key: username
     passwordSecret:
-      name: keycloak-db-secret
+      name: keycloak-db-credentials
       key: password
-  additionalOptions:
-    - name: log-console-output
-      value: true
-    - name: metrics-enabled
-      value: true
-    - name: event-metrics-user-enabled
-      value: true
+{{/*  additionalOptions:*/}}
+{{/*    - name: log-console-output*/}}
+{{/*      value: true*/}}
+{{/*    - name: metrics-enabled*/}}
+{{/*      value: true*/}}
+{{/*    - name: event-metrics-user-enabled*/}}
+{{/*      value: true*/}}
 {{/*    - name: cache-remote-host*/}}
 {{/*      value: "infinispan.keycloak.svc"*/}}
 {{/*    - name: cache-remote-port*/}}
 {{/*      value: "11222"*/}}
 {{/*    - name: db-driver*/}}
 {{/*      value: sofware.amazon.jdbc.Driver*/}}
-  instances: 1
+  http:
+    httpEnabled: true
+  hostname:
+    hostname: https://{{ .Values.hostName }}
+    strict: false
+  ingress:
+    enabled: false
+  proxy:
+    headers: xforwarded
+  {{- with .Values.resources }}
+  resources:
+    {{ toYaml . | nindent 4 }}
+  {{- end }}
 
