@@ -1,25 +1,10 @@
-global:
-  security:
-    allowInsecureImages: true
-
-image:
-  registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub
-
-sources:
-  - service
-  - ingress
-  - gateway-httproute
-  - istio-gateway
-  - istio-virtualservice
-
-aws:
-  region: ap-northeast-2
-
-policy: sync
-
 serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/ExternalDNSRole-lomeone-eks
+
+env:
+  - name: AWS_DEFAULT_REGION
+    value: ap-northeast-2
 
 resources:
   requests:
@@ -28,12 +13,17 @@ resources:
   limits:
     memory: 64Mi
 
-pdb:
-  maxUnavailable: 1
-
-metrics:
+serviceMonitor:
   enabled: true
-  podAnnotations:
-    prometheus.io/port: "7979"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics"
+
+sources:
+  - service
+  - ingress
+  - gateway-httproute
+  - istio-gateway
+  - istio-virtualservice
+
+policy: sync
+
+provider:
+  name: aws
