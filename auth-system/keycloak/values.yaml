@@ -1,5 +1,7 @@
 keycloakName: lomeone-keycloak
 hostName: keycloak.lomeone.com
+httpRoute:
+  gatewayName: external-gateway
 resources:
   requests:
     cpu: 200m
