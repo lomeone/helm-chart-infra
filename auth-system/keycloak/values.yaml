@@ -9,8 +9,8 @@ resources:
   limits:
     memory: 1Gi
 database:
-  hostname: db.dptegguvqxbrochgrzla.supabase.co
-  port: 5432
+  hostname: aws-1-ap-northeast-2.pooler.supabase.com
+  port: 6543
 externalSecrets:
   dbSecret:
     secretsManagerName: keycloak-db-credentials
