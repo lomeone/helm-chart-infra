@@ -40,15 +40,15 @@ releases:
     needs:
       - istio-system/istiod
 
-  - name: public-istio-gateway
+  - name: external-istio-gateway
     namespace: istio-gateway
     chart: ./istio-gateway
     values:
-      - values/public-gateway.yaml
+      - values/external-gateway.yaml
     needs:
       - istio-system/istiod
 
-#  - name: private-istio-gateway
+#  - name: internal-istio-gateway
 #    namespace: istio-gateway
 #    chart: ./istio-gateway
 #    values:
