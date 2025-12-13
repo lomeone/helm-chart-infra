@@ -1,0 +1,7 @@
+gatewayName: internal-gateway
+
+hostName: "*.internal.lomeone.com"
+
+aws:
+  loadBalancer:
+    scheme: internal

@@ -43,4 +43,7 @@ spec:
   resources:
     {{ toYaml . | nindent 4 }}
   {{- end }}
+  tracing:
+    enabled: true
+    endpoint: http://jaeger-inmemory-instance-collector.observability.svc.cluster.local:4317
 

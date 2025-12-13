@@ -1,4 +1,4 @@
-gatewayName: public-gateway
+gatewayName: external-gateway
 
 hostName: "*.lomeone.com"
 

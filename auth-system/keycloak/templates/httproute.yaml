@@ -4,7 +4,7 @@ metadata:
   name: keycloak-httproute
 spec:
   parentRefs:
-    - name: public-gateway
+    - name: {{ .Values.httpRoute.gatewayName }}
       namespace: istio-gateway
   hostnames: [ {{ .Values.hostName }} ]
   rules:

@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1
 kind: ServiceEntry
 metadata:
-  name: jaeger-tracing-grpc
+  name: jaeger-tracing
   namespace: observability
 spec:
   hosts:
