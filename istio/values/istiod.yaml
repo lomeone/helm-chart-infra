@@ -13,12 +13,12 @@ meshConfig:
       opentelemetry:
         service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
         port: 4317
-    - name: mesh-prometheus-metrics
-      prometheus:
-        path: /dev/stdout
-        logFormat:
-          text: "%LOCAL_REPLY_BODY%:%RESPONSE_CODE%:path=%REQ(:path)%"
-        omitEmptyValues: true
+#    - name: mesh-prometheus-metrics
+#      prometheus:
+#        path: /dev/stdout
+#        logFormat:
+#          text: "%LOCAL_REPLY_BODY%:%RESPONSE_CODE%:path=%REQ(:path)%"
+#        omitEmptyValues: true
 #    - name: mesh-zipkin-tracing
 #      zipkin:
 #        service: jaeger-inmemory-instance-collector.observability.svc.cluster.local
