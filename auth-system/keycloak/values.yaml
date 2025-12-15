@@ -8,6 +8,9 @@ resources:
     memory: 1Gi
   limits:
     memory: 1Gi
+database:
+  hostname: aws-1-ap-northeast-2.pooler.supabase.com
+  port: 6543
 externalSecrets:
   dbSecret:
-    secretsManagerName: lomeone-keycloak-db-secret
+    secretsManagerName: keycloak-db-credentials
