@@ -1,0 +1,6 @@
+global:
+  groundcoverPredefinedTokenSecret:
+    secretName: groundcover-secrets
+    secretKey: ingestion-key
+
+clusterId: lomeone
