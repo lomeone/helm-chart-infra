@@ -12,6 +12,7 @@ configs:
       clientID: argo-cd
       clientSecret: $oidc.keycloak.clientSecret
       requestedScopes: ["openid", "profile", "email", "roles"]
+      groupsClaim: resource_access.argo-cd.roles
   params:
     server.insecure: true
   tls:
