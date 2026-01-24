@@ -5,6 +5,13 @@ global:
   addPrometheusAnnotations: true
 
 configs:
+  cm:
+    oidc.config: |
+      name: Keyclaok
+      issuer: https://keycloak.lomeone.com/realms/argo
+      clientID: argo-cd
+      clientSecret: $oidc.keycloak.clientSecret
+      requestedScopes: ["openid", "profile", "email", "groups"]
   params:
     server.insecure: true
   tls:

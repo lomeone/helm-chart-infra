@@ -1,0 +1,3 @@
+externalSecrets:
+  groundcoverSecrets:
+    secretsManagerName: groundcover-secrets

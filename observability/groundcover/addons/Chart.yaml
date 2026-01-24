@@ -1,0 +1,5 @@
+apiVersion: v2
+name: groundcover-addons
+description: A helm chart for deploying grouncover addons
+type: application
+version: 1.0.0

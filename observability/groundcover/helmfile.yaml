@@ -1,0 +1,17 @@
+repositories:
+  - name: groundcover
+    url: https://helm.groundcover.com
+
+releases:
+  - name: groundcover
+    namespace: observability
+    chart: groundcover/groundcover
+    version: 1.11.338
+    values:
+      - values/groundcover.yaml
+
+  - name: addons
+    namespace: observability
+    chart: ./addons
+    values:
+      - values/addons.yaml
