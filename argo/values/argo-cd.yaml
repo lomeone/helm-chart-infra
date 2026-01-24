@@ -11,7 +11,7 @@ configs:
       issuer: https://keycloak.lomeone.com/realms/argo
       clientID: argo-cd
       clientSecret: $oidc.keycloak.clientSecret
-      requestedScopes: ["openid", "profile", "email"]
+      requestedScopes: ["openid", "profile", "email", "roles"]
   params:
     server.insecure: true
   tls:
