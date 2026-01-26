@@ -23,6 +23,7 @@ configs:
               - openid
               - profile
               - email
+              - groups
               - roles
 #    oidc.config: |
 #      name: Keyclaok
@@ -36,7 +37,7 @@ configs:
   rbac:
     create: true
     policy.csv: |
-      g, admin, role:admin
+      g, admins, role:admin
   tls:
     create: true
   cmp:
