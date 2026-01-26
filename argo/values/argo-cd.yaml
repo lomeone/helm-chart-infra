@@ -6,13 +6,29 @@ global:
 
 configs:
   cm:
-    oidc.config: |
-      name: Keyclaok
-      issuer: https://keycloak.lomeone.com/realms/argo
-      clientID: argo-cd
-      clientSecret: $oidc.keycloak.clientSecret
-      requestedScopes: ["openid", "profile", "email", "roles"]
-      groupsClaim: resource_access.argo-cd.roles
+    dex.config: |
+      connectors:
+        - type: oidc
+          id: keycloak
+          name: Keycloak
+          config:
+            issuer: https://keycloak.lomeone.com/realms/argo
+            clientId: argo-cd
+            clientSecret: $dex.keycloak.clientSecret
+            claimMapping:
+              groups: ["resource_access", "argo-cd", "roles"]
+            scopes:
+              - openid
+              - profile
+              - email
+              - roles
+#    oidc.config: |
+#      name: Keyclaok
+#      issuer: https://keycloak.lomeone.com/realms/argo
+#      clientID: argo-cd
+#      clientSecret: $oidc.keycloak.clientSecret
+#      requestedScopes: ["openid", "profile", "email", "roles"]
+#      groupsClaim: resource_access.argo-cd.roles
   params:
     server.insecure: true
   rbac:
