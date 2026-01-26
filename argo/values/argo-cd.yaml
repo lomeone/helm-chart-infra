@@ -16,7 +16,7 @@ configs:
             clientId: argo-cd
             clientSecret: $dex.keycloak.clientSecret
             claimMapping:
-              groups: ["resource_access", "argo-cd", "roles"]
+              groups: resource_access.argo-cd.roles
             scopes:
               - openid
               - profile
