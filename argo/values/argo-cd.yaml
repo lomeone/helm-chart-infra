@@ -6,32 +6,13 @@ global:
 
 configs:
   cm:
-    dex.config: |
-      connectors:
-        - type: oidc
-          id: keycloak
-          name: Keycloak
-          config:
-            issuer: https://keycloak.lomeone.com/realms/argo
-            clientId: argo-cd
-            clientSecret: $dex.keycloak.clientSecret
-            insecureEnableGroups: true
-            getUserInfo: true
-            claimMapping:
-              groups: resource_access.argo-cd.roles
-            scopes:
-              - openid
-              - profile
-              - email
-              - groups
-              - roles
-#    oidc.config: |
-#      name: Keyclaok
-#      issuer: https://keycloak.lomeone.com/realms/argo
-#      clientID: argo-cd
-#      clientSecret: $oidc.keycloak.clientSecret
-#      requestedScopes: ["openid", "profile", "email", "roles"]
-#      groupsClaim: resource_access.argo-cd.roles
+    oidc.config: |
+      name: Keyclaok
+      issuer: https://keycloak.lomeone.com/realms/argo
+      clientID: argo-cd
+      clientSecret: $oidc.keycloak.clientSecret
+      requestedScopes: ["openid", "profile", "email", "groups"]
+      groupsClaim: resource_access.argo-cd.roles
   params:
     server.insecure: true
   rbac:
@@ -74,18 +55,19 @@ controller:
         enabled: true
 
 dex:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-  image:
-    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi
-    limits:
-      memory: 128Mi
+  enabled: false
+#  metrics:
+#    enabled: true
+#    serviceMonitor:
+#      enabled: true
+#  image:
+#    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
+#  resources:
+#    requests:
+#      cpu: 10m
+#      memory: 128Mi
+#    limits:
+#      memory: 128Mi
 
 redis:
   image:
