@@ -13,10 +13,12 @@ configs:
       clientSecret: $oidc.keycloak.clientSecret
       requestedScopes: ["openid", "profile", "email", "roles"]
       groupsClaim: resource_access.argo-cd.roles
-    policy.csv: |
-      g, admin, role:admin
   params:
     server.insecure: true
+  rbac:
+    create: true
+    policy.csv: |
+      g, admin, role:admin
   tls:
     create: true
   cmp:
