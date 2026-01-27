@@ -10,7 +10,7 @@ resources:
     memory: 1Gi
 database:
   hostname: aws-1-ap-northeast-2.pooler.supabase.com
-  port: 6543
+  port: 5432
 externalSecrets:
   dbSecret:
     secretsManagerName: keycloak-db-credentials
