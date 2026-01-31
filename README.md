@@ -46,7 +46,7 @@ helmfile apply -f ./karpenter/helmfile.yaml
 
 ```bash
 # Install gateway api crd(Experimental Channel)
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
 
 # Install istio using helmfile
 helmfile apply -f ./istio/helmfile.yaml
@@ -66,4 +66,7 @@ helm upgrade --install external-dns ./external-dns -f ./external-dns/overwrite-v
 ```bash
 # argo cd
 helmfile apply -f ./argo/helmfile.yaml
+
+# Add keycloak authentication
+kubectl -n argo patch secret argocd-secret --patch='{"stringData": { "oidc.keycloak.clientSecret": "<REPLACE_WITH_CLIENT_SECRET>" }}'
 ```
