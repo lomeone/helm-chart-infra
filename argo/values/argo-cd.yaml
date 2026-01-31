@@ -11,9 +11,15 @@ configs:
       issuer: https://keycloak.lomeone.com/realms/argo
       clientID: argo-cd
       clientSecret: $oidc.keycloak.clientSecret
-      requestedScopes: ["openid", "profile", "email", "groups"]
+      requestedScopes: ["openid", "profile", "email", "groups", "roles"]
   params:
     server.insecure: true
+  rbac:
+    create: true
+    policy.csv: |
+      g, resource_access.argo-cd.roles:admin, role:admin
+      g, comstering@gmail.com, role:admin
+    scopes: "[email, groups, roles]"
   tls:
     create: true
   cmp:
@@ -50,18 +56,19 @@ controller:
         enabled: true
 
 dex:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-  image:
-    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
-  resources:
-    requests:
-      cpu: 10m
-      memory: 128Mi
-    limits:
-      memory: 128Mi
+  enabled: false
+#  metrics:
+#    enabled: true
+#    serviceMonitor:
+#      enabled: true
+#  image:
+#    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
+#  resources:
+#    requests:
+#      cpu: 10m
+#      memory: 128Mi
+#    limits:
+#      memory: 128Mi
 
 redis:
   image:
