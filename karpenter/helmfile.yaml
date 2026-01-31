@@ -2,7 +2,7 @@ releases:
   - name: karpenter
     namespace: kube-system
     chart: oci://public.ecr.aws/karpenter/karpenter
-    version: 1.5.1
+    version: 1.8.6
     values:
       - values/karpenter.yaml
 
