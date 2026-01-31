@@ -17,7 +17,8 @@ configs:
   rbac:
     create: true
     policy.csv: |
-      g, admins, role:admin
+      g, resource_access.argo-cd.roles:admin, role:admin
+      g, comstering@gmail.com, role:admin
     scopes: "[email, groups, roles]"
   tls:
     create: true
