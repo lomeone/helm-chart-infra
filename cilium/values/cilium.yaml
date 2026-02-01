@@ -6,6 +6,13 @@ cluster:
   name: lomeone-eks-seoul
   id: 1
 
+image:
+  repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/cilium"
+
+certgen:
+  image:
+    repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/certgen"
+
 # CNI 설정: VPC CNI와 chaining 모드로 사용
 cni:
   chainingMode: aws-cni       # AWS CNI와 연결되는 chaining 모드 사용
@@ -57,6 +64,8 @@ kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 
 # Cilium Operator 설정: Unmanaged Pod Restart
 operator:
+  image:
+    repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/operator"
   # Prometheus 모니터링 설정 (선택)
   prometheus:
     metricsService: true
@@ -87,8 +96,16 @@ hubble:
   enabled: true
   relay:
     enabled: true
+    image:
+      repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-relay"
   ui:
     enabled: true
+    backend:
+      image:
+        repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-ui-backend"
+    frontend:
+      image:
+        repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-ui"
 
 # Prometheus 모니터링 (선택)
 prometheus:
