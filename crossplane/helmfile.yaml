@@ -6,7 +6,7 @@ releases:
   - name: crossplane
     namespace: crossplane-system
     chart: crossplane-stable/crossplane
-    version: 2.0.2
+    version: 2.1.3
     values:
       - values/crossplane.yaml
 
