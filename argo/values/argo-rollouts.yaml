@@ -13,5 +13,12 @@ controller:
       enabled: true
 
 dashboard:
+  enabled: true
   image:
     registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
