@@ -1,3 +1,16 @@
+prometheus:
+  name: istio-prometheus
+  serviceAccount:
+    name: istio-prometheus
+  serviceMonitor:
+    selector:
+      matchLabels:
+        app: istio
+  podMonitor:
+    selector:
+      matchLabels:
+        app: istio
+
 serviceEntry:
   entries:
     - name: dynamodb-seoul
@@ -12,16 +25,3 @@ serviceEntry:
       resolution: DNS
       exportTo:
         - "*"
-
-prometheus:
-  name: istio-prometheus
-  serviceAccount:
-    name: istio-prometheus
-  serviceMonitor:
-    selector:
-      matchLabels:
-        app: istio
-  podMonitor:
-    selector:
-      matchLabels:
-        app: istio
