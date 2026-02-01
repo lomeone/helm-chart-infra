@@ -75,7 +75,7 @@ redis:
     repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
   exporter:
     image:
-      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/oliver006/redis_exporter
   resources:
     requests:
       cpu: 10m
@@ -91,7 +91,7 @@ redis-ha:
   image:
     repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
   exporter:
-    image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/bitnami/redis-exporter
+    image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/oliver006/redis_exporter
 
 server:
   autoscaling:
@@ -119,7 +119,7 @@ repoServer:
     targetCPUUtilizationPercentage: 80
   extraContainers:
     - name: helmfile
-      image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/helmfile/helmfile:v1.0.0
+      image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/helmfile/helmfile:v1.2.3
       # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
       command: [ "/var/run/argocd/argocd-cmp-server" ]
       env:
