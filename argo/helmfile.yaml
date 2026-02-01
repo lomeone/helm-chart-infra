@@ -13,14 +13,14 @@ releases:
   - name: argocd-image-updater
     namespace: argo
     chart: argo/argocd-image-updater
-    version: 0.12.1
+    version: 1.0.5
     values:
       - ./values/argocd-image-updater.yaml
 
   - name: argo-rollouts
     namespace: argo
     chart: argo/argo-rollouts
-    version: 2.39.5
+    version: 2.40.5
     values:
       - ./values/argo-rollouts.yaml
 
