@@ -1,3 +1,6 @@
+global:
+  imageRegistry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+
 alertmanager:
   enabled: false
 grafana:
