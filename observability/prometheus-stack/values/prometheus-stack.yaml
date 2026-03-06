@@ -11,9 +11,14 @@ grafana:
       dashboard: grafana
 kubeProxy:
   enabled: false
+kube-state-metrics:
+  image:
+    registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/k8s
 nodeExporter:
   enabled: false
 prometheusOperator:
+  image:
+    registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
   tls:
     enabled: false
   admissionWebhooks:
@@ -45,6 +50,8 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    image:
+      registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
     enableRemoteWriteReceiver: true
     resources:
       requests:
