@@ -6,7 +6,7 @@ releases:
   - name: prometheus-stack
     namespace: observability
     chart: prometheus-community/kube-prometheus-stack
-    version: 81.4.2
+    version: 82.9.0
     values:
       - values/prometheus-stack.yaml
 
