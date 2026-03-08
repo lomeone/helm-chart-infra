@@ -1,5 +1,9 @@
 prometheus:
   name: istio-prometheus
+  image:
+    registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+    repository: prometheus/prometheus
+    tag: v3.10.0
   serviceAccount:
     name: istio-prometheus
   serviceMonitor:

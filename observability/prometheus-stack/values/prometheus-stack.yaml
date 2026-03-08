@@ -17,8 +17,6 @@ kube-state-metrics:
 nodeExporter:
   enabled: false
 prometheusOperator:
-  image:
-    registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
   tls:
     enabled: false
   admissionWebhooks:
@@ -47,6 +45,11 @@ prometheusOperator:
       memory: 128Mi
     limits:
       memory: 128Mi
+  image:
+    registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+  prometheusConfigReloader:
+    image:
+      registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
 
 prometheus:
   prometheusSpec:
