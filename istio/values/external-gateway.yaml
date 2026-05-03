@@ -5,4 +5,4 @@ hostName: "*.lomeone.com"
 aws:
   loadBalancer:
     scheme: internet-facing
-    securityGroups: sg-021a36cffd44e8b26,sg-0236644c16e4594fe,sg-047be870914de49f5,sg-061021400e2cfc6df
+    securityGroups: sg-0236644c16e4594fe,sg-047be870914de49f5,sg-061021400e2cfc6df
