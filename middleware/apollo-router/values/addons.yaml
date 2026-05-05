@@ -1,3 +1,10 @@
 externalSecrets:
   apolloStudioApiKey:
     secretsManagerName: prod/apollo-studio-api-key
+
+httpRoute:
+  gatewayName: external-gateway
+  hostname: api.lomeone.com
+  service:
+    name: router
+    port: 80
