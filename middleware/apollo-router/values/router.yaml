@@ -1,0 +1,4 @@
+managedFederation:
+  existingSecret: apollo-studio-api-key
+  existingSecretKeyRefKey: api-key
+  graphRef: lomeone-api-gwz4edq@current

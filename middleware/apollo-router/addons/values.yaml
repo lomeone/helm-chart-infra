@@ -1,0 +1,3 @@
+externalSecrets:
+  apolloStudioApiKey:
+    secretsManagerName: prod/apollo-studio-api-key
