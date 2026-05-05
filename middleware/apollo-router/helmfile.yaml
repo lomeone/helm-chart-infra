@@ -1,11 +1,7 @@
-repositories:
-  - name: apollographql
-    url: oci://ghcr.io/apollographql/helm-charts
-
 releases:
   - name: router
     namespace: apollo
-    chart: apollographql/router
+    chart: oci://ghcr.io/apollographql/helm-charts/router
     version: 2.14.0
     values:
       - values/router.yaml
