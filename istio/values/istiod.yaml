@@ -42,10 +42,10 @@ global:
 
 resources:
   requests:
-    cpu: 50m
-    memory: 96Mi
+    cpu: 200m
+    memory: 256Mi
   limits:
-    memory: 96Mi
+    memory: 256Mi
 
 autoscaleEnabled: true
 autoscaleMin: 2

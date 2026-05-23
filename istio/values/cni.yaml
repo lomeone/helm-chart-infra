@@ -5,8 +5,10 @@ global:
 
 resources:
   requests:
-    cpu: 20m
-    memory: 96Mi
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    memory: 256Mi
 
 ambient:
   enabled: true

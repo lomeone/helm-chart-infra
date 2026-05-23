@@ -4,5 +4,7 @@ hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
 
 resources:
   requests:
-    cpu: 50m
+    cpu: 200m
+    memory: 512Mi
+  limits:
     memory: 512Mi
