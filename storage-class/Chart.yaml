@@ -1,5 +1,0 @@
-apiVersion: v2
-name: storage-class
-description: A helm chart for deploying Storage Class
-type: application
-version: 1.0.0
