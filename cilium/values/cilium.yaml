@@ -78,6 +78,12 @@ operator:
     intervalSeconds: 15       # 감시 간격 설정 (초 단위)
   extraArgs:
     - '--pod-restart-selector=app.kubernetes.io/name!=aws-node'  # VPC CNI인 aws-node를 제외한 모든 Pod에 대해 재시작 감시 설정
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
 
 # Cilium 설정: istio와의 통합
 envoy:
