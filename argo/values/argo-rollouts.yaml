@@ -3,7 +3,7 @@ controller:
     registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
   resources:
     requests:
-      cpu: 10m
+      cpu: 200m
       memory: 256Mi
     limits:
       memory: 256Mi
