@@ -1,7 +1,0 @@
-istio:
-  httpRoute:
-    gatewayName: external-gateway
-    service:
-      name: argocd-server
-      port: 80
-    domain: argo-cd.lomeone.com

@@ -1,0 +1,287 @@
+global:
+  domain: argo-cd.lomeone.com
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoproj/argocd
+  addPrometheusAnnotations: true
+
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: external-gateway
+      namespace: istio-gateway
+  hostnames:
+    - "argo-cd.lomeone.com"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: argocd-server
+          port: 80
+
+argo-cd:
+  configs:
+    cm:
+      oidc.config: |
+        name: Keyclaok
+        issuer: https://keycloak.lomeone.com/realms/argo
+        clientID: argo-cd
+        clientSecret: $oidc.keycloak.clientSecret
+        requestedScopes: ["openid", "profile", "email", "groups", "roles"]
+    params:
+      server.insecure: true
+    rbac:
+      create: true
+      policy.csv: |
+        g, resource_access.argo-cd.roles:admin, role:admin
+        g, comstering@gmail.com, role:admin
+      scopes: "[email, groups, roles]"
+    tls:
+      create: true
+    cmp:
+      create: true
+      plugins:
+        helmfile:
+          allowConcurrency: true
+          discover:
+            filename: helmfile.yaml
+          generate:
+            command:
+              - bash
+              - "-c"
+              - |
+                if [[ -v ENV_NAME ]]; then
+                  helmfile -n "$ARGOCD_APP_NAMESPACE" -e $ENV_NAME template --include-crds -q
+                elif [[ -v ARGOCD_ENV_ENV_NAME ]]; then
+                  helmfile -n "$ARGOCD_APP_NAMESPACE" -e "$ARGOCD_ENV_ENV_NAME" template --include-crds -q
+                else
+                  helmfile -n "$ARGOCD_APP_NAMESPACE" template --include-crds -q
+                fi
+          lockRepo: false
+  controller:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 1.5Gi
+      limits:
+        memory: 1.5Gi
+    metrics:
+      enabled: true
+      service:
+        serviceMonitor:
+          enabled: true
+
+  dex:
+    enabled: false
+  #  metrics:
+  #    enabled: true
+  #    serviceMonitor:
+  #      enabled: true
+  #  image:
+  #    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/dexidp/dex
+  #  resources:
+  #    requests:
+  #      cpu: 10m
+  #      memory: 128Mi
+  #    limits:
+  #      memory: 128Mi
+
+  redis:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+    exporter:
+      image:
+        repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/oliver006/redis_exporter
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        memory: 32Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  redis-ha:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/docker/library/redis
+    exporter:
+      image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/oliver006/redis_exporter
+
+  server:
+    autoscaling:
+      enabled: true
+      targetCPUUtilizationPercentage: 80
+      targetMemoryUtilizationPercentage: 80
+    extensions:
+      image:
+        repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-extension-installer
+    resources:
+      requests:
+        cpu: 50m
+        memory: 512Mi
+      limits:
+        memory: 512Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  repoServer:
+    autoscaling:
+      enabled: true
+      targetMemoryUtilizationPercentage: 80
+      targetCPUUtilizationPercentage: 80
+    extraContainers:
+      - name: helmfile
+        image: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/github/helmfile/helmfile:v1.2.3
+        # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        command: [ "/var/run/argocd/argocd-cmp-server" ]
+        env:
+          - name: HELM_CACHE_HOME
+            value: /tmp/helm/cache
+          - name: HELM_CONFIG_HOME
+            value: /tmp/helm/config
+          - name: HELMFILE_CACHE_HOME
+            value: /tmp/helmfile/cache
+          - name: HELMFILE_TEMPDIR
+            value: /tmp/helmfile/tmp
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          # Register helmfile plugin into sidecar
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: helmfile.yaml
+            name: argocd-cmp-cm
+          # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps mitigate path traversal attacks.
+          - mountPath: /tmp
+            name: cmp-tmp
+    volumes:
+      - name: argocd-cmp-cm
+        configMap:
+          name: argocd-cmp-cm
+      - name: helmfile-tmp
+        emptyDir: { }
+      - name: cmp-tmp
+        emptyDir: { }
+    resources:
+      requests:
+        cpu: 30m
+        memory: 256Mi
+      limits:
+        memory: 256Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    clusterRoleRules:
+      enabled: true
+      rules:
+        - apiGroups:
+            - apiextensions.k8s.io
+          resources:
+            - customresourcedefinitions
+          verbs:
+            - get
+            - list
+
+  applicationSet:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
+
+  notifications:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 64Mi
+
+argocd-image-updater:
+  image:
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-image-updater
+
+  fullnameOverride: argocd-image-updater
+
+  config:
+    registries:
+      - name: ECR
+        api_url: https://396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
+        prefix: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
+        ping: yes
+        insecure: no
+        credentials: ext:/scripts/ecr-auth.sh
+        credsexpire: 10h
+
+  authScripts:
+    enabled: true
+    name: argocd-image-updater-authscripts
+    scripts:
+      ecr-auth.sh: |
+        #!/bin/sh
+        aws ecr --region ap-northeast-2 get-authorization-token --output text --query 'authorizationData[].authorizationToken' | base64 -d
+
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/ArgoCDImageUpdaterRole-lomeone-eks
+
+  securityContext:
+    readOnlyRootFilesystem: false
+
+  resources:
+    requests:
+      cpu: 10m
+      memory: 96Mi
+    limits:
+      memory: 96Mi
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+argo-rollouts:
+  fullnameOverride: argo-rollouts
+  controller:
+    image:
+      registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        memory: 256Mi
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+
+  dashboard:
+    enabled: true
+    image:
+      registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
