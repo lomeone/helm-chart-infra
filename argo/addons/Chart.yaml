@@ -1,5 +1,0 @@
-apiVersion: v2
-name: argo-addons
-description: A helm chart for deploying Argo addons
-type: application
-version: 1.0.0

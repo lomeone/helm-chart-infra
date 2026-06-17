@@ -1,7 +1,7 @@
 global:
   domain: argo-cd.lomeone.com
   image:
-    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/argoproj/argocd
+    repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoproj/argocd
   addPrometheusAnnotations: true
 
 httpRoute:
