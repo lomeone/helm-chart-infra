@@ -19,8 +19,7 @@ httpRoute:
         - name: argocd-server
           port: 80
 
-
-argocd:
+argo-cd:
   configs:
     cm:
       oidc.config: |
@@ -220,6 +219,8 @@ argocd-image-updater:
   image:
     repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-image-updater
 
+  fullnameOverride: argocd-image-updater
+
   config:
     registries:
       - name: ECR
@@ -258,6 +259,7 @@ argocd-image-updater:
       enabled: true
 
 argo-rollouts:
+  fullnameOverride: argo-rollouts
   controller:
     image:
       registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
