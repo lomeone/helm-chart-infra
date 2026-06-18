@@ -1,0 +1,85 @@
+karpenter:
+  serviceAccount:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::396428372646:role/KarpenterControllerRole-lomeone-eks
+
+  serviceMonitor:
+    enabled: true
+
+  replicas: 1
+
+  podAnnotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/metrics"
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: karpenter.sh/nodepool
+                operator: DoesNotExist
+              - key: eks.amazonaws.com/nodegroup
+                operator: In
+                values: [ "default_node_group" ]
+
+  controller:
+    image:
+      repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/ecr-public/karpenter/controller
+    resources:
+      requests:
+        cpu: 50m
+        memory: 512Mi
+      limits:
+        memory: 512Mi
+
+  settings:
+    clusterName: lomeone-eks
+    interruptionQueue: Karpenter-lomeone-eks-SpotInterruptionQueue
+    reservedENIs: "1"
+    featureGates:
+      nodeRepair: true
+      spotToSpotConsolidation: true
+
+eksCluster:
+  name: lomeone-eks
+
+node:
+  nodePool:
+    name: default
+    labels: { }
+    expireAfter: 720h
+    terminationGracePeriod: 10m
+    cilium:
+      enabled: true
+    requirements:
+      - key: karpenter.k8s.aws/instance-family
+        operator: In
+        values: [ "t4g" ]
+      - key: karpenter.k8s.aws/instance-cpu
+        operator: In
+        values: [ "2", "4" ]
+      - key: karpenter.k8s.aws/instance-memory
+        operator: In
+        values: [ "4096", "8192", "16384" ]
+      - key: karpenter.sh/capacity-type
+        operator: In
+        values: [ "spot" ]
+      - key: topology.kubernetes.io/zone
+        operator: In
+        values: [ "ap-northeast-2a" ]
+      - key: kubernetes.io/arch
+        operator: In
+        values: [ "arm64" ]
+    disruption:
+      consolidationPolicy: WhenEmptyOrUnderutilized
+      consolidateAfter: 10m
+    limits:
+      cpu: 20
+      memory: 80Gi
+  nodeClass:
+    name: default
+    amiFamily: AL2023
+    amiSelectorTerms:
+      - alias: al2023@latest
