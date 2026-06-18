@@ -9,7 +9,7 @@ spec:
       labels:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.node.nodepool.additionalAnnotations }}
+      {{- with .Values.node.nodePool.additionalAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
