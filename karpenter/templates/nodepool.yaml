@@ -17,14 +17,14 @@ spec:
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
-        name: {{ .Values.nodeClass.name }}
-      expireAfter: {{ .Values.nodePool.expireAfter }}
-      terminationGracePeriod: {{ .Values.nodePool.terminationGracePeriod }}
+        name: {{ .Values.node.nodeClass.name }}
+      expireAfter: {{ .Values.node.nodePool.expireAfter }}
+      terminationGracePeriod: {{ .Values.node.nodePool.terminationGracePeriod }}
       {{- with .Values.node.nodePool.requirements }}
       requirements:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.nodePool.cilium.enabled }}
+      {{- if .Values.node.nodePool.cilium.enabled }}
       startupTaints:
         - key: node.cilium.io/agent-not-ready
           value: "true"
