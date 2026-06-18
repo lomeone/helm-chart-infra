@@ -1,5 +1,0 @@
-apiVersion: v2
-name: karpenter-node
-description: A helm chart for Karpenter Node
-type: application
-version: 1.0.0
