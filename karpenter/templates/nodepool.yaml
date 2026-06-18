@@ -1,0 +1,43 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: {{ .Values.node.nodePool.name }}
+spec:
+  template:
+    metadata:
+      {{- with .Values.node.nodePool.labels }}
+      labels:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.node.nodepool.additionalAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: {{ .Values.nodeClass.name }}
+      expireAfter: {{ .Values.nodePool.expireAfter }}
+      terminationGracePeriod: {{ .Values.nodePool.terminationGracePeriod }}
+      {{- with .Values.node.nodePool.requirements }}
+      requirements:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.nodePool.cilium.enabled }}
+      startupTaints:
+        - key: node.cilium.io/agent-not-ready
+          value: "true"
+          effect: NoExecute
+      {{- end }}
+  {{- with .Values.node.nodePool.disruption }}
+  disruption:
+    consolidationPolicy: {{ .consolidationPolicy }}
+    consolidateAfter: {{ .consolidateAfter }}
+  {{- end }}
+  {{- with .Values.node.nodePool.limits }}
+  limits:
+    cpu: {{ .cpu }}
+    memory: {{ .memory }}
+  {{- end }}
+  weight: {{ .Values.node.nodePool.weight }}
