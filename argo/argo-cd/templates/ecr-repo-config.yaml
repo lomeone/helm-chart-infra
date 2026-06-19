@@ -1,0 +1,36 @@
+apiVersion: generators.external-secrets.io/v1alpha1
+kind: ECRAuthorizationToken
+metadata:
+  name: ecr-repo-config
+  namespace: argo
+spec:
+  region: ap-northeast-2
+---
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: argocd-ecr
+  namespace: argo
+spec:
+  refreshInterval: 1h
+  target:
+    name: argocd-ecr
+    creationPolicy: Owner
+    template:
+      type: Opaque
+      metadata:
+        labels:
+          argocd.argoproj.io/secret-type: repository
+      data:
+        name: argocd-ecr
+        type: helm
+        enableOCI: "true"
+        url: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
+        username: "{{ .username }}"
+        password: "{{ .password }}"
+  dataFrom:
+    - sourceRef:
+        generatorRef:
+          apiVersion: generators.external-secrets.io/v1alpha1
+          kind: ECRAuthorizationToken
+          name: ecr-repo-config
