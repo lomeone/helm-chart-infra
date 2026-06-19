@@ -26,8 +26,8 @@ spec:
         type: helm
         enableOCI: "true"
         url: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com
-        username: "{{ .username }}"
-        password: "{{ .password }}"
+        username: {{ "{{ .username }}" | quote }}
+        password: {{ "{{ .password }}" | quote }}
   dataFrom:
     - sourceRef:
         generatorRef:
