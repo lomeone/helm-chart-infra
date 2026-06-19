@@ -1,8 +1,18 @@
 gatewayName: external-gateway
 
-hostName: "*.lomeone.com"
+hostNames:
+  - "lomeone.com"
+  - "moyemap.com"
 
 aws:
   loadBalancer:
     scheme: internet-facing
-    securityGroups: sg-0236644c16e4594fe,sg-047be870914de49f5,sg-061021400e2cfc6df
+    securityGroups:
+      - sg-0236644c16e4594fe
+      - sg-047be870914de49f5
+      - sg-061021400e2cfc6df
+    acm:
+      certificates:
+        - arn:aws:acm:ap-northeast-2:396428372646:certificate/754e3112-b0e7-4bd4-8af4-9795010dfe94
+        - arn:aws:acm:ap-northeast-2:396428372646:certificate/d9b4a297-8109-4258-a0b1-6e4c31985ad5
+
