@@ -1,5 +1,0 @@
-apiVersion: v2
-name: external-secrets-addons
-description: A helm chart for deploying External Secrets addons
-type: application
-version: 1.0.0

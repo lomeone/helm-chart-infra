@@ -17,9 +17,3 @@ releases:
       - values/secret-stores.yaml
     needs:
       - security-system/external-secrets
-
-  - name: external-secrets-addons
-    namespace: security-system
-    chart: ./addons
-    values:
-      - values/addons.yaml
