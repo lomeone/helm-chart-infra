@@ -2,9 +2,10 @@ profile: ambient
 
 hub: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/docker-hub/istio
 
+# 메시 데이터플레인이라 OOM 여유를 위해 limit은 유지
 resources:
   requests:
-    cpu: 200m
-    memory: 512Mi
+    cpu: 50m
+    memory: 128Mi
   limits:
     memory: 512Mi

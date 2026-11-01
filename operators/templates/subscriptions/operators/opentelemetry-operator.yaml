@@ -8,3 +8,8 @@ spec:
   name: opentelemetry-operator
   source: operatorhubio-catalog
   sourceNamespace: olm
+  {{- with .Values.subscriptions.opentelemetryOperator.resources }}
+  config:
+    resources:
+      {{- toYaml . | nindent 6 }}
+  {{- end }}

@@ -62,10 +62,10 @@ argo-cd:
   controller:
     resources:
       requests:
-        cpu: 50m
-        memory: 1.5Gi
+        cpu: 150m
+        memory: 1280Mi
       limits:
-        memory: 1.5Gi
+        memory: 1280Mi
     metrics:
       enabled: true
       service:
@@ -120,10 +120,10 @@ argo-cd:
         repository: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/argoprojlabs/argocd-extension-installer
     resources:
       requests:
-        cpu: 50m
-        memory: 512Mi
+        cpu: 25m
+        memory: 128Mi
       limits:
-        memory: 512Mi
+        memory: 128Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -163,6 +163,13 @@ argo-cd:
           # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps mitigate path traversal attacks.
           - mountPath: /tmp
             name: cmp-tmp
+        # helm template 렌더링 중 순간적으로 메모리가 튀므로 limit을 넉넉히 둔다
+        resources:
+          requests:
+            cpu: 10m
+            memory: 128Mi
+          limits:
+            memory: 512Mi
     volumes:
       - name: argocd-cmp-cm
         configMap:
@@ -250,9 +257,9 @@ argocd-image-updater:
   resources:
     requests:
       cpu: 10m
-      memory: 96Mi
+      memory: 64Mi
     limits:
-      memory: 96Mi
+      memory: 64Mi
 
   metrics:
     enabled: true
@@ -266,10 +273,10 @@ argo-rollouts:
       registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
     resources:
       requests:
-        cpu: 200m
-        memory: 256Mi
+        cpu: 10m
+        memory: 64Mi
       limits:
-        memory: 256Mi
+        memory: 64Mi
     metrics:
       enabled: true
       serviceMonitor:
@@ -281,7 +288,7 @@ argo-rollouts:
       registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
     resources:
       requests:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 10m
+        memory: 32Mi
       limits:
-        memory: 128Mi
+        memory: 32Mi

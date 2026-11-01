@@ -1,0 +1,32 @@
+# OLM Subscription의 spec.config.resources로 operator Deployment 리소스를 덮어쓴다
+subscriptions:
+  keycloakOperator:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 320Mi
+      limits:
+        cpu: 700m
+        memory: 320Mi
+  grafanaOperator:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 200m
+        memory: 128Mi
+  kialiOperator:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
+  opentelemetryOperator:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 128Mi

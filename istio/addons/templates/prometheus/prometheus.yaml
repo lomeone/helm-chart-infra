@@ -24,7 +24,7 @@ spec:
       {{- include "prometheus.labels" . | nindent 6 }}
   resources:
     requests:
-      cpu: 100m
+      cpu: 25m
       memory: 256Mi
     limits:
       memory: 256Mi

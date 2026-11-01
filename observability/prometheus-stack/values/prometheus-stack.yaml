@@ -14,6 +14,12 @@ kubeProxy:
 kube-state-metrics:
   image:
     registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/k8s
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
 nodeExporter:
   enabled: false
 prometheusOperator:
@@ -41,15 +47,22 @@ prometheusOperator:
         argocd.argoproj.io/hook-delete-policy: HookSucceeded
   resources:
     requests:
-      cpu: 50m
-      memory: 128Mi
+      cpu: 150m
+      memory: 64Mi
     limits:
-      memory: 128Mi
+      memory: 64Mi
   image:
     registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
   prometheusConfigReloader:
     image:
       registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io
+    # operator가 만드는 모든 Prometheus(istio-prometheus 포함)의 config-reloader에 적용
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        memory: 32Mi
 
 prometheus:
   prometheusSpec:
@@ -59,7 +72,7 @@ prometheus:
     resources:
       requests:
         cpu: 100m
-        memory: 1Gi
+        memory: 1536Mi
       limits:
-        memory: 1Gi
+        memory: 1536Mi
 cleanPrometheusOperatorObjectNames: true

@@ -9,3 +9,8 @@ spec:
   source: operatorhubio-catalog
   sourceNamespace: olm
   installPlanApproval: Manual
+  {{- with .Values.subscriptions.keycloakOperator.resources }}
+  config:
+    resources:
+      {{- toYaml . | nindent 6 }}
+  {{- end }}

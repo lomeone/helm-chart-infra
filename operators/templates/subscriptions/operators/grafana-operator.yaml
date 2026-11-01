@@ -8,3 +8,8 @@ spec:
   name: grafana-operator
   source: operatorhubio-catalog
   sourceNamespace: olm
+  {{- with .Values.subscriptions.grafanaOperator.resources }}
+  config:
+    resources:
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
