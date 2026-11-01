@@ -15,11 +15,12 @@ aws:
         - arn:aws:acm:ap-northeast-2:396428372646:certificate/d9b4a297-8109-4258-a0b1-6e4c31985ad5
 
 # Gateway 파드(istio-proxy) 리소스. Gateway API infrastructure.parametersRef로 istio에 전달
-# HPA가 CPU request 기준 50%에서 스케일아웃하므로 request를 너무 낮추지 않는다
+# - memory: Node OOM 방지를 위해 request = limit
+# - cpu: request만 둔다. limits.cpu를 비우면 istio 기본 CPU limit(2000m)을 제거한다
+# - HPA가 CPU request 기준 50%에서 스케일아웃하므로 cpu request를 너무 낮추지 않는다
 resources:
   requests:
     cpu: 50m
-    memory: 128Mi
+    memory: 256Mi
   limits:
-    cpu: 2000m
-    memory: 1Gi
+    memory: 256Mi

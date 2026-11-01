@@ -5,6 +5,7 @@ metadata:
   name: {{ $.Values.gatewayName }}-options
   namespace: istio-gateway
 data:
+  # istio가 생성한 Deployment 위에 strategic merge patch로 적용된다
   deployment: |
     spec:
       template:
@@ -12,5 +13,16 @@ data:
           containers:
             - name: istio-proxy
               resources:
-                {{- toYaml . | nindent 16 }}
+                {{- with .requests }}
+                requests:
+                  {{- toYaml . | nindent 18 }}
+                {{- end }}
+                limits:
+                  {{- if not (and .limits .limits.cpu) }}
+                  # istio 기본 CPU limit 제거
+                  cpu: null
+                  {{- end }}
+                  {{- with .limits }}
+                  {{- toYaml . | nindent 18 }}
+                  {{- end }}
 {{- end }}

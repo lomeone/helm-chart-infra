@@ -163,13 +163,13 @@ argo-cd:
           # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps mitigate path traversal attacks.
           - mountPath: /tmp
             name: cmp-tmp
-        # helm template 렌더링 중 순간적으로 메모리가 튀므로 limit을 넉넉히 둔다
+        # helm template 렌더링 중 메모리가 튀므로 request를 넉넉히 둔다 (request = limit)
         resources:
           requests:
             cpu: 10m
-            memory: 128Mi
+            memory: 256Mi
           limits:
-            memory: 512Mi
+            memory: 256Mi
     volumes:
       - name: argocd-cmp-cm
         configMap:
