@@ -17,12 +17,6 @@ certgen:
 cni:
   chainingMode: aws-cni       # AWS CNI와 연결되는 chaining 모드 사용
   exclusive: false            # aws-node DaemonSet도 계속 실행되도록 허용
-  # install-cni-binaries init 컨테이너. 차트 기본값(10Mi/1Gi)은 메모리 오버커밋이라 request = limit으로 맞춘다
-  resources:
-    requests:
-      memory: 64Mi
-    limits:
-      memory: 64Mi
 
 # Cilium 설정: ENI 기반 라우팅을 사용하여 VPC와 통합
 routingMode: native           # 네이티브 라우팅 모드를 사용하여 터널링을 비활성화합니다.
@@ -94,15 +88,6 @@ operator:
 # Cilium 설정: istio와의 통합
 envoy:
   enabled: false              # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
-
-# agent init 컨테이너(config, mount-cgroup, mount-bpf-fs 등) 리소스. 미설정 시 메모리 제한이 없어 request = limit으로 맞춘다
-# init 컨테이너 request는 본 컨테이너 합계보다 작으면 스케줄링 용량에 더해지지 않는다
-initResources:
-  requests:
-    cpu: 100m
-    memory: 128Mi
-  limits:
-    memory: 128Mi
 
 # Cilium resources 설정
 # CNI라 관측치보다 여유를 크게 둔다 (request = limit)
