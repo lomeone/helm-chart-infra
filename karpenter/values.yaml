@@ -41,6 +41,9 @@ karpenter:
     featureGates:
       nodeRepair: true
       spotToSpotConsolidation: true
+    awsFeatureGates:
+      # EC2NodeClass kubelet 값에 CEL 식을 쓰기 위해 필요 (아래 node.nodeClass.kubelet.maxPods)
+      nodeClassCEL: true
 
 eksCluster:
   name: lomeone-eks
@@ -83,3 +86,7 @@ node:
     amiFamily: AL2023
     amiSelectorTerms:
       - alias: al2023@latest
+    kubelet:
+      # VPC CNI prefix mode + 커스텀 네트워킹(primary ENI는 Pod에 사용 안 함) 기준 인스턴스 타입별 계산
+      # podsPerCore는 넣지 않음: vCPU 기준 상한은 이 식에 포함
+      maxPods: "min(110, min(vcpus * 20, ((default_enis - 1) * (ips_per_eni - 1)) * 16 + 2))"
