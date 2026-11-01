@@ -14,12 +14,13 @@ kubeProxy:
 kube-state-metrics:
   image:
     registry: 396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/k8s
+  # 기동 시 클러스터 전체 리소스를 list하면서 메모리가 튄다 (64Mi에서 OOMKilled)
   resources:
     requests:
       cpu: 25m
-      memory: 64Mi
+      memory: 128Mi
     limits:
-      memory: 64Mi
+      memory: 128Mi
 nodeExporter:
   enabled: false
 prometheusOperator:
