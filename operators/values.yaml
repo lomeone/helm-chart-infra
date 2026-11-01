@@ -1,4 +1,5 @@
-# OLM Subscription의 spec.config.resources로 operator Deployment 리소스를 덮어쓴다
+# OLM Subscription의 spec.config.resources로 operator Deployment 리소스를 덮어쓴다 (CSV 기본값을 통째로 대체)
+# 기준: memory는 request = limit, cpu는 request만 둔다
 subscriptions:
   keycloakOperator:
     resources:
@@ -6,7 +7,6 @@ subscriptions:
         cpu: 50m
         memory: 320Mi
       limits:
-        cpu: 700m
         memory: 320Mi
   grafanaOperator:
     resources:
@@ -14,7 +14,6 @@ subscriptions:
         cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 200m
         memory: 64Mi
   kialiOperator:
     resources:
