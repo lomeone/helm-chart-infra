@@ -80,7 +80,7 @@ operator:
     - '--pod-restart-selector=app.kubernetes.io/name!=aws-node'  # VPC CNI인 aws-node를 제외한 모든 Pod에 대해 재시작 감시 설정
   resources:
     requests:
-      cpu: 100m
+      cpu: 25m
       memory: 128Mi
     limits:
       memory: 128Mi
@@ -90,12 +90,13 @@ envoy:
   enabled: false              # Istio와의 통합을 위해 Envoy를 사용하지 않도록 설정 (Istio가 자체적으로 Envoy를 관리)
 
 # Cilium resources 설정
+# CNI라 관측치보다 여유를 크게 둔다 (request = limit)
 resources:
   requests:
-    cpu: 200m
-    memory: 1Gi
+    cpu: 100m
+    memory: 512Mi
   limits:
-    memory: 1Gi
+    memory: 512Mi
 
 # Hubble (가시성/관측 도구) 설정
 hubble:
@@ -104,14 +105,32 @@ hubble:
     enabled: true
     image:
       repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-relay"
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 64Mi
   ui:
     enabled: true
     backend:
       image:
         repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-ui-backend"
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          memory: 32Mi
     frontend:
       image:
         repository: "396428372646.dkr.ecr.ap-northeast-2.amazonaws.com/quay-io/cilium/hubble-ui"
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          memory: 32Mi
 
 # Prometheus 모니터링 (선택)
 prometheus:

@@ -9,10 +9,10 @@ spec:
       port: 16686
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: 25m
+      memory: 256Mi
     limits:
-      memory: 128Mi
+      memory: 256Mi
   config:
     service:
       extensions: [ jaeger_storage, jaeger_query ]

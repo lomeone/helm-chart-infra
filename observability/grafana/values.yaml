@@ -5,10 +5,10 @@ grafana:
     tag: 12.1.0
   resources:
     requests:
-      cpu: 100m
-      memory: 512Mi
+      cpu: 25m
+      memory: 256Mi
     limits:
-      memory: 512Mi
+      memory: 256Mi
 
 datasources:
   prometheus:

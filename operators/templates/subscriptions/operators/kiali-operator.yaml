@@ -8,3 +8,8 @@ spec:
   name: kiali
   source: operatorhubio-catalog
   sourceNamespace: olm
+  {{- with .Values.subscriptions.kialiOperator.resources }}
+  config:
+    resources:
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
