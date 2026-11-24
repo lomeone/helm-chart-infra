@@ -1,0 +1,30 @@
+# Istio ambient HBONE(15008/TCP) 허용
+# - ambient 모드에서 Pod 간 트래픽은 ztunnel이 목적지 Pod IP의 15008 포트로 HBONE 터널을 맺어서 전달한다.
+#   그래서 Cilium에는 앱 포트(8080 등)가 아니라 15008로 보인다.
+# - 어떤 정책(Kubernetes NetworkPolicy 포함)이 Pod를 선택하더라도 mesh 통신이 끊기지 않도록 클러스터 내부 15008을 항상 허용한다.
+#   예: auth-system의 keycloak-operator NetworkPolicy는 8080/9000/7800만 허용하므로 이 정책이 없으면 HBONE이 막힌다.
+# - 서비스 단위 접근 제어(누가 어떤 서비스를 호출할 수 있는지)는 Istio AuthorizationPolicy로 한다.
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: allow-ambient-hbone
+spec:
+  description: "Allow Istio ambient HBONE (15008/TCP) between in-cluster endpoints"
+  enableDefaultDeny:
+    ingress: false
+    egress: false
+  endpointSelector: {}
+  ingress:
+    - fromEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "15008"
+              protocol: TCP
+  egress:
+    - toEntities:
+        - cluster
+      toPorts:
+        - ports:
+            - port: "15008"
+              protocol: TCP

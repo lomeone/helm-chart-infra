@@ -1,0 +1,25 @@
+# 모든 Pod <-> kube-apiserver 허용
+# - EKS API 서버 ENI IP는 수시로 바뀌므로 CIDR가 아닌 kube-apiserver entity로 지정한다.
+#   (operators/opentelemetry-operator NetworkPolicy가 예전 API 서버 IP를 ipBlock으로 고정하고 있어
+#    allow-all 정책을 제거하면 이 정책이 없을 경우 operator가 API 서버에 접근하지 못한다.)
+# - ingress: admission/conversion webhook 호출 (istiod, external-secrets, karpenter, operator 등)
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: baseline-allow-kube-apiserver
+spec:
+  description: "Allow all pods to talk to kube-apiserver and receive webhook calls from it"
+  enableDefaultDeny:
+    ingress: false
+    egress: false
+  endpointSelector: {}
+  ingress:
+    - fromEntities:
+        - kube-apiserver
+  egress:
+    - toEntities:
+        - kube-apiserver
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
