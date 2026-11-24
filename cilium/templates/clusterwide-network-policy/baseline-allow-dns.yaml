@@ -1,6 +1,5 @@
 # 모든 Pod -> CoreDNS(kube-dns) 허용
 # - enableDefaultDeny: false 이므로 이 정책만으로는 어떤 Pod도 default-deny 상태가 되지 않는다.
-# - rules.dns 를 지정해 Cilium DNS proxy를 거치게 한다. (toFQDNs 정책과 Hubble DNS 가시성에 필요)
 apiVersion: cilium.io/v2
 kind: CiliumClusterwideNetworkPolicy
 metadata:
@@ -20,6 +19,3 @@ spec:
         - ports:
             - port: "53"
               protocol: ANY
-          rules:
-            dns:
-              - matchPattern: "*"
