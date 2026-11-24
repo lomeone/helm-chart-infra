@@ -1,5 +1,0 @@
-apiVersion: v2
-name: cilium-addons
-description: A helm chart for deploying Cilium addons
-type: application
-version: 1.0.0
