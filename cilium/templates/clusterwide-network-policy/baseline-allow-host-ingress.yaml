@@ -1,0 +1,16 @@
+# 로컬 노드(kubelet) -> Pod 허용
+# - non-ambient Pod의 liveness/readiness probe 는 host identity 로 들어온다.
+# - ambient Pod의 probe 는 istio-ambient-hostprobes.yaml(169.254.7.127)에서 별도로 허용한다.
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: baseline-allow-host-ingress
+spec:
+  description: "Allow kubelet health probes from the local node"
+  enableDefaultDeny:
+    ingress: false
+    egress: false
+  endpointSelector: {}
+  ingress:
+    - fromEntities:
+        - host
