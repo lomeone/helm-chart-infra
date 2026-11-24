@@ -67,6 +67,8 @@ cilium:
   # kube-proxy 대체: 완전히 제거하고 Cilium이 eBPF로 서비스 처리를 담당
   kubeProxyReplacement: true    # iptables와 kube-proxy 완전히 제거
 
+  localRedirectPolicy: true # Node Local DNS를 사용하기 위한 옵션 활성화
+
   # Cilium Operator 설정: Unmanaged Pod Restart
   operator:
     image:
